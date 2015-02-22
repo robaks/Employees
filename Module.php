@@ -10,6 +10,8 @@ use Zend\Mvc\Controller\ControllerManager;
 use Zend\Console\Adapter\AdapterInterface as ConsoleAdapterInterface;
 use Zend\ServiceManager\ServiceManager;
 use Zend\Db\TableGateway\TableGateway;
+use Employees\Controller\User\ListController;
+use Employees\Controller\User\ShowController;
 
 class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                         ControllerProviderInterface, ConsoleUsageProviderInterface,
@@ -46,6 +48,15 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
 
     public function getControllerConfig()
     {
-        return array();
+        return array(
+            'factories' => array(
+                'Employees\Controller\User\List' => function (ControllerManager $cm) {
+                    return new ListController();
+                },
+                'Employees\Controller\User\Show' => function (ControllerManager $cm) {
+                    return new ShowController();
+                },
+            ),
+        );
     }
 }

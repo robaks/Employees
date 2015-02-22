@@ -6,8 +6,8 @@ return array(
         'template_path_stack' => array(
             'admin' => __DIR__ . '/../view',
         ),
-        'display_exceptions' => false,
-        'display_not_found_reason' => false,
+        'display_exceptions' => true,
+        'display_not_found_reason' => true,
         'strategies' => array(
             'ViewJsonStrategy',
         ),
@@ -22,6 +22,17 @@ return array(
                     'defaults' => array(
                         '__NAMESPACE__' => 'Employees\Controller\User',
                         'controller'    => 'List',
+                        'action'        => 'default',
+                    ),
+                ),
+            ),
+            'employe-show' => array(
+                'type'    => 'Segment',
+                'options' => array(
+                    'route'    => '/employe/[:id]',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Employees\Controller\User',
+                        'controller'    => 'Show',
                         'action'        => 'default',
                     ),
                 ),
