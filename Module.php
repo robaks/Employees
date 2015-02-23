@@ -6,17 +6,22 @@ use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ModuleManager\Feature\ControllerProviderInterface;
 use Zend\ModuleManager\Feature\ConsoleUsageProviderInterface;
 use Zend\ModuleManager\Feature\ServiceProviderInterface;
+use Zend\ModuleManager\Feature\BootstrapListenerInterface;
 use Zend\Mvc\Controller\ControllerManager;
+use Zend\EventManager\EventInterface;
 use Zend\Console\Adapter\AdapterInterface as ConsoleAdapterInterface;
-use Zend\ServiceManager\ServiceManager;
-use Zend\Db\TableGateway\TableGateway;
 use Employees\Controller\User\ListController;
 use Employees\Controller\User\ShowController;
 
 class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                         ControllerProviderInterface, ConsoleUsageProviderInterface,
-                        ServiceProviderInterface
+                        ServiceProviderInterface, BootstrapListenerInterface
 {
+    public function onBootstrap(EventInterface $e)
+    {
+        $navigator = $e->getApplication()->getServiceLocator()->get('Navigation\Menu\Navigator');
+        $navigator->addEntry('Employees', 'employees-list', 'menu-icon fa fa-users');
+    }
 
     public function getConfig($env = null)
     {
