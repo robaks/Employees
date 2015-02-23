@@ -26,13 +26,24 @@ return array(
                     ),
                 ),
             ),
-            'employe-show' => array(
+            'employee-show' => array(
                 'type'    => 'Segment',
                 'options' => array(
-                    'route'    => '/employe/[:id]',
+                    'route'    => '/employee/[:id]',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Employees\Controller\User',
                         'controller'    => 'Show',
+                        'action'        => 'default',
+                    ),
+                ),
+            ),
+            'employee-add' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/employee/add',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Employees\Controller\User',
+                        'controller'    => 'Add',
                         'action'        => 'default',
                     ),
                 ),

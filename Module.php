@@ -12,6 +12,7 @@ use Zend\EventManager\EventInterface;
 use Zend\Console\Adapter\AdapterInterface as ConsoleAdapterInterface;
 use Employees\Controller\User\ListController;
 use Employees\Controller\User\ShowController;
+use Employees\Controller\User\AddController;
 
 class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                         ControllerProviderInterface, ConsoleUsageProviderInterface,
@@ -19,7 +20,7 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
 {
     public function onBootstrap(EventInterface $e)
     {
-        $navigator = $e->getApplication()->getServiceLocator()->get('Navigation\Menu\Navigator');
+        $navigator = $e->getApplication()->getServiceManager()->get('Navigation\Menu\Navigator');
         $navigator->addEntry('Employees', 'employees-list', 'menu-icon fa fa-users');
     }
 
@@ -60,6 +61,9 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                 },
                 'Employees\Controller\User\Show' => function (ControllerManager $cm) {
                     return new ShowController();
+                },
+                'Employees\Controller\User\Add' => function (ControllerManager $cm) {
+                    return new AddController();
                 },
             ),
         );
