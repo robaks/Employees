@@ -7,7 +7,7 @@
 </div>
 
 <div class="row">
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
         <!-- col-lg-4 start here -->
         <div class="panel panel-default plain">
             <!-- Start .panel -->
@@ -33,20 +33,31 @@
                         <input type="text" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label class="control-label">Данные поспорта</label>
+                        <label class="control-label">Телефоны</label>
                         <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Данные паспорта</label>
+                        <textarea rows="3" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">ИПН</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Адрес факт</label>
+                        <textarea rows="3" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Адрес прописки</label>
+                        <textarea rows="3" class="form-control"></textarea>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Контактные лица</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">More info</label>
                         <textarea rows="3" class="form-control"></textarea>
                     </div>
-                    <!-- End .form-group  -->
-                    <div class="form-group mb15">
-                        <button class="btn btn-primary">Save</button>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit">Save</button>
                     </div>
                     <!-- End .form-group  -->
                 </form>
@@ -55,8 +66,28 @@
         <!-- End .panel -->
     </div>
 
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
         <!-- col-lg-4 start here -->
+        <div class="panel panel-default plain">
+            <!-- Start .panel -->
+            <div class="panel-heading">
+                <h4 class="panel-title">Photo</h4>
+            </div>
+            <div class="panel-body">
+                <form role="form" class="form-vertical">
+                    <div class="form-group">
+                        <label class="control-label">Дата приема на работу</label>
+                        <input type="text" value="Jonh Doe" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit">Save</button>
+                    </div>
+                    <!-- End .form-group  -->
+                </form>
+            </div>
+        </div>
+        <!-- End .panel -->
+
         <div class="panel panel-default plain">
             <!-- Start .panel -->
             <div class="panel-heading">
@@ -65,32 +96,75 @@
             <div class="panel-body">
                 <form role="form" class="form-vertical">
                     <div class="form-group">
-                        <label class="control-label">Фамилия</label>
-                        <input type="text" value="SuggeElson" class="form-control">
+                        <label class="control-label">Должность</label>
+                        <select class="form-control form-group-margin">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">Имя</label>
+                        <label class="control-label">Статус</label>
+                        <select class="form-control form-group-margin">
+                            <option>На испытательном</option>
+                            <option>Работает</option>
+                            <option>Уволен</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Дата приема на работу</label>
                         <input type="text" value="Jonh Doe" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label class="control-label">Отчество</label>
+                        <label class="control-label">Дата увольнения</label>
                         <input type="email" value="suggeelson@suggeelson.com" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label class="control-label">New password</label>
-                        <input type="password" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Repeat password</label>
-                        <input type="password" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">More info</label>
-                        <textarea rows="3" class="form-control"></textarea>
+                        <button class="btn btn-primary" type="submit">Save</button>
                     </div>
                     <!-- End .form-group  -->
-                    <div class="form-group mb15">
-                        <button class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+        <!-- col-lg-4 start here -->
+        <div class="panel panel-default plain">
+            <!-- Start .panel -->
+            <div class="panel-heading">
+                <h4 class="panel-title">Contacts</h4>
+            </div>
+            <div class="panel-body">
+                <form role="form" class="form-vertical">
+                    <div class="form-group">
+                        <label class="control-label">Skype</label>
+                        <input type="text" value="SuggeElson" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Personal e-mail</label>
+                        <input type="text" value="Jonh Doe" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Work e-mail</label>
+                        <input type="email" value="suggeelson@suggeelson.com" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">fb</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">vk</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">lin</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit">Save</button>
                     </div>
                     <!-- End .form-group  -->
                 </form>
@@ -98,5 +172,5 @@
         </div>
         <!-- End .panel -->
     </div>
-    <!-- col-lg-4 end here -->
+
 </div>
