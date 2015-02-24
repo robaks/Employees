@@ -31,7 +31,10 @@
     },
     "autoload": {
         "psr-0": {
-            "Employees": "src/"
+            "Employees": "src/",
+            "EmployeesTest\\UnitTest": "tests/UnitTest/",
+            "EmployeesTest\\FunctionalTest": "tests/FunctionalTest/",
+            "EmployeesTest\\AcceptanceTest": "tests/AcceptanceTest/"
         },
         "classmap": [
             "./Module.php"
