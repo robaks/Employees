@@ -4,7 +4,11 @@ namespace Employees\Controller\Console;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Db\Adapter\Adapter;
-use Zend\Db\Metadata\Metadata;
+use Zend\Db\Sql\Ddl;
+use Zend\Db\Sql\Ddl\Column;
+use Zend\Db\Sql\Ddl\Constraint;
+use Zend\Db\Sql\Sql;
+use PDOException;
 use League\Flysystem\Filesystem;
 
 class InitController extends AbstractActionController {
@@ -15,72 +19,43 @@ class InitController extends AbstractActionController {
     private $dbAdapter;
 
     /**
-     * @var Metadata
-     */
-    private $metadata;
-
-    /**
      * @var Filesystem
      */
     private $fileSystem;
 
-    public function __construct(Adapter $dbAdapter, Metadata $metadata, Filesystem $fileSystem){
+    public function __construct(Adapter $dbAdapter, Filesystem $fileSystem){
         $this->dbAdapter = $dbAdapter;
-        $this->metadata = $metadata;
         $this->fileSystem = $fileSystem;
     }
 
     public function runAction() {
 
-        $databaseName = $this->getDatabaseName();
+        $table = new Ddl\CreateTable('employees');
+        $table->addColumn(new Column\Integer('id'));
+        $table->addColumn(new Column\Varchar('name', 50));
+        $table->addColumn(new Column\Varchar('surname', 50));
+        $table->addColumn(new Column\Varchar('patronymic', 50));
+        $table->addColumn(new Column\Varchar('avatar', 50));
+        $table->addConstraint(new Constraint\PrimaryKey('id'));
 
-        if (empty($databaseName)) {
-            return "Db access not configured" . PHP_EOL;
+        $sql = new Sql($this->dbAdapter);
+
+        try {
+            $this->dbAdapter->query(
+                $sql->getSqlStringForSqlObject($table),
+                Adapter::QUERY_MODE_EXECUTE
+            );
+        } catch (PDOException $e) {
+            return $e->getMessage() . PHP_EOL;
         }
-
-        $result = $this->dbAdapter->query(
-            "SELECT *
-            FROM information_schema.tables
-            WHERE table_schema = '$databaseName'
-                AND table_name = 't4_site_config'
-            LIMIT 1;",
-            Adapter::QUERY_MODE_EXECUTE
-        );
-
-        if ($result->count() > 0) {
-            return "Already initialized" . PHP_EOL;
-        }
-
-        $this->dbAdapter->query(
-            "CREATE TABLE IF NOT EXISTS `t4_site_config` (
-              `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-              `scope` varchar(50) COLLATE utf8_unicode_ci DEFAULT '',
-              `name` varchar(100) COLLATE utf8_unicode_ci DEFAULT '',
-              `value` text COLLATE utf8_unicode_ci DEFAULT NULL,
-              PRIMARY KEY (`id`),
-              UNIQUE KEY `name` (`name`)
-            ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1;",
-            Adapter::QUERY_MODE_EXECUTE
-        );
 
         $vendorSiteConfigRootPath = dirname(dirname(dirname(dirname(__DIR__))));
 
         $this->fileSystem->symlink(
-            getcwd() . '/public/adm/js/site-config',
-            $vendorSiteConfigRootPath . '/public/adm/js/site-config/'
+            $vendorSiteConfigRootPath . '/public/js/employees/',
+            getcwd() . '/public/js/employees'
         );
 
         return "Success completed" . PHP_EOL;
-    }
-
-    private function getDatabaseName()
-    {
-        $schemas = $this->metadata->getSchemas();
-
-        if (!array_key_exists(0, $schemas)) {
-            return;
-        }
-
-        return $schemas[0];
     }
 }

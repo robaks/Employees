@@ -10,11 +10,20 @@ class InitControllerTest extends \PHPUnit_Framework_TestCase
 
     public function testCreation()
     {
-        $this->assertTrue($this->controllerManager->has('Employees\Controller\User\Add'));
+        $dbAdapterMock = $this->getMockBuilder('Zend\Db\Adapter\Adapter')
+            ->disableOriginalConstructor()
+            ->getMock();
 
-        $controller = $this->controllerManager->get('Employees\Controller\User\Add');
+        $this->serviceManager->setService('Zend\Db\Adapter\Adapter', $dbAdapterMock);
 
-        $this->assertInstanceOf('Employees\Controller\User\AddController', $controller);
+        $this->assertTrue($this->controllerManager->has('Employees\Controller\Console\Init'));
+
+        $controller = $this->controllerManager->get('Employees\Controller\Console\Init');
+
+        $this->assertInstanceOf('Employees\Controller\Console\InitController', $controller);
+
+        $this->assertAttributeEquals($dbAdapterMock, 'dbAdapter', $controller);
+        $this->assertAttributeInstanceOf('League\Flysystem\Filesystem', 'fileSystem', $controller);
     }
 
 }

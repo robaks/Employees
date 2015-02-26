@@ -10,10 +10,13 @@ use Zend\ModuleManager\Feature\BootstrapListenerInterface;
 use Zend\Mvc\Controller\ControllerManager;
 use Zend\EventManager\EventInterface;
 use Zend\Console\Adapter\AdapterInterface as ConsoleAdapterInterface;
+use League\Flysystem\Filesystem;
+use League\Flysystem\Adapter\Local as LocalAdapter;
 use Falc\Flysystem\Plugin\Symlink\Local as LocalSymlinkPlugin;
 use Employees\Controller\User\ListController;
 use Employees\Controller\User\ShowController;
 use Employees\Controller\User\AddController;
+use Employees\Controller\Console\InitController;
 
 class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                         ControllerProviderInterface, ConsoleUsageProviderInterface,
@@ -65,7 +68,6 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
 
                     return new InitController(
                         $sl->get('Zend\Db\Adapter\Adapter'),
-                        $sl->get('Zend\Db\Metadata\Metadata'),
                         $fileSystem
                     );
                 },
