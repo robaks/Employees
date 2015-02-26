@@ -4,7 +4,7 @@ return array(
 
     'view_manager' => array(
         'template_path_stack' => array(
-            'admin' => __DIR__ . '/../view',
+            __DIR__ . '/../view',
         ),
         'display_exceptions' => true,
         'display_not_found_reason' => true,
@@ -44,6 +44,17 @@ return array(
                     'defaults' => array(
                         '__NAMESPACE__' => 'Employees\Controller\User',
                         'controller'    => 'Add',
+                        'action'        => 'default',
+                    ),
+                ),
+            ),
+            'employee-save' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route'    => '/employee/save',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Employees\Controller\User',
+                        'controller'    => 'SaveAjax',
                         'action'        => 'default',
                     ),
                 ),

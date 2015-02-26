@@ -10,6 +10,7 @@ use Zend\ModuleManager\Feature\BootstrapListenerInterface;
 use Zend\Mvc\Controller\ControllerManager;
 use Zend\EventManager\EventInterface;
 use Zend\Console\Adapter\AdapterInterface as ConsoleAdapterInterface;
+use Falc\Flysystem\Plugin\Symlink\Local as LocalSymlinkPlugin;
 use Employees\Controller\User\ListController;
 use Employees\Controller\User\ShowController;
 use Employees\Controller\User\AddController;
@@ -56,6 +57,18 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
     {
         return array(
             'factories' => array(
+                'Employees\Controller\Console\Init' => function (ControllerManager $cm) {
+                    $sl = $cm->getServiceLocator();
+
+                    $fileSystem = new Filesystem(new LocalAdapter(__DIR__));
+                    $fileSystem->addPlugin(new LocalSymlinkPlugin\Symlink());
+
+                    return new InitController(
+                        $sl->get('Zend\Db\Adapter\Adapter'),
+                        $sl->get('Zend\Db\Metadata\Metadata'),
+                        $fileSystem
+                    );
+                },
                 'Employees\Controller\User\List' => function (ControllerManager $cm) {
                     return new ListController();
                 },
