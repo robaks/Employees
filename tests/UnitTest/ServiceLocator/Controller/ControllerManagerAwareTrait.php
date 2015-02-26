@@ -1,5 +1,5 @@
 <?php
-namespace Employees\UnitTest\ServiceLocator\Controller\User;
+namespace EmployeesTest\UnitTest\ServiceLocator\Controller;
 
 use Employees\Module;
 use Zend\ServiceManager\ServiceManager;
@@ -9,7 +9,7 @@ use Zend\Mvc\Controller\PluginManager as ControllerPluginManager;
 use Zend\EventManager\EventManager;
 use Zend\EventManager\SharedEventManager;
 
-class ShowControllerTest extends \PHPUnit_Framework_TestCase
+trait ControllerManagerAwareTrait
 {
     private $serviceManager;
 
@@ -36,15 +36,6 @@ class ShowControllerTest extends \PHPUnit_Framework_TestCase
         $this->controllerManager = new ControllerManager(new Config($module->getControllerConfig()));
         $this->controllerManager->setServiceLocator($this->serviceManager);
         $this->controllerManager->addPeeringServiceManager($this->serviceManager);
-    }
-
-    public function testCreation()
-    {
-        $this->assertTrue($this->controllerManager->has('Employees\Controller\User\Show'));
-
-        $controller = $this->controllerManager->get('Employees\Controller\User\Show');
-
-        $this->assertInstanceOf('Employees\Controller\User\ShowController', $controller);
     }
 
 }

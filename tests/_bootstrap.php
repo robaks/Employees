@@ -5,3 +5,5 @@ if (file_exists('../../../vendor/autoload.php')) {
 } else {
     include './vendor/autoload.php';
 }
+
+define('TESTS_FOLDER_PATH', __DIR__);

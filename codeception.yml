@@ -1,4 +1,4 @@
-namespace: Employees
+namespace: EmployeesTest
 actor: Tester
 paths:
     tests: tests
