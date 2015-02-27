@@ -16,6 +16,7 @@ use Falc\Flysystem\Plugin\Symlink\Local as LocalSymlinkPlugin;
 use Employees\Controller\User\ListController;
 use Employees\Controller\User\ShowController;
 use Employees\Controller\User\AddController;
+use Employees\Controller\User\SaveAjaxController;
 use Employees\Controller\Console\InitController;
 
 class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
@@ -79,6 +80,9 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                 },
                 'Employees\Controller\User\Add' => function (ControllerManager $cm) {
                     return new AddController();
+                },
+                'Employees\Controller\User\SaveAjax' => function (ControllerManager $cm) {
+                    return new SaveAjaxController();
                 },
             ),
         );
