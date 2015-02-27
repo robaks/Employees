@@ -3,248 +3,223 @@
 <div class="page-header">
     <div class="row">
         <h1 class="col-sm-4 text-center text-left-sm col-xs-12">
-            <i class="fa fa-users page-header-icon"></i>&nbsp;&nbsp;<a href="/employees">Employees</a>&nbsp;&nbsp;<i class="fa fa-angle-right page-header-icon"></i>&nbsp;&nbsp;Add employee
+            <i class="fa fa-users page-header-icon"></i>&nbsp;&nbsp;<a href="<?= $this->url('employees-list'); ?>">Employees</a>&nbsp;&nbsp;<i class="fa fa-angle-right page-header-icon"></i>&nbsp;&nbsp;Add employee
         </h1>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <!-- col-lg-4 start here -->
         <div class="panel panel-default plain" id="personal-info">
             <!-- Start .panel -->
-            <div class="panel-heading">
-                <h4 class="panel-title">Personal info</h4>
-            </div>
             <div class="panel-body">
-                <form role="form" class="form-vertical">
-                    <div class="form-group">
-                        <label class="control-label">Фамилия</label>
-                        <input type="text" value="SuggeElson" class="form-control">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <!-- col-lg-4 start here -->
+                        <div class="panel panel-default plain" id="personal-info">
+                            <!-- Start .panel -->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">Personal info</h4>
+                            </div>
+                            <div class="panel-body">
+                                <form role="form" class="form-vertical">
+                                    <div class="form-group">
+                                        <label class="control-label">Фамилия</label>
+                                        <input type="text" value="" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Имя</label>
+                                        <input type="text" value="" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Отчество</label>
+                                        <input type="email" value="" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Дата рождения</label>
+                                        <div id="bs-datepicker-component3" class="input-group date">
+                                            <input type="text" class="form-control"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Телефоны</label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Данные паспорта</label>
+                                        <textarea rows="3" class="form-control"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">ИПН</label>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Адрес факт</label>
+                                        <textarea rows="3" class="form-control"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Адрес прописки</label>
+                                        <textarea rows="3" class="form-control"></textarea>
+                                    </div>
+                                    <!-- End .form-group  -->
+                                </form>
+                            </div>
+                        </div>
+                        <!-- End .panel -->
                     </div>
-                    <div class="form-group">
-                        <label class="control-label">Имя</label>
-                        <input type="text" value="Jonh Doe" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Отчество</label>
-                        <input type="email" value="suggeelson@suggeelson.com" class="form-control">
-                    </div>
-                    <script>
-                        init.push(function () {
-                            $('#bs-datepicker-component3').datepicker({ format: "yyyy-mm-dd", startView: "decade" });
-                        });
-                    </script>
-                    <div class="form-group">
-                        <label class="control-label">Дата рождения</label>
-                        <div id="bs-datepicker-component3" class="input-group date">
-                            <input type="text" class="form-control"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <!-- col-lg-4 start here -->
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <span class="panel-title">Photo</span>
+                            </div>
+                            <div class="panel-body">
+                                <div id="dropzonejs-example" class="dropzone-box">
+                                    <div class="dz-default dz-message">
+                                        <i class="fa fa-cloud-upload"></i>
+                                        Drop files in here<br><span class="dz-text-small">or click to pick manually</span>
+                                    </div>
+                                    <form action="http://dummy.html/">
+                                        <div class="fallback">
+                                            <input name="file" type="file" multiple="" />
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End .panel -->
+
+                        <div class="panel panel-default plain">
+                            <!-- Start .panel -->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">Work info</h4>
+                            </div>
+                            <div class="panel-body">
+                                <form role="form" class="form-vertical">
+                                    <div class="form-group">
+                                        <label class="control-label">Должность</label>
+                                        <select class="form-control form-group-margin">
+                                            <option>Junior Software developer</option>
+                                            <option>Middle Software developer</option>
+                                            <option>Senior Software developer</option>
+                                            <option>Lead Software developer</option>
+                                            <option>Junior QA engineer</option>
+                                            <option>Middle QA engineer</option>
+                                            <option>Senior QA engineer</option>
+                                            <option>Lead QA engineer</option>
+                                            <option>Project Manager</option>
+                                            <option>Frontend engineer</option>
+                                            <option>Designer</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Статус</label>
+                                        <select class="form-control form-group-margin">
+                                            <option>На испытательном</option>
+                                            <option>Работает</option>
+                                            <option>Уволен</option>
+                                            <option>Удаленный сотрудник</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Дата приема на работу</label>
+                                        <div id="bs-datepicker-component" class="input-group date">
+                                            <input type="text" class="form-control"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Дата увольнения</label>
+                                        <div id="bs-datepicker-component2" class="input-group date">
+                                            <input type="text" class="form-control"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                    </div>
+                                    <!-- End .form-group  -->
+                                </form>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label">Телефоны</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Данные паспорта</label>
-                        <textarea rows="3" class="form-control"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">ИПН</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Адрес факт</label>
-                        <textarea rows="3" class="form-control"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Адрес прописки</label>
-                        <textarea rows="3" class="form-control"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Контактные лица</label>
-                        <textarea rows="3" class="form-control"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary" type="submit" id="create-employee-btn">Create</button>
-                    </div>
-                    <!-- End .form-group  -->
-                </form>
-            </div>
-        </div>
-        <!-- End .panel -->
-    </div>
 
-    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-        <!-- col-lg-4 start here -->
-        <script>
-            init.push(function () {
-                $("#dropzonejs-example").dropzone({
-                    url: "//dummy.html",
-                    paramName: "file", // The name that will be used to transfer the file
-                    maxFilesize: 0.5, // MB
-
-                    addRemoveLinks : true,
-                    dictResponseError: "Can't upload file!",
-                    autoProcessQueue: false,
-                    thumbnailWidth: 138,
-                    thumbnailHeight: 120,
-
-                    previewTemplate: '<div class="dz-preview dz-file-preview"><div class="dz-details"><div class="dz-filename"><span data-dz-name></span></div><div class="dz-size">File size: <span data-dz-size></span></div><div class="dz-thumbnail-wrapper"><div class="dz-thumbnail"><img data-dz-thumbnail><span class="dz-nopreview">No preview</span><div class="dz-success-mark"><i class="fa fa-check-circle-o"></i></div><div class="dz-error-mark"><i class="fa fa-times-circle-o"></i></div><div class="dz-error-message"><span data-dz-errormessage></span></div></div></div></div><div class="progress progress-striped active"><div class="progress-bar progress-bar-success" data-dz-uploadprogress></div></div></div>',
-
-                    resize: function(file) {
-                        var info = { srcX: 0, srcY: 0, srcWidth: file.width, srcHeight: file.height },
-                            srcRatio = file.width / file.height;
-                        if (file.height > this.options.thumbnailHeight || file.width > this.options.thumbnailWidth) {
-                            info.trgHeight = this.options.thumbnailHeight;
-                            info.trgWidth = info.trgHeight * srcRatio;
-                            if (info.trgWidth > this.options.thumbnailWidth) {
-                                info.trgWidth = this.options.thumbnailWidth;
-                                info.trgHeight = info.trgWidth / srcRatio;
-                            }
-                        } else {
-                            info.trgHeight = file.height;
-                            info.trgWidth = file.width;
-                        }
-                        return info;
-                    }
-                });
-            });
-        </script>
-        <!-- / Javascript -->
-
-        <div class="panel">
-            <div class="panel-heading">
-                <span class="panel-title">Photo</span>
-            </div>
-            <div class="panel-body">
-                <div id="dropzonejs-example" class="dropzone-box">
-                    <div class="dz-default dz-message">
-                        <i class="fa fa-cloud-upload"></i>
-                        Drop files in here<br><span class="dz-text-small">or click to pick manually</span>
-                    </div>
-                    <form action="http://dummy.html/">
-                        <div class="fallback">
-                            <input name="file" type="file" multiple="" />
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <!-- col-lg-4 start here -->
+                        <div class="panel panel-default plain">
+                            <!-- Start .panel -->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">Social</h4>
+                            </div>
+                            <div class="panel-body">
+                                <form role="form" class="form-vertical">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-skype"></i></span>
+                                            <input type="text" placeholder="Skype" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                                            <input type="text" placeholder="Personal e-mail" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                                            <input type="text" placeholder="Work e-mail" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-facebook-square"></i></span>
+                                            <input type="text" placeholder="facebook" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-vk"></i></span>
+                                            <input type="text" placeholder="vkontakte" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-linkedin"></i></span>
+                                            <input type="text" placeholder="linkedin" class="form-control">
+                                        </div>
+                                    </div>
+                                    <!-- End .form-group  -->
+                                </form>
+                            </div>
                         </div>
-                    </form>
+                        <!-- End .panel -->
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <!-- col-lg-4 start here -->
+                        <div class="panel panel-default plain">
+                            <!-- Start .panel -->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">Contacts</h4>
+                            </div>
+                            <div class="panel-body">
+                                <form role="form" class="form-vertical">
+                                    <div class="form-group">
+                                        <label class="control-label">Контактные лица</label>
+                                        <textarea rows="3" class="form-control"></textarea>
+                                    </div>
+                                    <!-- End .form-group  -->
+                                </form>
+                            </div>
+                        </div>
+                        <!-- End .panel -->
+                    </div>
+
                 </div>
             </div>
-        </div>
-        <!-- End .panel -->
 
-        <div class="panel panel-default plain">
-            <!-- Start .panel -->
-            <div class="panel-heading">
-                <h4 class="panel-title">Work info</h4>
-            </div>
-            <div class="panel-body">
-                <form role="form" class="form-vertical">
-                    <div class="form-group">
-                        <label class="control-label">Должность</label>
-                        <select class="form-control form-group-margin">
-                            <option>Junior Software developer</option>
-                            <option>Middle Software developer</option>
-                            <option>Senior Software developer</option>
-                            <option>Lead Software developer</option>
-                            <option>Junior QA engineer</option>
-                            <option>Middle QA engineer</option>
-                            <option>Senior QA engineer</option>
-                            <option>Lead QA engineer</option>
-                            <option>Project Manager</option>
-                            <option>Frontend engineer</option>
-                            <option>Designer</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Статус</label>
-                        <select class="form-control form-group-margin">
-                            <option>На испытательном</option>
-                            <option>Работает</option>
-                            <option>Уволен</option>
-                            <option>Удаленный сотрудник</option>
-                        </select>
-                    </div>
-                    <script>
-                        init.push(function () {
-                            $('#bs-datepicker-component').datepicker({ format: "yyyy-mm-dd" });
-                            $('#bs-datepicker-component2').datepicker({ format: "yyyy-mm-dd" });
-                        });
-                    </script>
-                    <div class="form-group">
-                        <label class="control-label">Дата приема на работу</label>
-                        <div id="bs-datepicker-component" class="input-group date">
-                            <input type="text" class="form-control"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Дата увольнения</label>
-                        <div id="bs-datepicker-component2" class="input-group date">
-                            <input type="text" class="form-control"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary" type="submit">Save</button>
-                    </div>
-                    <!-- End .form-group  -->
-                </form>
+            <div class="panel-footer">
+                <button class="btn btn-primary" id="create-employee-btn">Create</button>
+                <a href="<?= $this->url('employees-list'); ?>" class="btn btn-default" >Cancel and return to list</a>
             </div>
         </div>
     </div>
-
-    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-        <!-- col-lg-4 start here -->
-        <div class="panel panel-default plain">
-            <!-- Start .panel -->
-            <div class="panel-heading">
-                <h4 class="panel-title">Social</h4>
-            </div>
-            <div class="panel-body">
-                <form role="form" class="form-vertical">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-skype"></i></span>
-                            <input type="text" placeholder="Skype" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
-                            <input type="text" placeholder="Personal e-mail" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
-                            <input type="text" placeholder="Work e-mail" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-facebook-square"></i></span>
-                            <input type="text" placeholder="facebook" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-vk"></i></span>
-                            <input type="text" placeholder="vkontakte" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-linkedin"></i></span>
-                            <input type="text" placeholder="linkedin" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary" type="submit">Save</button>
-                    </div>
-                    <!-- End .form-group  -->
-                </form>
-            </div>
-        </div>
-        <!-- End .panel -->
-    </div>
-
 </div>
