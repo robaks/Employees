@@ -3,21 +3,34 @@
 namespace Employees\Controller\User;
 
 use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\JsonModel;
+use Base\Domain\Service\Create as CreateService;
+use Employees\ViewModel\SaveAjaxViewModel;
 
 class SaveAjaxController extends AbstractActionController {
 
-    public function __construct(SaveAjaxViewModel $view, $createService) {
+    /**
+     * @var SaveAjaxViewModel
+     */
+    private $view;
 
+    /**
+     * @var CreateService
+     */
+    private $createService;
+
+    public function __construct(SaveAjaxViewModel $view, CreateService $createService) {
+        $this->view = $view;
+        $this->createService = $createService;
     }
 
     public function defaultAction()
     {
-        if (!$this->isPost()) {
-            return $this->view;
+        die(var_dump(__LINE__));
+        if (!$this->getRequest()->isPost()) {
+            //return $this->view;
         }
-
-        $params = $this->getFromPost();
+die(var_dump(__LINE__));
+        $params = $this->getRequest()->getPost()->toArray();
 
         $product = $this->createService->create($params);
 
@@ -26,8 +39,7 @@ class SaveAjaxController extends AbstractActionController {
             $this->view->error = $this->createService->getError();
         }
 
-
-        return new JsonModel();
+        return $this->view;
     }
 
 }

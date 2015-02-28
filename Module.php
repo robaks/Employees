@@ -10,14 +10,17 @@ use Zend\ModuleManager\Feature\BootstrapListenerInterface;
 use Zend\Mvc\Controller\ControllerManager;
 use Zend\EventManager\EventInterface;
 use Zend\Console\Adapter\AdapterInterface as ConsoleAdapterInterface;
+use Zend\ServiceManager\ServiceManager;
 use League\Flysystem\Filesystem;
 use League\Flysystem\Adapter\Local as LocalAdapter;
 use Falc\Flysystem\Plugin\Symlink\Local as LocalSymlinkPlugin;
+use Base\Domain\Service\Create as ServiceCreate;
 use Employees\Controller\User\ListController;
 use Employees\Controller\User\ShowController;
 use Employees\Controller\User\AddController;
 use Employees\Controller\User\SaveAjaxController;
 use Employees\Controller\Console\InitController;
+use Employees\Employee\InputFilter\Create as CreateInputFilter;
 
 class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                         ControllerProviderInterface, ConsoleUsageProviderInterface,
@@ -54,7 +57,23 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
 
     public function getServiceConfig()
     {
-        return array();
+        return array(
+            'factories' => array(
+                'Employees\Employee\Service\Create' => function (ServiceManager $sm) {
+                    return new ServiceCreate(
+                        $sm->get('Employees\Employee\InputFilter\Create'),
+                        $sm->get('Employees\Employee\Repository\DbRepository'),
+                        $sm->get('Employees\Employee\Factory\EntityFactory')
+                    );
+                },
+                'Employees\Employee\InputFilter\Create' => function(ServiceManager $sm) {
+                    return new CreateInputFilter();
+                },
+            ),
+            'invokables' => array(
+                'Employees\ViewModel\SaveAjaxViewModel' => 'Employees\ViewModel\SaveAjaxViewModel',
+            ),
+        );
     }
 
     public function getControllerConfig()
@@ -82,7 +101,11 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                     return new AddController();
                 },
                 'Employees\Controller\User\SaveAjax' => function (ControllerManager $cm) {
-                    return new SaveAjaxController();
+                    $sl = $cm->getServiceLocator();
+                    return new SaveAjaxController(
+                        $sl->get('Employees\ViewModel\SaveAjaxViewModel'),
+                        $sl->get('Employees\Employee\Service\Create')
+                    );
                 },
             ),
         );
