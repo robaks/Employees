@@ -79,4 +79,19 @@ return array(
         )
     ),
 
+    'db' => array(
+        'tables' => array(
+            'employees-employee' => array(
+                'name' => 'employees',
+                'columnsAsAttributesMap' => array(
+                    'id' => 'id',
+                    'name' => 'name',
+                    'surname' => 'surname',
+                    'patronymic' => 'patronymic',
+                    'avatar' => 'avatar',
+                ),
+            ),
+        ),
+    ),
+
 );
