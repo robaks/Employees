@@ -31,11 +31,21 @@ class InitController extends AbstractActionController {
     public function runAction() {
 
         $table = new Ddl\CreateTable('employees');
-        $table->addColumn(new Column\Integer('id'));
+
+        $id = new Column\Integer('id');
+        $id->setOption('AUTO_INCREMENT', 1);
+        $table->addColumn($id);
         $table->addColumn(new Column\Varchar('name', 50));
         $table->addColumn(new Column\Varchar('surname', 50));
-        $table->addColumn(new Column\Varchar('patronymic', 50));
-        $table->addColumn(new Column\Varchar('avatar', 50));
+
+        $patronymic = new Column\Varchar('patronymic', 50);
+        $patronymic->setNullable(true);
+        $table->addColumn($patronymic);
+
+        $avatar = new Column\Varchar('avatar', 50);
+        $avatar->setNullable(true);
+        $table->addColumn($avatar);
+
         $table->addConstraint(new Constraint\PrimaryKey('id'));
 
         $sql = new Sql($this->dbAdapter);
