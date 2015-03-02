@@ -27,22 +27,16 @@ class SaveAjaxController extends AbstractActionController {
     {
 
         if (!$this->getRequest()->isPost()) {
-            //return $this->view;
+            return $this->view;
         }
 
-        //$params = $this->getRequest()->getPost()->toArray();
-        $params = [
-            'name' => 'xxx',
-            'surname' => 'surname',
-            'patronymic' => 'patronymic',
-            'avatar' => 'avatar',
-        ];
+        $params = $this->getRequest()->getPost()->toArray();
 
         $product = $this->createService->create($params);
 
         if (!$product) {
-            $this->view->data = $params;
-            $this->view->error = $this->createService->getError();
+            $this->view->setFormData($params);
+            $this->view->setErrors($this->createService->getErrors());
         }
 
         return $this->view;

@@ -17,17 +17,17 @@ class Create extends InputFilter {
         
         // name
         $name = new Name('name', 1, 50);
-        $name->setRequired(false);
+        $name->setRequired(true);
         $this->add($name);
 
         // surname
         $surname = new Name('surname', 1, 50);
-        $surname->setRequired(false);
+        $surname->setRequired(true);
         $this->add($surname);
 
         // patronymic
         $patronymic = new Name('patronymic', 1, 50);
-        $patronymic->setRequired(false);
+        $patronymic->setRequired(true);
         $this->add($patronymic);
     }
 }

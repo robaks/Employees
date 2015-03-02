@@ -34,19 +34,33 @@ $(function() {
         }
     });
 
-    $('#create-employee-btn').click(function() {
+    $('#create-employee-btn').one('click', function() {
+        var data = {};
+        $("#add-employee form .form-control").each(function(i, obj) {
+            data[obj.name] = $(obj).val();
+        });
+
         $.ajax({
             url: '/employee/save',
             type: 'POST',
-            data: {
-                name: 'vvv',
-                value: 222
-            },
+            data: data,
             success: function(response) {
-                console.log(response);
+                if (response.errors) {
+                    $.each(response.errors, function (field, errors) {
+                        var $parent = $('input[name=' + field + ']').parent();
+                        $parent.removeClass('has-error');
+                        $parent.addClass('has-error');
+
+                        $parent.find('p.help-block').remove();
+                        $.each(errors, function (key, error) {
+                            $parent.append('<p class="help-block">' + error + '</p>');
+                        });
+                    });
+                }
+                //console.log(response);
             },
             error: function(response) {
-                alert(response.message);
+                console.log(response);
             }
         });
 

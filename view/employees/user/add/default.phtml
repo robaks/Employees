@@ -11,13 +11,13 @@
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <!-- col-lg-4 start here -->
-        <div class="panel panel-default plain" id="personal-info">
+        <div class="panel panel-default plain" id="add-employee">
             <!-- Start .panel -->
             <div class="panel-body">
                 <div class="row">
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                         <!-- col-lg-4 start here -->
-                        <div class="panel panel-default plain" id="personal-info">
+                        <div class="panel panel-default plain">
                             <!-- Start .panel -->
                             <div class="panel-heading">
                                 <h4 class="panel-title">Personal info</h4>
@@ -26,41 +26,41 @@
                                 <form role="form" class="form-vertical">
                                     <div class="form-group">
                                         <label class="control-label">Фамилия</label>
-                                        <input type="text" value="" class="form-control">
+                                        <input type="text" name="surname" value="" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label">Имя</label>
-                                        <input type="text" value="" class="form-control">
+                                        <input type="text" name="name" value="" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label">Отчество</label>
-                                        <input type="email" value="" class="form-control">
+                                        <input type="email" name="patronymic" value="" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label">Дата рождения</label>
                                         <div id="bs-datepicker-component3" class="input-group date">
-                                            <input type="text" class="form-control"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                            <input type="text" name="birthday" class="form-control"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label">Телефоны</label>
-                                        <input type="text" class="form-control">
+                                        <label class="control-label">Телефон</label>
+                                        <input type="text" name="phone" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label">Данные паспорта</label>
-                                        <textarea rows="3" class="form-control"></textarea>
+                                        <textarea rows="3" name="passport" class="form-control"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label">ИПН</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" name="ipn" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label">Адрес факт</label>
-                                        <textarea rows="3" class="form-control"></textarea>
+                                        <textarea rows="3" name="address" class="form-control"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label">Адрес прописки</label>
-                                        <textarea rows="3" class="form-control"></textarea>
+                                        <textarea rows="3" name="registration_address" class="form-control"></textarea>
                                     </div>
                                     <!-- End .form-group  -->
                                 </form>
@@ -83,7 +83,7 @@
                                     </div>
                                     <form action="http://dummy.html/">
                                         <div class="fallback">
-                                            <input name="file" type="file" multiple="" />
+                                            <input name="photo" type="file" multiple="" />
                                         </div>
                                     </form>
                                 </div>
@@ -100,39 +100,39 @@
                                 <form role="form" class="form-vertical">
                                     <div class="form-group">
                                         <label class="control-label">Должность</label>
-                                        <select class="form-control form-group-margin">
-                                            <option>Junior Software developer</option>
-                                            <option>Middle Software developer</option>
-                                            <option>Senior Software developer</option>
-                                            <option>Lead Software developer</option>
-                                            <option>Junior QA engineer</option>
-                                            <option>Middle QA engineer</option>
-                                            <option>Senior QA engineer</option>
-                                            <option>Lead QA engineer</option>
-                                            <option>Project Manager</option>
-                                            <option>Frontend engineer</option>
-                                            <option>Designer</option>
+                                        <select class="form-control form-group-margin" name="job_title">
+                                            <option value="1">Junior Software developer</option>
+                                            <option value="2">Middle Software developer</option>
+                                            <option value="3">Senior Software developer</option>
+                                            <option value="4">Lead Software developer</option>
+                                            <option value="5">Junior QA engineer</option>
+                                            <option value="6">Middle QA engineer</option>
+                                            <option value="7">Senior QA engineer</option>
+                                            <option value="8">Lead QA engineer</option>
+                                            <option value="9">Project Manager</option>
+                                            <option value="10">Frontend engineer</option>
+                                            <option value="11">Designer</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label">Статус</label>
-                                        <select class="form-control form-group-margin">
-                                            <option>На испытательном</option>
-                                            <option>Работает</option>
-                                            <option>Уволен</option>
-                                            <option>Удаленный сотрудник</option>
+                                        <select class="form-control form-group-margin" name="status">
+                                            <option value="1">На испытательном</option>
+                                            <option value="2">Работает</option>
+                                            <option value="3">Уволен</option>
+                                            <option value="4">Удаленный сотрудник</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label">Дата приема на работу</label>
                                         <div id="bs-datepicker-component" class="input-group date">
-                                            <input type="text" class="form-control"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                            <input type="text" name="start_work_date" class="form-control"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label">Дата увольнения</label>
                                         <div id="bs-datepicker-component2" class="input-group date">
-                                            <input type="text" class="form-control"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                            <input type="text" name="end_work_date" class="form-control"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                         </div>
                                     </div>
                                     <!-- End .form-group  -->
@@ -153,37 +153,37 @@
                                     <div class="form-group">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-skype"></i></span>
-                                            <input type="text" placeholder="Skype" class="form-control">
+                                            <input type="text" placeholder="Skype" class="form-control" name="skype">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
-                                            <input type="text" placeholder="Personal e-mail" class="form-control">
+                                            <input type="text" placeholder="Personal e-mail" class="form-control" name="personal_email">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
-                                            <input type="text" placeholder="Work e-mail" class="form-control">
+                                            <input type="text" placeholder="Work e-mail" class="form-control" name="email">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-facebook-square"></i></span>
-                                            <input type="text" placeholder="facebook" class="form-control">
+                                            <input type="text" placeholder="facebook" class="form-control" name="facebook">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-vk"></i></span>
-                                            <input type="text" placeholder="vkontakte" class="form-control">
+                                            <input type="text" placeholder="vkontakte" class="form-control" name="vk">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-linkedin"></i></span>
-                                            <input type="text" placeholder="linkedin" class="form-control">
+                                            <input type="text" placeholder="linkedin" class="form-control" name="linkedin">
                                         </div>
                                     </div>
                                     <!-- End .form-group  -->
@@ -204,9 +204,8 @@
                                 <form role="form" class="form-vertical">
                                     <div class="form-group">
                                         <label class="control-label">Контактные лица</label>
-                                        <textarea rows="3" class="form-control"></textarea>
+                                        <textarea rows="3" class="form-control" name="contacts"></textarea>
                                     </div>
-                                    <!-- End .form-group  -->
                                 </form>
                             </div>
                         </div>
