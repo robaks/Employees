@@ -24,13 +24,18 @@ $(function() {
             type: 'POST',
             data: data,
             success: function(response) {
+                $("#add-employee form .form-control").each(function(i, obj) {
+                    var $parent = $(obj).closest('.form-group');
+                    $parent.removeClass('has-error');
+                    $parent.find('p.help-block').remove();
+                });
+
                 if (response.errors) {
                     $.each(response.errors, function (field, errors) {
-                        var $parent = $('input[name=' + field + ']').parent();
-                        $parent.removeClass('has-error');
+                        var $parent = $('.form-control[name=' + field + ']').closest('.form-group');
+
                         $parent.addClass('has-error');
 
-                        $parent.find('p.help-block').remove();
                         $.each(errors, function (key, error) {
                             $parent.append('<p class="help-block">' + error + '</p>');
                         });

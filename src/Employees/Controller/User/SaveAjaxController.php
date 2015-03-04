@@ -25,7 +25,6 @@ class SaveAjaxController extends AbstractActionController {
 
     public function defaultAction()
     {
-
         if (!$this->getRequest()->isPost()) {
             return $this->view;
         }
