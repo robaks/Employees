@@ -20,7 +20,6 @@ use Employees\Controller\User\ShowController;
 use Employees\Controller\User\AddController;
 use Employees\Controller\User\SaveAjaxController;
 use Employees\Controller\Console\InitController;
-use Employees\Employee\InputFilter\Create as CreateInputFilter;
 
 class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                         ControllerProviderInterface, ConsoleUsageProviderInterface,
@@ -66,12 +65,19 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                         $sm->get('Employees\Employee\Factory\EntityFactory')
                     );
                 },
-                'Employees\Employee\InputFilter\Create' => function(ServiceManager $sm) {
-                    return new CreateInputFilter();
+
+                'Employees\PersonalInfo\Service\Create' => function (ServiceManager $sm) {
+                    return new ServiceCreate(
+                        $sm->get('Employees\PersonalInfo\InputFilter\Create'),
+                        $sm->get('Employees\PersonalInfo\Repository\DbRepository'),
+                        $sm->get('Employees\PersonalInfo\Factory\EntityFactory')
+                    );
                 },
             ),
             'invokables' => array(
                 'Employees\ViewModel\SaveAjaxViewModel' => 'Employees\ViewModel\SaveAjaxViewModel',
+                'Employees\Employee\InputFilter\Create' => 'Employees\Employee\InputFilter\Create',
+                'Employees\PersonalInfo\InputFilter\Create' => 'Employees\PersonalInfo\InputFilter\Create',
             ),
         );
     }
@@ -104,7 +110,8 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                     $sl = $cm->getServiceLocator();
                     return new SaveAjaxController(
                         $sl->get('Employees\ViewModel\SaveAjaxViewModel'),
-                        $sl->get('Employees\Employee\Service\Create')
+                        $sl->get('Employees\Employee\Service\Create'),
+                        $sl->get('Employees\PersonalInfo\Service\Create')
                     );
                 },
             ),

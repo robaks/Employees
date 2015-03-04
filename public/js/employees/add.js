@@ -13,7 +13,9 @@ $(function() {
         acceptedFiles: "image/*"
     });
 
-    $('#create-employee-btn').one('click', function() {
+    $('#create-employee-btn').one('click', addEmployee);
+
+    function addEmployee() {
         var data = {};
         $("#add-employee form .form-control").each(function(i, obj) {
             data[obj.name] = $(obj).val();
@@ -42,12 +44,20 @@ $(function() {
                     });
                 }
                 //console.log(response);
+
+                $('#create-employee-btn').one('click', addEmployee);
+
+                if (response.formData['employee_id'] && ($('#add-employee .form-control[name=id]').length == 0)) {
+                    $('#create-employee-btn').text('Update');
+                    $('#add-employee').prepend('<input type="hidden" name="id" value="'+response.formData['employee_id']+'" class="form-control">');
+                }
             },
             error: function(response) {
+                $('#create-employee-btn').one('click', addEmployee);
                 console.log(response);
             }
         });
 
         return false;
-    });
+    }
 });

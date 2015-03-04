@@ -9,6 +9,6 @@ class AddEmployeeCest
         $I->amOnPage('/employee/add');
 
         $I->seeResponseCodeIs(200);
-        $I->see('Personal info', '#personal-info');
+        $I->see('Personal info', '#add-employee');
     }
 }

@@ -19,7 +19,7 @@ class InitControllerTest extends \PHPUnit_Framework_TestCase
 
         $controller = new InitController($dbAdapterMock, $fsMock);
 
-        $dbAdapterMock->expects($this->once())
+        $dbAdapterMock->expects($this->any())
             ->method('query');
 
         $dbAdapterMock->expects($this->any())

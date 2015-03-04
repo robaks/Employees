@@ -21,6 +21,7 @@ class SaveAjaxControllerTest extends \PHPUnit_Framework_TestCase
             ->getMock();
 
         $this->serviceManager->setService('Employees\Employee\Service\Create', $serviceMock);
+        $this->serviceManager->setService('Employees\PersonalInfo\Service\Create', $serviceMock);
 
         $this->assertTrue($this->controllerManager->has('Employees\Controller\User\SaveAjax'));
 

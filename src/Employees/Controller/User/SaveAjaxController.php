@@ -18,9 +18,15 @@ class SaveAjaxController extends AbstractActionController {
      */
     private $createService;
 
-    public function __construct(SaveAjaxViewModel $view, CreateService $createService) {
+    /**
+     * @var CreateService
+     */
+    private $personalInfoCreateService;
+
+    public function __construct(SaveAjaxViewModel $view, CreateService $createService, CreateService $personalInfoCreateService) {
         $this->view = $view;
         $this->createService = $createService;
+        $this->personalInfoCreateService = $personalInfoCreateService;
     }
 
     public function defaultAction()
@@ -31,11 +37,22 @@ class SaveAjaxController extends AbstractActionController {
 
         $params = $this->getRequest()->getPost()->toArray();
 
-        $product = $this->createService->create($params);
+        $employee = $this->createService->create($params);
 
-        if (!$product) {
-            $this->view->setFormData($params);
+        $params['employee_id'] = $employee->getId();
+
+        $this->view->setFormData($params);
+
+        if (!$employee) {
             $this->view->setErrors($this->createService->getErrors());
+            return $this->view;
+        }
+
+
+        $personalInfo = $this->personalInfoCreateService->create($params);
+
+        if (!$personalInfo) {
+            $this->view->setErrors($this->personalInfoCreateService->getErrors());
         }
 
         return $this->view;

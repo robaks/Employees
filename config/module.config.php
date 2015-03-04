@@ -91,6 +91,19 @@ return array(
                     'avatar' => 'avatar',
                 ),
             ),
+            'employees-personalinfo' => array(
+                'name' => 'employees_personal_info',
+                'columnsAsAttributesMap' => array(
+                    'employee_id' => 'id',
+                    'birthday' => 'birthday',
+                    'phone' => 'phone',
+                    'passport' => 'passport',
+                    'ipn' => 'ipn',
+                    'address' => 'address',
+                    'registration_address' => 'registrationAddress',
+                    'contacts' => 'contacts',
+                ),
+            ),
         ),
     ),
 
