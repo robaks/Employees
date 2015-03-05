@@ -6,6 +6,7 @@ use Base\Domain\Entity;
 
 class PersonalInfo extends Entity {
     
+    protected $employeeId;
     protected $birthday;
     protected $phone;
     protected $passport;
@@ -13,5 +14,9 @@ class PersonalInfo extends Entity {
     protected $address;
     protected $registrationAddress;
     protected $contacts;
+
+    public function getId() {
+        return $this->employeeId;
+    }
 
 }

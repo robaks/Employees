@@ -18,6 +18,7 @@ use Base\Domain\Service\Create as ServiceCreate;
 use Employees\Controller\User\ListController;
 use Employees\Controller\User\ShowController;
 use Employees\Controller\User\AddController;
+use Employees\Controller\User\CreateAjaxController;
 use Employees\Controller\User\SaveAjaxController;
 use Employees\Controller\Console\InitController;
 
@@ -105,6 +106,14 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                 },
                 'Employees\Controller\User\Add' => function (ControllerManager $cm) {
                     return new AddController();
+                },
+                'Employees\Controller\User\CreateAjax' => function (ControllerManager $cm) {
+                    $sl = $cm->getServiceLocator();
+                    return new CreateAjaxController(
+                        $sl->get('Employees\ViewModel\SaveAjaxViewModel'),
+                        $sl->get('Employees\Employee\Service\Create'),
+                        $sl->get('Employees\PersonalInfo\Service\Create')
+                    );
                 },
                 'Employees\Controller\User\SaveAjax' => function (ControllerManager $cm) {
                     $sl = $cm->getServiceLocator();

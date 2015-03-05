@@ -35,7 +35,7 @@ class Create extends InputFilter {
         $this->add($patronymic);
 
         // job_title
-        $jobTitle = new InArray('job_title', array_keys(JobTitle::getAll()));
+        $jobTitle = new InArray('jobTitle', array_keys(JobTitle::getAll()));
         $jobTitle->setRequired(true);
         $this->add($jobTitle);
 
@@ -45,7 +45,7 @@ class Create extends InputFilter {
         $this->add($jobTitle);
 
         // start_work_date
-        $startWorkDate = new Date('start_work_date', 'Y-m-d');
+        $startWorkDate = new Date('startWorkDate', 'Y-m-d');
         $startWorkDate->setRequired(true);
         $this->add($startWorkDate);
     }

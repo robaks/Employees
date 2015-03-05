@@ -22,7 +22,7 @@ $(function() {
         });
 
         $.ajax({
-            url: '/employee/save',
+            url: '/employee/create',
             type: 'POST',
             data: data,
             success: function(response) {
@@ -43,7 +43,6 @@ $(function() {
                         });
                     });
                 }
-                //console.log(response);
 
                 $('#create-employee-btn').one('click', addEmployee);
 

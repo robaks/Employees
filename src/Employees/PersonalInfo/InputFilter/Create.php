@@ -13,7 +13,7 @@ class Create extends InputFilter {
     public function __construct() {
         
         //id
-        $id = new Id('employee_id');
+        $id = new Id('employeeId');
         $id->setRequired(true);
         $this->add($id);
         

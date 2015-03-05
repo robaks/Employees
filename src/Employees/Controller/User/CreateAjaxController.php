@@ -6,7 +6,7 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Base\Domain\Service\Create as CreateService;
 use Employees\ViewModel\SaveAjaxViewModel;
 
-class SaveAjaxController extends AbstractActionController {
+class CreateAjaxController extends AbstractActionController {
 
     /**
      * @var SaveAjaxViewModel
@@ -37,18 +37,16 @@ class SaveAjaxController extends AbstractActionController {
 
         $params = $this->getRequest()->getPost()->toArray();
 
-        $params['id'] = 19;
-
         $employee = $this->createService->create($params);
 
-        $params['employee_id'] = $employee->getId();
-
-        $this->view->setFormData($params);
-
         if (!$employee) {
+            $this->view->setFormData($params);
             $this->view->setErrors($this->createService->getErrors());
             return $this->view;
         }
+
+        $params['employeeId'] = $employee->getId();
+        $this->view->setFormData($params);
 
         $personalInfo = $this->personalInfoCreateService->create($params);
 

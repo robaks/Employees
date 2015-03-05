@@ -48,6 +48,17 @@ return array(
                     ),
                 ),
             ),
+            'employee-create' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route'    => '/employee/create',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Employees\Controller\User',
+                        'controller'    => 'CreateAjax',
+                        'action'        => 'default',
+                    ),
+                ),
+            ),
             'employee-save' => array(
                 'type' => 'Literal',
                 'options' => array(
@@ -94,7 +105,7 @@ return array(
             'employees-personalinfo' => array(
                 'name' => 'employees_personal_info',
                 'columnsAsAttributesMap' => array(
-                    'employee_id' => 'id',
+                    'employee_id' => 'employeeId',
                     'birthday' => 'birthday',
                     'phone' => 'phone',
                     'passport' => 'passport',
