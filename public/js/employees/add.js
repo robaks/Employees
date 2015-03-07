@@ -42,6 +42,7 @@ $(function() {
                             $parent.append('<p class="help-block">' + error + '</p>');
                         });
                     });
+                    $('#create-employee-btn').one('click', addEmployee);
                 }
 
                 if (response.formData['employeeId'] && ($('#add-employee .form-control[name=id]').length == 0)) {
