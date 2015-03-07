@@ -1,12 +1,11 @@
 <?php
 
-namespace Employees\Employee\InputFilter;
+namespace Employees\WorkInfo\InputFilter;
 
 use Base\InputFilter\InputFilter;
 use Base\InputFilter\Element\Id;
-use Base\InputFilter\Element\Name;
-use Base\InputFilter\Element\InArray;
 use Base\InputFilter\Element\Date;
+use Base\InputFilter\Element\InArray;
 use Employees\Employee\JobTitle;
 use Employees\Employee\Status;
 
@@ -15,26 +14,11 @@ class Create extends InputFilter {
     public function __construct() {
         
         //id
-        $id = new Id('id');
-        $id->setRequired(false);
+        $id = new Id('employeeId');
+        $id->setRequired(true);
         $this->add($id);
-        
-        // name
-        $name = new Name('name', 1, 50);
-        $name->setRequired(true);
-        $this->add($name);
 
-        // surname
-        $surname = new Name('surname', 1, 50);
-        $surname->setRequired(true);
-        $this->add($surname);
-
-        // patronymic
-        $patronymic = new Name('patronymic', 1, 50);
-        $patronymic->setRequired(true);
-        $this->add($patronymic);
-
-        // job_title
+        // jobTitleId
         $jobTitle = new InArray('jobTitleId', array_keys(JobTitle::getAll()));
         $jobTitle->setRequired(true);
         $this->add($jobTitle);
@@ -43,10 +27,15 @@ class Create extends InputFilter {
         $status = new InArray('statusId', array_keys(Status::getAll()));
         $status->setRequired(true);
         $this->add($status);
-
+        
         // start_work_date
         $startWorkDate = new Date('startWorkDate', 'Y-m-d');
         $startWorkDate->setRequired(true);
         $this->add($startWorkDate);
+
+        // endWorkDate
+        $endWorkDate = new Date('endWorkDate', 'Y-m-d');
+        $endWorkDate->setRequired(false);
+        $this->add($endWorkDate);
     }
 }

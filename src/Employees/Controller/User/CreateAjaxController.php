@@ -23,10 +23,21 @@ class CreateAjaxController extends AbstractActionController {
      */
     private $personalInfoCreateService;
 
-    public function __construct(SaveAjaxViewModel $view, CreateService $createService, CreateService $personalInfoCreateService) {
+    /**
+     * @var CreateService
+     */
+    private $workInfoCreateService;
+
+    public function __construct(
+        SaveAjaxViewModel $view,
+        CreateService $createService,
+        CreateService $personalInfoCreateService,
+        CreateService $workInfoCreateService) {
+
         $this->view = $view;
         $this->createService = $createService;
         $this->personalInfoCreateService = $personalInfoCreateService;
+        $this->workInfoCreateService = $workInfoCreateService;
     }
 
     public function defaultAction()
@@ -52,6 +63,12 @@ class CreateAjaxController extends AbstractActionController {
 
         if (!$personalInfo) {
             $this->view->setErrors($this->personalInfoCreateService->getErrors());
+        }
+
+        $workInfo = $this->workInfoCreateService->create($params);
+
+        if (!$workInfo) {
+            $this->view->setErrors($this->workInfoCreateService->getErrors());
         }
 
         return $this->view;

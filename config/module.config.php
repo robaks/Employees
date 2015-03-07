@@ -115,6 +115,16 @@ return array(
                     'contacts' => 'contacts',
                 ),
             ),
+            'employees-workinfo' => array(
+                'name' => 'employees_work_info',
+                'columnsAsAttributesMap' => array(
+                    'employee_id' => 'employeeId',
+                    'job_title' => 'jobTitleId',
+                    'status' => 'status',
+                    'start_work_date' => 'startWorkDate',
+                    'end_work_date' => 'endWorkDate',
+                ),
+            ),
         ),
     ),
 

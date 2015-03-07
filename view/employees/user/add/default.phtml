@@ -101,7 +101,7 @@
                                 <form role="form" class="form-vertical">
                                     <div class="form-group">
                                         <label class="control-label">Должность</label>
-                                        <select class="form-control form-group-margin" name="jobTitle">
+                                        <select class="form-control form-group-margin" name="jobTitleId">
                                             <?php foreach($viewModel->getJobTitles() as $id => $title): ?>
                                                 <option value="<?=$id;?>"><?=$title;?></option>
                                             <?php endforeach; ?>
@@ -109,7 +109,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label">Статус</label>
-                                        <select class="form-control form-group-margin" name="status">
+                                        <select class="form-control form-group-margin" name="statusId">
                                             <?php foreach($viewModel->getStatuses() as $id => $name): ?>
                                                 <option value="<?=$id;?>"><?=$name;?></option>
                                             <?php endforeach; ?>

@@ -82,6 +82,14 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                         $sm->get('Employees\PersonalInfo\Factory\EntityFactory')
                     );
                 },
+
+                'Employees\WorkInfo\Service\Create' => function (ServiceManager $sm) {
+                    return new ServiceCreate(
+                        $sm->get('Employees\WorkInfo\InputFilter\Create'),
+                        $sm->get('Employees\WorkInfo\Repository\DbRepository'),
+                        $sm->get('Employees\WorkInfo\Factory\EntityFactory')
+                    );
+                },
             ),
             'invokables' => array(
                 'Employees\ViewModel\SaveAjaxViewModel' => 'Employees\ViewModel\SaveAjaxViewModel',
@@ -90,6 +98,7 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
 
                 'Employees\Employee\InputFilter\Create' => 'Employees\Employee\InputFilter\Create',
                 'Employees\PersonalInfo\InputFilter\Create' => 'Employees\PersonalInfo\InputFilter\Create',
+                'Employees\WorkInfo\InputFilter\Create' => 'Employees\WorkInfo\InputFilter\Create',
             ),
         );
     }
@@ -130,7 +139,8 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                     return new CreateAjaxController(
                         $sl->get('Employees\ViewModel\SaveAjaxViewModel'),
                         $sl->get('Employees\Employee\Service\Create'),
-                        $sl->get('Employees\PersonalInfo\Service\Create')
+                        $sl->get('Employees\PersonalInfo\Service\Create'),
+                        $sl->get('Employees\WorkInfo\Service\Create')
                     );
                 },
                 'Employees\Controller\User\SaveAjax' => function (ControllerManager $cm) {
@@ -138,7 +148,8 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                     return new SaveAjaxController(
                         $sl->get('Employees\ViewModel\SaveAjaxViewModel'),
                         $sl->get('Employees\Employee\Service\Create'),
-                        $sl->get('Employees\PersonalInfo\Service\Create')
+                        $sl->get('Employees\PersonalInfo\Service\Create'),
+                        $sl->get('Employees\WorkInfo\Service\Create')
                     );
                 },
             ),

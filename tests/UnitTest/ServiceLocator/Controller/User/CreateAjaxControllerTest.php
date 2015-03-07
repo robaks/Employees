@@ -4,7 +4,7 @@ namespace EmployeesTest\UnitTest\ServiceLocator\Controller\User;
 require_once TESTS_FOLDER_PATH . "/UnitTest/ServiceLocator/Controller/ControllerManagerAwareTrait.php";
 use EmployeesTest\UnitTest\ServiceLocator\Controller\ControllerManagerAwareTrait;
 
-class SaveAjaxControllerTest extends \PHPUnit_Framework_TestCase
+class CreateAjaxControllerTest extends \PHPUnit_Framework_TestCase
 {
     use ControllerManagerAwareTrait;
 
@@ -24,11 +24,11 @@ class SaveAjaxControllerTest extends \PHPUnit_Framework_TestCase
         $this->serviceManager->setService('Employees\PersonalInfo\Service\Create', $serviceMock);
         $this->serviceManager->setService('Employees\WorkInfo\Service\Create', $serviceMock);
 
-        $this->assertTrue($this->controllerManager->has('Employees\Controller\User\SaveAjax'));
+        $this->assertTrue($this->controllerManager->has('Employees\Controller\User\CreateAjax'));
 
-        $controller = $this->controllerManager->get('Employees\Controller\User\SaveAjax');
+        $controller = $this->controllerManager->get('Employees\Controller\User\CreateAjax');
 
-        $this->assertInstanceOf('Employees\Controller\User\SaveAjaxController', $controller);
+        $this->assertInstanceOf('Employees\Controller\User\CreateAjaxController', $controller);
         $this->assertAttributeSame($viewMock, 'view', $controller);
         $this->assertAttributeSame($serviceMock, 'createService', $controller);
         $this->assertAttributeSame($serviceMock, 'personalInfoCreateService', $controller);
