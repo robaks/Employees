@@ -90,6 +90,14 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                         $sm->get('Employees\WorkInfo\Factory\EntityFactory')
                     );
                 },
+
+                'Employees\Social\Service\Create' => function (ServiceManager $sm) {
+                    return new ServiceCreate(
+                        $sm->get('Employees\Social\InputFilter\Create'),
+                        $sm->get('Employees\Social\Repository\DbRepository'),
+                        $sm->get('Employees\Social\Factory\EntityFactory')
+                    );
+                },
             ),
             'invokables' => array(
                 'Employees\ViewModel\SaveAjaxViewModel' => 'Employees\ViewModel\SaveAjaxViewModel',
@@ -99,6 +107,7 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                 'Employees\Employee\InputFilter\Create' => 'Employees\Employee\InputFilter\Create',
                 'Employees\PersonalInfo\InputFilter\Create' => 'Employees\PersonalInfo\InputFilter\Create',
                 'Employees\WorkInfo\InputFilter\Create' => 'Employees\WorkInfo\InputFilter\Create',
+                'Employees\Social\InputFilter\Create' => 'Employees\Social\InputFilter\Create',
             ),
         );
     }
@@ -140,7 +149,8 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                         $sl->get('Employees\ViewModel\SaveAjaxViewModel'),
                         $sl->get('Employees\Employee\Service\Create'),
                         $sl->get('Employees\PersonalInfo\Service\Create'),
-                        $sl->get('Employees\WorkInfo\Service\Create')
+                        $sl->get('Employees\WorkInfo\Service\Create'),
+                        $sl->get('Employees\Social\Service\Create')
                     );
                 },
                 'Employees\Controller\User\SaveAjax' => function (ControllerManager $cm) {

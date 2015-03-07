@@ -125,6 +125,18 @@ return array(
                     'end_work_date' => 'endWorkDate',
                 ),
             ),
+            'employees-social' => array(
+                'name' => 'employees_social',
+                'columnsAsAttributesMap' => array(
+                    'employee_id' => 'employeeId',
+                    'skype' => 'skype',
+                    'personal_email' => 'personalEmail',
+                    'email' => 'email',
+                    'facebook' => 'facebook',
+                    'vk' => 'vk',
+                    'linkedin' => 'linkedin',
+                ),
+            ),
         ),
     ),
 

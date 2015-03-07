@@ -23,6 +23,7 @@ class CreateAjaxControllerTest extends \PHPUnit_Framework_TestCase
         $this->serviceManager->setService('Employees\Employee\Service\Create', $serviceMock);
         $this->serviceManager->setService('Employees\PersonalInfo\Service\Create', $serviceMock);
         $this->serviceManager->setService('Employees\WorkInfo\Service\Create', $serviceMock);
+        $this->serviceManager->setService('Employees\Social\Service\Create', $serviceMock);
 
         $this->assertTrue($this->controllerManager->has('Employees\Controller\User\CreateAjax'));
 
@@ -33,6 +34,7 @@ class CreateAjaxControllerTest extends \PHPUnit_Framework_TestCase
         $this->assertAttributeSame($serviceMock, 'createService', $controller);
         $this->assertAttributeSame($serviceMock, 'personalInfoCreateService', $controller);
         $this->assertAttributeSame($serviceMock, 'workInfoCreateService', $controller);
+        $this->assertAttributeSame($serviceMock, 'socialCreateService', $controller);
     }
 
 }
