@@ -17,6 +17,8 @@ class JobTitle extends Status {
     const PROJECT_MANAGER = 9;
     const FRONTEND_ENGINEER = 10;
     const DESIGNER = 11;
+    const CEO = 12;
+    const CTO = 13;
 
     /**
      * @var array
@@ -33,6 +35,8 @@ class JobTitle extends Status {
         self::PROJECT_MANAGER => 'Project Manager',
         self::FRONTEND_ENGINEER => 'Frontend engineer',
         self::DESIGNER => 'Designer',
+        self::CEO => 'Chief Executive Officer',
+        self::CTO => 'Chief technology officer',
     );
 
 }
