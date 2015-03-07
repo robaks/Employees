@@ -77,6 +77,7 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
             ),
             'invokables' => array(
                 'Employees\ViewModel\SaveAjaxViewModel' => 'Employees\ViewModel\SaveAjaxViewModel',
+                'Employees\Controller\User\AddViewModel' => 'Employees\Controller\User\AddViewModel',
                 'Employees\Employee\InputFilter\Create' => 'Employees\Employee\InputFilter\Create',
                 'Employees\PersonalInfo\InputFilter\Create' => 'Employees\PersonalInfo\InputFilter\Create',
             ),
@@ -90,7 +91,7 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                 'Employees\Controller\Console\Init' => function (ControllerManager $cm) {
                     $sl = $cm->getServiceLocator();
 
-                    $fileSystem = new Filesystem(new LocalAdapter(__DIR__));
+                    $fileSystem = new Filesystem(new LocalAdapter(getcwd()));
                     $fileSystem->addPlugin(new LocalSymlinkPlugin\Symlink());
 
                     return new InitController(
@@ -105,7 +106,10 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                     return new ShowController();
                 },
                 'Employees\Controller\User\Add' => function (ControllerManager $cm) {
-                    return new AddController();
+                    $sl = $cm->getServiceLocator();
+                    return new AddController(
+                        $sl->get('Employees\Controller\User\AddViewModel')
+                    );
                 },
                 'Employees\Controller\User\CreateAjax' => function (ControllerManager $cm) {
                     $sl = $cm->getServiceLocator();

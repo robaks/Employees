@@ -3,16 +3,28 @@
 namespace Employees\Controller\User;
 
 use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
 
 class AddController extends AbstractActionController {
 
     /**
-     * @return ViewModel
+     * @var AddViewModel
+     */
+    private $view;
+
+    /**
+     * @param AddViewModel $view
+     */
+    public function __construct(AddViewModel $view)
+    {
+        $this->view = $view;
+    }
+
+    /**
+     * @return AddViewModel
      */
     public function defaultAction()
     {
-        return new ViewModel();
+        return $this->view;
     }
 
 }

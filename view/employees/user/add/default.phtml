@@ -1,3 +1,6 @@
+<?php /** @var Employees\Controller\User\AddViewModel $viewModel */ ?>
+<?php $viewModel = $this->viewModel()->getCurrent(); ?>
+
 <?php $this->headScript()->appendFile($this->basePath() . '/js/employees/add.js');?>
 
 <div class="page-header">
@@ -99,26 +102,17 @@
                                     <div class="form-group">
                                         <label class="control-label">Должность</label>
                                         <select class="form-control form-group-margin" name="jobTitle">
-                                            <option value="1">Junior Software developer</option>
-                                            <option value="2">Middle Software developer</option>
-                                            <option value="3">Senior Software developer</option>
-                                            <option value="4">Lead Software developer</option>
-                                            <option value="5">Junior QA engineer</option>
-                                            <option value="6">Middle QA engineer</option>
-                                            <option value="7">Senior QA engineer</option>
-                                            <option value="8">Lead QA engineer</option>
-                                            <option value="9">Project Manager</option>
-                                            <option value="10">Frontend engineer</option>
-                                            <option value="11">Designer</option>
+                                            <?php foreach($viewModel->getJobTitles() as $id => $title): ?>
+                                                <option value="<?=$id;?>"><?=$title;?></option>
+                                            <?php endforeach; ?>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label">Статус</label>
                                         <select class="form-control form-group-margin" name="status">
-                                            <option value="1">На испытательном</option>
-                                            <option value="2">Работает</option>
-                                            <option value="3">Уволен</option>
-                                            <option value="4">Удаленный сотрудник</option>
+                                            <?php foreach($viewModel->getStatuses() as $id => $name): ?>
+                                                <option value="<?=$id;?>"><?=$name;?></option>
+                                            <?php endforeach; ?>
                                         </select>
                                     </div>
                                     <div class="form-group">

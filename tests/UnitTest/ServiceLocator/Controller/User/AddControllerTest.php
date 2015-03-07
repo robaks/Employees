@@ -10,11 +10,18 @@ class AddControllerTest extends \PHPUnit_Framework_TestCase
 
     public function testCreation()
     {
+        $viewMock = $this->getMockBuilder('Employees\Controller\User\AddViewModel')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->serviceManager->setService('Employees\Controller\User\AddViewModel', $viewMock);
+
         $this->assertTrue($this->controllerManager->has('Employees\Controller\User\Add'));
 
         $controller = $this->controllerManager->get('Employees\Controller\User\Add');
 
         $this->assertInstanceOf('Employees\Controller\User\AddController', $controller);
+        $this->assertAttributeSame($viewMock, 'view', $controller);
     }
 
 }

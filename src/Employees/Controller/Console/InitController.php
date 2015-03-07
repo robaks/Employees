@@ -37,7 +37,7 @@ class InitController extends AbstractActionController {
 
         $vendorSiteConfigRootPath = dirname(dirname(dirname(dirname(__DIR__))));
 
-        if (!is_dir(getcwd() . '/public/js/employees')) {
+        if (!$this->fileSystem->has('/public/js/employees/add.js')) {
             $this->fileSystem->symlink(
                 $vendorSiteConfigRootPath . '/public/js/employees/',
                 getcwd() . '/public/js/employees'
