@@ -15,6 +15,7 @@ use League\Flysystem\Filesystem;
 use League\Flysystem\Adapter\Local as LocalAdapter;
 use Falc\Flysystem\Plugin\Symlink\Local as LocalSymlinkPlugin;
 use Base\Domain\Service\Create as ServiceCreate;
+use Base\Domain\Service\BaseFinder as ServiceFinder;
 use Employees\Controller\User\ListController;
 use Employees\Controller\User\ShowController;
 use Employees\Controller\User\AddController;
@@ -67,6 +68,13 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                     );
                 },
 
+                'Employees\Employee\Service\Finder' => function (ServiceManager $sm) {
+                    return new ServiceFinder(
+                        $sm->get('Employees\Employee\Repository\DbRepository'),
+                        $sm->get('Employees\Employee\Criteria\CriteriaFactory')
+                    );
+                },
+
                 'Employees\PersonalInfo\Service\Create' => function (ServiceManager $sm) {
                     return new ServiceCreate(
                         $sm->get('Employees\PersonalInfo\InputFilter\Create'),
@@ -78,6 +86,8 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
             'invokables' => array(
                 'Employees\ViewModel\SaveAjaxViewModel' => 'Employees\ViewModel\SaveAjaxViewModel',
                 'Employees\Controller\User\AddViewModel' => 'Employees\Controller\User\AddViewModel',
+                'Employees\Controller\User\ListViewModel' => 'Employees\Controller\User\ListViewModel',
+
                 'Employees\Employee\InputFilter\Create' => 'Employees\Employee\InputFilter\Create',
                 'Employees\PersonalInfo\InputFilter\Create' => 'Employees\PersonalInfo\InputFilter\Create',
             ),
@@ -100,7 +110,11 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                     );
                 },
                 'Employees\Controller\User\List' => function (ControllerManager $cm) {
-                    return new ListController();
+                    $sl = $cm->getServiceLocator();
+                    return new ListController(
+                        $sl->get('Employees\Employee\Service\Finder'),
+                        $sl->get('Employees\Controller\User\ListViewModel')
+                    );
                 },
                 'Employees\Controller\User\Show' => function (ControllerManager $cm) {
                     return new ShowController();
