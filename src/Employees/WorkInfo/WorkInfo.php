@@ -12,6 +12,12 @@ class WorkInfo extends Entity {
     protected $startWorkDate;
     protected $endWorkDate;
 
+    public function __construct(array $data = array())
+    {
+        $this->populate($data);
+        $this->id = (int)$data['employeeId'];
+    }
+
     public function getId() {
         return $this->employeeId;
     }

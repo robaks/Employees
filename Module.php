@@ -22,6 +22,7 @@ use Employees\Controller\User\AddController;
 use Employees\Controller\User\CreateAjaxController;
 use Employees\Controller\User\SaveAjaxController;
 use Employees\Controller\Console\InitController;
+use Employees\Employee\Service\WorkInfoPopulate;
 
 class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                         ControllerProviderInterface, ConsoleUsageProviderInterface,
@@ -75,6 +76,12 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                     );
                 },
 
+                'Employees\Employee\Service\WorkInfoPopulate' =>  function (ServiceManager $sm) {
+                    return new WorkInfoPopulate(
+                        $sm->get('Employees\WorkInfo\Service\Finder')
+                    );
+                },
+
                 'Employees\PersonalInfo\Service\Create' => function (ServiceManager $sm) {
                     return new ServiceCreate(
                         $sm->get('Employees\PersonalInfo\InputFilter\Create'),
@@ -88,6 +95,13 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                         $sm->get('Employees\WorkInfo\InputFilter\Create'),
                         $sm->get('Employees\WorkInfo\Repository\DbRepository'),
                         $sm->get('Employees\WorkInfo\Factory\EntityFactory')
+                    );
+                },
+
+                'Employees\WorkInfo\Service\Finder' => function (ServiceManager $sm) {
+                    return new ServiceFinder(
+                        $sm->get('Employees\WorkInfo\Repository\DbRepository'),
+                        $sm->get('Employees\WorkInfo\Criteria\CriteriaFactory')
                     );
                 },
 
@@ -131,6 +145,7 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                     $sl = $cm->getServiceLocator();
                     return new ListController(
                         $sl->get('Employees\Employee\Service\Finder'),
+                        $sl->get('Employees\Employee\Service\WorkInfoPopulate'),
                         $sl->get('Employees\Controller\User\ListViewModel')
                     );
                 },

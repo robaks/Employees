@@ -138,6 +138,15 @@ return array(
                 ),
             ),
         ),
+        'dependencies' => array(
+            'WorkInfo' => array(
+                'Employees' => array(
+                    array(
+                        'table' => 'employees_work_info',
+                        'rule' => 'employees_work_info.employee_id = employees.id',
+                    ),
+                ),
+            ),
+        ),
     ),
-
 );

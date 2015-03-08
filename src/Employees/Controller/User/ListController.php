@@ -5,6 +5,7 @@ namespace Employees\Controller\User;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Base\Domain\Service\BaseFinder;
+use Employees\Employee\Service\WorkInfoPopulate;
 
 class ListController extends AbstractActionController {
 
@@ -18,9 +19,15 @@ class ListController extends AbstractActionController {
      */
     private $view;
 
-    public function __construct(BaseFinder $finder, ListViewModel $view)
+    /**
+     * @var WorkInfoPopulate
+     */
+    private $workInfoPopulator;
+
+    public function __construct(BaseFinder $finder, WorkInfoPopulate $workInfoPopulator, ListViewModel $view)
     {
         $this->finder = $finder;
+        $this->workInfoPopulator = $workInfoPopulator;
         $this->view = $view;
     }
 
@@ -31,7 +38,8 @@ class ListController extends AbstractActionController {
     {
         /*@var $products \Products\Product\ProductCollection */
         $employees = $this->finder->findMany();
-
+        $this->workInfoPopulator->populateCollection($employees);
+die(var_dump($employees));
         $this->view->setEmployees($employees);
         return $this->view;
     }
