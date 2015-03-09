@@ -1,0 +1,25 @@
+<?php /** @var Employees\Employee\Employee $manager */ ?>
+
+<div class="panel panel-info panel-dark panel-body-colorful widget-profile widget-profile-centered">
+    <div class="panel-heading">
+        <img class="widget-profile-avatar" alt="" src="/assets/demo/avatars/1.jpg">
+        <div class="widget-profile-header">
+            <span class="text-bold"><a href="/employee/<?=$manager->getId(); ?>"><?=$manager->getSurname(); ?> <?=$manager->getName(); ?></a></span><br>
+        </div>
+    </div> <!-- / .panel-heading -->
+    <div class="panel-body">
+        <div class="row" style="text-align: left;">
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
+                <span><i class="fa fa-puzzle-piece fa-fw"></i> <?=$manager->getWorkInfo()->getJobTitle()->getName();?></span><br>
+                <span><i class="fa fa-phone fa-fw"></i> <?=$manager->getPersonalInfo()->getPhone();?></span><br>
+                <a href="https://www.facebook.com/fedot" target="_blank"><i class="fa fa-facebook-square fa-fw"></i> <?=$manager->getSocial()->getFacebook();?></a>
+            </div>
+            <div class="col-md-5">
+                <span><i class="fa fa-skype fa-fw"></i> <?=$manager->getSocial()->getSkype();?></span><br>
+                <span><i class="fa fa-envelope-o fa-fw"></i> <?=$manager->getSocial()->getEmail();?></span><br>
+                <a href="https://www.linkedin.com/profile/view?id=104644941" target="_blank" ><i class="fa fa-linkedin fa-fw"></i> <?=$manager->getSocial()->getLinkedin();?></a>
+            </div>
+        </div>
+    </div>
+</div>

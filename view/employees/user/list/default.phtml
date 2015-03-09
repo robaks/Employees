@@ -17,178 +17,18 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row employees">
 
-    <div class="col-md-6">
+    <?php foreach($viewModel->getEmployees()->getTopManagers() as $manager): ?>
+        <div class="col-md-6">
+            <?= $this->partial('partials/top-manager.phtml', ['manager' => $manager]); ?>
+        </div>
+    <?php endforeach; ?>
 
-        <!-- 7. $PROFILE_WIDGET_CENTERED_EXAMPLE ===========================================================
-
-                        Profile widget - Centered example
-        -->
-        <div class="panel panel-info panel-dark panel-body-colorful widget-profile widget-profile-centered">
-            <div class="panel-heading">
-                <img class="widget-profile-avatar" alt="" src="/assets/demo/avatars/1.jpg">
-                <div class="widget-profile-header">
-                    <span class="text-bold"><a href="/employee/432">John Doe</a></span><br>
-                    <a href="https://twitter.com/test">https://twitter.com/test</a>
-                </div>
-            </div> <!-- / .panel-heading -->
-            <div class="panel-body">
-                <div class="row" style="text-align: left;">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-5">
-                        <span><i class="fa fa-puzzle-piece fa-fw"></i> Chief executive officer</span><br>
-                        <span><i class="fa fa-phone fa-fw"></i> 097-913-22-55</span><br>
-                        <a href="https://www.facebook.com/fedot" target="_blank"><i class="fa fa-facebook-square fa-fw"></i> facebook.com/fedot</a>
-                    </div>
-                    <div class="col-md-5">
-                        <span><i class="fa fa-skype fa-fw"></i> fedot.kuzyakin</span><br>
-                        <span><i class="fa fa-envelope-o fa-fw"></i> kuzya@t4web.com.ua</span><br>
-                        <a href="https://www.linkedin.com/profile/view?id=104644941" target="_blank" ><i class="fa fa-linkedin fa-fw"></i> linkedin profile</a>
-                    </div>
-                </div>
-            </div>
-        </div> <!-- / .panel -->
-        <!-- /7. $PROFILE_WIDGET_CENTERED_EXAMPLE -->
-
-    </div>
-
-    <div class="col-md-6">
-
-        <!-- 7. $PROFILE_WIDGET_CENTERED_EXAMPLE ===========================================================
-
-                        Profile widget - Centered example
-        -->
-        <div class="panel panel-info panel-dark panel-body-colorful widget-profile widget-profile-centered">
-            <div class="panel-heading">
-                <img class="widget-profile-avatar" alt="" src="/assets/demo/avatars/2.jpg">
-                <div class="widget-profile-header">
-                    <span class="text-bold"><a href="/employee/432">John Doe</a></span><br>
-                    <a href="https://twitter.com/test">https://twitter.com/test</a>
-                </div>
-            </div> <!-- / .panel-heading -->
-            <div class="panel-body">
-                <div class="row" style="text-align: left;">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-5">
-                        <span><i class="fa fa-puzzle-piece fa-fw"></i> Chief technical officer</span><br>
-                        <span><i class="fa fa-phone fa-fw"></i> 097-913-22-55</span><br>
-                        <a href="https://www.facebook.com/fedot" target="_blank"><i class="fa fa-facebook-square fa-fw"></i> facebook.com/fedot</a>
-                    </div>
-                    <div class="col-md-5">
-                        <span><i class="fa fa-skype fa-fw"></i> fedot.kuzyakin</span><br>
-                        <span><i class="fa fa-envelope-o fa-fw"></i> kuzya@t4web.com.ua</span><br>
-                        <a href="https://www.linkedin.com/profile/view?id=104644941" target="_blank"><i class="fa fa-linkedin fa-fw"></i> linkedin profile</a>
-                    </div>
-                </div>
-            </div>
-        </div> <!-- / .panel -->
-        <!-- /7. $PROFILE_WIDGET_CENTERED_EXAMPLE -->
-
-    </div>
-
-    <div class="col-md-3">
-
-        <!-- 5. $PROFILE_WIDGET_LINKS_EXAMPLE ==============================================================
-
-                        Profile widget - Links example
-        -->
-        <div class="panel panel-success panel-dark widget-profile">
-            <div class="panel-heading">
-                <div class="widget-profile-bg-icon"><i class="fa fa-keyboard-o"></i></div>
-                <img class="widget-profile-avatar" alt="" src="/assets/demo/avatars/2.jpg">
-                <div class="widget-profile-header">
-                    <span class="text-bold"><a href="/employee/432">Robert Jang</a></span>
-                </div>
-            </div> <!-- / .panel-heading -->
-            <div class="list-group">
-                <span class="list-group-item"><i class="fa fa-puzzle-piece list-group-icon"></i>Software developer</span>
-                <span class="list-group-item"><i class="fa fa-phone list-group-icon"></i>097-913-22-55</span>
-                <span class="list-group-item"><i class="fa fa-skype list-group-icon"></i>fedot.kuzyakin</span>
-                <span class="list-group-item"><i class="fa fa-envelope-o list-group-icon"></i>kuzya@t4web.com.ua</span>
-                <a class="list-group-item" href="https://www.facebook.com/fedot" target="_blank"><i class="fa fa-facebook-square list-group-icon"></i>facebook.com/fedot</a>
-            </div>
-        </div> <!-- / .panel -->
-        <!-- /5. $PROFILE_WIDGET_LINKS_EXAMPLE -->
-
-    </div>
-
-    <div class="col-md-3">
-
-        <!-- 5. $PROFILE_WIDGET_LINKS_EXAMPLE ==============================================================
-
-                        Profile widget - Links example
-        -->
-        <div class="panel panel-danger panel-dark widget-profile">
-            <div class="panel-heading">
-                <div class="widget-profile-bg-icon"><i class="fa fa-bug"></i></div>
-                <img class="widget-profile-avatar" alt="" src="/assets/demo/avatars/1.jpg">
-                <div class="widget-profile-header">
-                    <span class="text-bold">Robert Jang</span>
-                </div>
-            </div> <!-- / .panel-heading -->
-            <div class="list-group">
-                <span class="list-group-item"><i class="fa fa-puzzle-piece list-group-icon"></i>Quality assurance engineer</span>
-                <span class="list-group-item"><i class="fa fa-phone list-group-icon"></i>097-913-22-55</span>
-                <span class="list-group-item"><i class="fa fa-skype list-group-icon"></i>fedot.kuzyakin</span>
-                <span class="list-group-item"><i class="fa fa-envelope-o list-group-icon"></i>kuzya@t4web.com.ua</span>
-                <a class="list-group-item" href="https://www.facebook.com/fedot" target="_blank"><i class="fa fa-facebook-square list-group-icon"></i>facebook.com/fedot</a>
-            </div>
-        </div> <!-- / .panel -->
-        <!-- /5. $PROFILE_WIDGET_LINKS_EXAMPLE -->
-
-    </div>
-
-    <div class="col-md-3">
-
-        <!-- 5. $PROFILE_WIDGET_LINKS_EXAMPLE ==============================================================
-
-                        Profile widget - Links example
-        -->
-        <div class="panel panel-warning panel-dark widget-profile">
-            <div class="panel-heading">
-                <div class="widget-profile-bg-icon"><i class="fa fa-tasks"></i></div>
-                <img class="widget-profile-avatar" alt="" src="/assets/demo/avatars/4.jpg">
-                <div class="widget-profile-header">
-                    <span class="text-bold">Robert Jang</span>
-                </div>
-            </div> <!-- / .panel-heading -->
-            <div class="list-group">
-                <span class="list-group-item"><i class="fa fa-puzzle-piece list-group-icon"></i>Project manager</span>
-                <span class="list-group-item"><i class="fa fa-phone list-group-icon"></i>097-913-22-55</span>
-                <span class="list-group-item"><i class="fa fa-skype list-group-icon"></i>fedot.kuzyakin</span>
-                <span class="list-group-item"><i class="fa fa-envelope-o list-group-icon"></i>kuzya@t4web.com.ua</span>
-                <a class="list-group-item" href="https://www.facebook.com/fedot" target="_blank"><i class="fa fa-facebook-square list-group-icon"></i>facebook.com/fedot</a>
-            </div>
-        </div> <!-- / .panel -->
-        <!-- /5. $PROFILE_WIDGET_LINKS_EXAMPLE -->
-
-    </div>
-
-    <div class="col-md-3">
-
-        <!-- 5. $PROFILE_WIDGET_LINKS_EXAMPLE ==============================================================
-
-                        Profile widget - Links example
-        -->
-        <div class="panel panel-success panel-dark widget-profile">
-            <div class="panel-heading">
-                <div class="widget-profile-bg-icon"><i class="fa fa-desktop"></i></div>
-                <img class="widget-profile-avatar" alt="" src="/assets/demo/avatars/2.jpg">
-                <div class="widget-profile-header">
-                    <span class="text-bold">Robert Jang</span>
-                </div>
-            </div> <!-- / .panel-heading -->
-            <div class="list-group">
-                <span class="list-group-item"><i class="fa fa-puzzle-piece list-group-icon"></i>Frontend engineer</span>
-                <span class="list-group-item"><i class="fa fa-phone list-group-icon"></i>097-913-22-55</span>
-                <span class="list-group-item"><i class="fa fa-skype list-group-icon"></i>fedot.kuzyakin</span>
-                <span class="list-group-item"><i class="fa fa-envelope-o list-group-icon"></i>kuzya@t4web.com.ua</span>
-                <a class="list-group-item" href="https://www.facebook.com/fedot" target="_blank"><i class="fa fa-facebook-square list-group-icon"></i>facebook.com/fedot</a>
-            </div>
-        </div> <!-- / .panel -->
-        <!-- /5. $PROFILE_WIDGET_LINKS_EXAMPLE -->
-
-    </div>
+    <?php foreach($viewModel->getEmployees()->getWorkers() as $employee): ?>
+        <div class="col-md-3">
+            <?= $this->partial('partials/employee.phtml', ['employee' => $employee]); ?>
+        </div>
+    <?php endforeach; ?>
 
 </div>

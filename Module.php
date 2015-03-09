@@ -23,6 +23,8 @@ use Employees\Controller\User\CreateAjaxController;
 use Employees\Controller\User\SaveAjaxController;
 use Employees\Controller\Console\InitController;
 use Employees\Employee\Service\WorkInfoPopulate;
+use Employees\Employee\Service\PersonalInfoPopulate;
+use Employees\Employee\Service\SocialPopulate;
 
 class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                         ControllerProviderInterface, ConsoleUsageProviderInterface,
@@ -82,11 +84,30 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                     );
                 },
 
+                'Employees\Employee\Service\PersonalInfoPopulate' =>  function (ServiceManager $sm) {
+                    return new PersonalInfoPopulate(
+                        $sm->get('Employees\PersonalInfo\Service\Finder')
+                    );
+                },
+
+                'Employees\Employee\Service\SocialPopulate' =>  function (ServiceManager $sm) {
+                    return new SocialPopulate(
+                        $sm->get('Employees\Social\Service\Finder')
+                    );
+                },
+
                 'Employees\PersonalInfo\Service\Create' => function (ServiceManager $sm) {
                     return new ServiceCreate(
                         $sm->get('Employees\PersonalInfo\InputFilter\Create'),
                         $sm->get('Employees\PersonalInfo\Repository\DbRepository'),
                         $sm->get('Employees\PersonalInfo\Factory\EntityFactory')
+                    );
+                },
+
+                'Employees\PersonalInfo\Service\Finder' => function (ServiceManager $sm) {
+                    return new ServiceFinder(
+                        $sm->get('Employees\PersonalInfo\Repository\DbRepository'),
+                        $sm->get('Employees\PersonalInfo\Criteria\CriteriaFactory')
                     );
                 },
 
@@ -110,6 +131,13 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                         $sm->get('Employees\Social\InputFilter\Create'),
                         $sm->get('Employees\Social\Repository\DbRepository'),
                         $sm->get('Employees\Social\Factory\EntityFactory')
+                    );
+                },
+
+                'Employees\Social\Service\Finder' => function (ServiceManager $sm) {
+                    return new ServiceFinder(
+                        $sm->get('Employees\Social\Repository\DbRepository'),
+                        $sm->get('Employees\Social\Criteria\CriteriaFactory')
                     );
                 },
             ),
@@ -145,7 +173,9 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                     $sl = $cm->getServiceLocator();
                     return new ListController(
                         $sl->get('Employees\Employee\Service\Finder'),
+                        $sl->get('Employees\Employee\Service\PersonalInfoPopulate'),
                         $sl->get('Employees\Employee\Service\WorkInfoPopulate'),
+                        $sl->get('Employees\Employee\Service\SocialPopulate'),
                         $sl->get('Employees\Controller\User\ListViewModel')
                     );
                 },

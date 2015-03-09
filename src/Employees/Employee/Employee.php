@@ -4,6 +4,8 @@ namespace Employees\Employee;
 
 use Base\Domain\Entity;
 use Employees\WorkInfo\WorkInfo;
+use Employees\PersonalInfo\PersonalInfo;
+use Employees\Social\Social;
 
 class Employee extends Entity {
     
@@ -16,6 +18,16 @@ class Employee extends Entity {
      * @var WorkInfo
      */
     protected $workInfo;
+
+    /**
+     * @var PersonalInfo
+     */
+    protected $personalInfo;
+
+    /**
+     * @var Social
+     */
+    protected $social;
 
     /**
      * @return WorkInfo
@@ -33,6 +45,60 @@ class Employee extends Entity {
         $this->workInfo = $workInfo;
     }
 
+    /**
+     * @return Social
+     */
+    public function getSocial()
+    {
+        return $this->social;
+    }
 
+    /**
+     * @param Social $social
+     */
+    public function setSocial($social)
+    {
+        $this->social = $social;
+    }
+
+    /**
+     * @return PersonalInfo
+     */
+    public function getPersonalInfo()
+    {
+        return $this->personalInfo;
+    }
+
+    /**
+     * @param PersonalInfo $personalInfo
+     */
+    public function setPersonalInfo($personalInfo)
+    {
+        $this->personalInfo = $personalInfo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSurname()
+    {
+        return $this->surname;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPatronymic()
+    {
+        return $this->patronymic;
+    }
 
 }

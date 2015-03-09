@@ -1,21 +1,21 @@
 <?php
 namespace Employees\Employee\Service;
 
-use Base\Domain\Service\BaseFinder as WorkInfoFinder;
+use Base\Domain\Service\BaseFinder as SocialFinder;
 use Base\Domain\Collection;
 use Employees\Employee\Employee;
 
-class WorkInfoPopulate {
+class SocialPopulate {
 
-    private $workInfoFinder;
+    private $socialFinder;
 
     /**
      * @var Collection
      */
     private $infos;
 
-    public function __construct(WorkInfoFinder $workInfoFinder) {
-        $this->workInfoFinder = $workInfoFinder;
+    public function __construct(SocialFinder $socialFinder) {
+        $this->socialFinder = $socialFinder;
     }
     
     public function populate(Employee $employee) {
@@ -30,7 +30,7 @@ class WorkInfoPopulate {
         */
         $infoByEmployee = $this->infos[$employee->getId()];
 
-        $employee->setWorkInfo($infoByEmployee);
+        $employee->setSocial($infoByEmployee);
     }
     
     public function populateCollection(Collection $employees) {
@@ -38,9 +38,9 @@ class WorkInfoPopulate {
             return;
         }
         
-        $this->infos = $this->workInfoFinder->findMany(
+        $this->infos = $this->socialFinder->findMany(
             array('Employees' =>
-                  array('WorkInfo' => array('employeeIds' => $employees->getIds()))
+                  array('Social' => array('employeeIds' => $employees->getIds()))
             )
         );
 

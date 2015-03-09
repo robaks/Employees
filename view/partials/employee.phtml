@@ -1,0 +1,21 @@
+<?php /** @var Employees\Employee\Employee $employee */ ?>
+
+<?php /** @var Employees\Controller\User\ListViewModel $viewModel */ ?>
+<?php $viewModel = $this->viewModel()->getCurrent(); ?>
+
+<div class="employee panel <?=$viewModel->getEmployeeColorClass($employee);?> panel-dark widget-profile">
+    <div class="panel-heading">
+        <div class="widget-profile-bg-icon"><i class="fa <?=$viewModel->getEmployeeIconClass($employee);?>"></i></div>
+        <img class="widget-profile-avatar" alt="" src="/assets/demo/avatars/2.jpg">
+        <div class="widget-profile-header">
+            <span class="text-bold"><a href="/employee/<?=$employee->getId()?>"><?=$employee->getSurname()?> <?=$employee->getName()?></a></span>
+        </div>
+    </div> <!-- / .panel-heading -->
+    <div class="list-group">
+        <span class="list-group-item"><i class="fa fa-puzzle-piece list-group-icon"></i><?=$employee->getWorkInfo()->getJobTitle()->getName();?></span>
+        <span class="list-group-item"><i class="fa fa-phone list-group-icon"></i><?=$employee->getPersonalInfo()->getPhone();?></span>
+        <span class="list-group-item"><i class="fa fa-skype list-group-icon"></i><?=$employee->getSocial()->getSkype();?></span>
+        <span class="list-group-item"><i class="fa fa-envelope-o list-group-icon"></i><?=$employee->getSocial()->getEmail();?></span>
+        <a class="list-group-item" href="https://www.facebook.com/fedot" target="_blank"><i class="fa fa-facebook-square list-group-icon"></i><?=$employee->getSocial()->getFacebook();?></a>
+    </div>
+</div> <!-- / .panel -->

@@ -147,6 +147,14 @@ return array(
                     ),
                 ),
             ),
+            'PersonalInfo' => array(
+                'Employees' => array(
+                    array(
+                        'table' => 'employees_personal_info',
+                        'rule' => 'employees_personal_info.employee_id = employees.id',
+                    ),
+                ),
+            ),
         ),
     ),
 );
