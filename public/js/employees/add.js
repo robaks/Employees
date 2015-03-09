@@ -13,7 +13,11 @@ $(function() {
         acceptedFiles: "image/*"
     });
 
-    $('#create-employee-btn').one('click', addEmployee);
+    if ($('#add-employee .form-control[name=id]').length > 0) {
+        $('#create-employee-btn').click(updateEmployee);
+    } else {
+        $('#create-employee-btn').one('click', addEmployee);
+    }
 
     function addEmployee() {
         var data = {};

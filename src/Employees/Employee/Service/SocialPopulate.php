@@ -21,13 +21,13 @@ class SocialPopulate {
     public function populate(Employee $employee) {
 
         // TODO: не грузить повторно, запоминать по ID что уже загружали ранее
-        /*
-        $this->infos = $this->workInfoFinder->findMany(
+
+        $this->infos = $this->socialFinder->findMany(
             array('Employees' =>
-                array('WorkInfo' => array('employeeIds' => array($employee->getId())))
+                array('Social' => array('employeeIds' => array($employee->getId())))
             )
         );
-        */
+
         $infoByEmployee = $this->infos[$employee->getId()];
 
         $employee->setSocial($infoByEmployee);

@@ -9,7 +9,7 @@ use Employees\Employee\Service\WorkInfoPopulate;
 use Employees\Employee\Service\SocialPopulate;
 use Employees\Employee\Employee;
 
-class ShowController extends AbstractActionController {
+class EditController extends AbstractActionController {
 
     /**
      * @var BaseFinder
@@ -17,7 +17,7 @@ class ShowController extends AbstractActionController {
     private $employeeFinder;
 
     /**
-     * @var ListViewModel
+     * @var EditViewModel
      */
     private $view;
 
@@ -41,7 +41,7 @@ class ShowController extends AbstractActionController {
         PersonalInfoPopulate $personalPopulator,
         WorkInfoPopulate $workInfoPopulator,
         SocialPopulate $socialPopulator,
-        ShowViewModel $view)
+        EditViewModel $view)
     {
         $this->employeeFinder = $employeeFinder;
         $this->personalPopulator = $personalPopulator;
@@ -51,7 +51,7 @@ class ShowController extends AbstractActionController {
     }
 
     /**
-     * @return ListViewModel
+     * @return ShowViewModel
      */
     public function defaultAction()
     {

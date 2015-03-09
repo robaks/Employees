@@ -48,11 +48,9 @@ class SaveAjaxController extends AbstractActionController {
 
         $params = $this->getRequest()->getPost()->toArray();
 
-        $params['id'] = 19;
-
         $employee = $this->createService->create($params);
 
-        $params['employee_id'] = $employee->getId();
+        $params['employeeId'] = $employee->getId();
 
         $this->view->setFormData($params);
 

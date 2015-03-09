@@ -21,13 +21,13 @@ class WorkInfoPopulate {
     public function populate(Employee $employee) {
 
         // TODO: не грузить повторно, запоминать по ID что уже загружали ранее
-        /*
+
         $this->infos = $this->workInfoFinder->findMany(
             array('Employees' =>
                 array('WorkInfo' => array('employeeIds' => array($employee->getId())))
             )
         );
-        */
+
         $infoByEmployee = $this->infos[$employee->getId()];
 
         $employee->setWorkInfo($infoByEmployee);

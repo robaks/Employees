@@ -1,31 +1,47 @@
+<?php /** @var Employees\Controller\User\ShowViewModel $viewModel */ ?>
+<?php $viewModel = $this->viewModel()->getCurrent(); ?>
+
 <div class="page-header">
     <div class="row">
         <h1 class="col-sm-4 text-center text-left-sm col-xs-12">
-            <i class="fa fa-users page-header-icon"></i>&nbsp;&nbsp;<a href="/employees">Emploees</a>&nbsp;&nbsp;<i class="fa fa-angle-right page-header-icon"></i>&nbsp;&nbsp;Robert Jang
+            <i class="fa fa-users page-header-icon"></i>&nbsp;&nbsp;
+            <a href="/employees">Emploees</a>&nbsp;&nbsp;
+            <i class="fa fa-angle-right page-header-icon"></i>&nbsp;&nbsp;
+            <?=$viewModel->getEmployee()->getSurname();?> <?=$viewModel->getEmployee()->getName();?>
         </h1>
+
+        <div class="col-xs-12 col-sm-8">
+            <div class="row">
+                <!-- "Create project" button, width=auto on desktops -->
+                <div class="pull-right col-xs-12 col-sm-auto">
+                    <a style="width: 100%;" class="btn btn-default btn-labeled" href="<?=$this->url('employee-edit', ['id' => $viewModel->getEmployee()->getId()]);?>">
+                        <span class="btn-label icon fa fa-pencil"></span>Edit</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 <div class="row">
     <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
         <!-- col-lg-4 start here -->
-        <div class="panel panel-danger panel-dark widget-profile">
+        <div class="panel <?=$viewModel->getEmployeeColorClass();?> panel-dark widget-profile">
             <div class="panel-heading">
-                <div class="widget-profile-bg-icon"><i class="fa fa-bug"></i></div>
+                <div class="widget-profile-bg-icon"><i class="fa <?=$viewModel->getEmployeeIconClass();?>"></i></div>
                 <img class="widget-profile-avatar" alt="" src="/assets/demo/avatars/1.jpg">
                 <div class="widget-profile-header">
-                    <span class="text-bold">Robert Jang</span>
+                    <span class="text-bold"><?=$viewModel->getEmployee()->getSurname();?> <?=$viewModel->getEmployee()->getName();?></span>
                 </div>
             </div> <!-- / .panel-heading -->
             <div class="panel-body">
                 Other info
             </div>
             <div class="list-group">
-                <span class="list-group-item"><i class="fa fa-puzzle-piece list-group-icon"></i>Quality assurance engineer</span>
-                <span class="list-group-item"><i class="fa fa-phone list-group-icon"></i>097-913-22-55</span>
-                <span class="list-group-item"><i class="fa fa-skype list-group-icon"></i>fedot.kuzyakin</span>
-                <span class="list-group-item"><i class="fa fa-envelope-o list-group-icon"></i>kuzya@t4web.com.ua</span>
-                <a class="list-group-item" href="https://www.facebook.com/fedot" target="_blank"><i class="fa fa-facebook-square list-group-icon"></i>facebook.com/fedot</a>
+                <span class="list-group-item"><i class="fa fa-puzzle-piece list-group-icon"></i><?=$viewModel->getEmployee()->getWorkInfo()->getJobTitle()->getName();?></span>
+                <span class="list-group-item"><i class="fa fa-phone list-group-icon"></i><?=$viewModel->getEmployee()->getPersonalInfo()->getPhone();?></span>
+                <span class="list-group-item"><i class="fa fa-skype list-group-icon"></i><?=$viewModel->getEmployee()->getSocial()->getSkype();?></span>
+                <span class="list-group-item"><i class="fa fa-envelope-o list-group-icon"></i><?=$viewModel->getEmployee()->getSocial()->getEmail();?></span>
+                <a class="list-group-item" href="https://www.facebook.com/fedot" target="_blank"><i class="fa fa-facebook-square list-group-icon"></i><?=$viewModel->getEmployee()->getSocial()->getFacebook();?></a>
             </div>
         </div>
         <!-- End .panel -->

@@ -29,7 +29,7 @@ return array(
             'employee-show' => array(
                 'type'    => 'Segment',
                 'options' => array(
-                    'route'    => '/employee/[:id]',
+                    'route'    => '/employee[/:id]',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Employees\Controller\User',
                         'controller'    => 'Show',
@@ -44,6 +44,17 @@ return array(
                     'defaults' => array(
                         '__NAMESPACE__' => 'Employees\Controller\User',
                         'controller'    => 'Add',
+                        'action'        => 'default',
+                    ),
+                ),
+            ),
+            'employee-edit' => array(
+                'type'    => 'Segment',
+                'options' => array(
+                    'route'    => '/employee/edit[/:id]',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Employees\Controller\User',
+                        'controller'    => 'Edit',
                         'action'        => 'default',
                     ),
                 ),
@@ -120,7 +131,7 @@ return array(
                 'columnsAsAttributesMap' => array(
                     'employee_id' => 'employeeId',
                     'job_title' => 'jobTitleId',
-                    'status' => 'status',
+                    'status' => 'statusId',
                     'start_work_date' => 'startWorkDate',
                     'end_work_date' => 'endWorkDate',
                 ),

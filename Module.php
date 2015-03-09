@@ -18,6 +18,7 @@ use Base\Domain\Service\Create as ServiceCreate;
 use Base\Domain\Service\BaseFinder as ServiceFinder;
 use Employees\Controller\User\ListController;
 use Employees\Controller\User\ShowController;
+use Employees\Controller\User\EditController;
 use Employees\Controller\User\AddController;
 use Employees\Controller\User\CreateAjaxController;
 use Employees\Controller\User\SaveAjaxController;
@@ -145,6 +146,8 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                 'Employees\ViewModel\SaveAjaxViewModel' => 'Employees\ViewModel\SaveAjaxViewModel',
                 'Employees\Controller\User\AddViewModel' => 'Employees\Controller\User\AddViewModel',
                 'Employees\Controller\User\ListViewModel' => 'Employees\Controller\User\ListViewModel',
+                'Employees\Controller\User\ShowViewModel' => 'Employees\Controller\User\ShowViewModel',
+                'Employees\Controller\User\EditViewModel' => 'Employees\Controller\User\EditViewModel',
 
                 'Employees\Employee\InputFilter\Create' => 'Employees\Employee\InputFilter\Create',
                 'Employees\PersonalInfo\InputFilter\Create' => 'Employees\PersonalInfo\InputFilter\Create',
@@ -180,7 +183,24 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                     );
                 },
                 'Employees\Controller\User\Show' => function (ControllerManager $cm) {
-                    return new ShowController();
+                    $sl = $cm->getServiceLocator();
+                    return new ShowController(
+                        $sl->get('Employees\Employee\Service\Finder'),
+                        $sl->get('Employees\Employee\Service\PersonalInfoPopulate'),
+                        $sl->get('Employees\Employee\Service\WorkInfoPopulate'),
+                        $sl->get('Employees\Employee\Service\SocialPopulate'),
+                        $sl->get('Employees\Controller\User\ShowViewModel')
+                    );
+                },
+                'Employees\Controller\User\Edit' => function (ControllerManager $cm) {
+                    $sl = $cm->getServiceLocator();
+                    return new EditController(
+                        $sl->get('Employees\Employee\Service\Finder'),
+                        $sl->get('Employees\Employee\Service\PersonalInfoPopulate'),
+                        $sl->get('Employees\Employee\Service\WorkInfoPopulate'),
+                        $sl->get('Employees\Employee\Service\SocialPopulate'),
+                        $sl->get('Employees\Controller\User\EditViewModel')
+                    );
                 },
                 'Employees\Controller\User\Add' => function (ControllerManager $cm) {
                     $sl = $cm->getServiceLocator();

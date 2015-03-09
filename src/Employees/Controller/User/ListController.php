@@ -3,7 +3,6 @@
 namespace Employees\Controller\User;
 
 use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
 use Base\Domain\Service\BaseFinder;
 use Employees\Employee\Service\PersonalInfoPopulate;
 use Employees\Employee\Service\WorkInfoPopulate;
@@ -52,7 +51,7 @@ class ListController extends AbstractActionController {
     }
 
     /**
-     * @return ViewModel
+     * @return ListViewModel
      */
     public function defaultAction()
     {

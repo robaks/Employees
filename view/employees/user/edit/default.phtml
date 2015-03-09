@@ -1,0 +1,229 @@
+<?php /** @var Employees\Controller\User\EditViewModel $viewModel */ ?>
+<?php $viewModel = $this->viewModel()->getCurrent(); ?>
+
+<?php $this->headScript()->appendFile($this->basePath() . '/js/employees/add.js');?>
+
+<div class="page-header">
+    <div class="row">
+        <h1 class="col-sm-12 text-center text-left-sm col-xs-12">
+            <i class="fa fa-users page-header-icon"></i>&nbsp;&nbsp;
+            <a href="<?= $this->url('employees-list'); ?>">Employees</a>&nbsp;&nbsp;
+            <i class="fa fa-angle-right page-header-icon"></i>&nbsp;&nbsp;
+            <?=$viewModel->getEmployee()->getSurname();?> <?=$viewModel->getEmployee()->getName();?>&nbsp;&nbsp;
+            <i class="fa fa-angle-right page-header-icon"></i>&nbsp;&nbsp; Edit
+        </h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <!-- col-lg-4 start here -->
+        <div class="panel panel-default plain" id="add-employee">
+            <!-- Start .panel -->
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <!-- col-lg-4 start here -->
+                        <div class="panel panel-default plain">
+                            <!-- Start .panel -->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">Personal info</h4>
+                            </div>
+                            <div class="panel-body">
+                                <form role="form" class="form-vertical">
+                                    <input type="hidden" name="id" value="<?=$viewModel->getEmployee()->getId();?>" class="form-control">
+                                    <div class="form-group">
+                                        <label class="control-label">Фамилия</label>
+                                        <input type="text" name="surname" value="<?=$viewModel->getEmployee()->getSurname();?>" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Имя</label>
+                                        <input type="text" name="name" value="<?=$viewModel->getEmployee()->getName();?>" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Отчество</label>
+                                        <input type="email" name="patronymic" value="<?=$viewModel->getEmployee()->getPatronymic();?>" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Дата рождения</label>
+                                        <div id="bs-datepicker-component3" class="input-group date">
+                                            <input type="text" name="birthday" class="form-control" value="<?=$viewModel->getEmployee()->getPersonalInfo()->getBirthday();?>"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Телефон</label>
+                                        <input type="text" name="phone" value="<?=$viewModel->getEmployee()->getPersonalInfo()->getPhone()?>" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Данные паспорта</label>
+                                        <textarea rows="3" name="passport" value="<?=$viewModel->getEmployee()->getPersonalInfo()->getPassport()?>" class="form-control"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">ИПН</label>
+                                        <input type="text" name="ipn" value="<?=$viewModel->getEmployee()->getPersonalInfo()->getIpn();?>" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Адрес факт</label>
+                                        <textarea rows="3" name="address" class="form-control"><?=$viewModel->getEmployee()->getPersonalInfo()->getAddress();?></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Адрес прописки</label>
+                                        <textarea rows="3" name="registrationAddress" class="form-control"><?=$viewModel->getEmployee()->getPersonalInfo()->getRegistrationAddress();?></textarea>
+                                    </div>
+                                    <!-- End .form-group  -->
+                                </form>
+                            </div>
+                        </div>
+                        <!-- End .panel -->
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <!-- col-lg-4 start here -->
+                        <div class="panel panel-default plain">
+                            <div class="panel-heading">
+                                <span class="panel-title">Photo</span>
+                            </div>
+                            <div class="panel-body">
+                                <form class="dropzone-box" >
+                                    <div class="dz-default dz-message">
+                                        <i class="fa fa-cloud-upload"></i>
+                                        Drop files in here<br><span class="dz-text-small">or click to pick manually</span>
+                                    </div>
+                                    <div class="fallback">
+                                        <input name="photo" type="file" multiple="" id="photo" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- End .panel -->
+
+                        <div class="panel panel-default plain">
+                            <!-- Start .panel -->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">Work info</h4>
+                            </div>
+                            <div class="panel-body">
+                                <form role="form" class="form-vertical">
+                                    <div class="form-group">
+                                        <label class="control-label">Должность</label>
+                                        <select class="form-control form-group-margin" name="jobTitleId">
+                                            <?php foreach($viewModel->getJobTitles() as $id => $title): ?>
+                                                <?php if($viewModel->getEmployee()->getWorkInfo()->getJobTitleId() == $id): ?>
+                                                    <option value="<?=$id;?>" selected="selected"><?=$title;?></option>
+                                                <?php else: ?>
+                                                    <option value="<?=$id;?>"><?=$title;?></option>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Статус</label>
+                                        <select class="form-control form-group-margin" name="statusId">
+                                            <?php foreach($viewModel->getStatuses() as $id => $name): ?>
+                                                <?php if($viewModel->getEmployee()->getWorkInfo()->getStatusId() == $id): ?>
+                                                    <option value="<?=$id;?>" selected="selected"><?=$name;?></option>
+                                                <?php else: ?>
+                                                    <option value="<?=$id;?>"><?=$name;?></option>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Дата приема на работу</label>
+                                        <div id="bs-datepicker-component" class="input-group date">
+                                            <input type="text" name="startWorkDate" value="<?=$viewModel->getEmployee()->getWorkInfo()->getStartWorkDate()?>" class="form-control"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Дата увольнения</label>
+                                        <div id="bs-datepicker-component2" class="input-group date">
+                                            <input type="text" name="endWorkDate" value="<?=$viewModel->getEmployee()->getWorkInfo()->getEndWorkDate()?>" class="form-control"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                    </div>
+                                    <!-- End .form-group  -->
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <!-- col-lg-4 start here -->
+                        <div class="panel panel-default plain">
+                            <!-- Start .panel -->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">Social</h4>
+                            </div>
+                            <div class="panel-body">
+                                <form role="form" class="form-vertical">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-skype"></i></span>
+                                            <input type="text" placeholder="Skype" class="form-control" name="skype" value="<?=$viewModel->getEmployee()->getSocial()->getSkype()?>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                                            <input type="text" placeholder="Personal e-mail" class="form-control" name="personalEmail" value="<?=$viewModel->getEmployee()->getSocial()->getPersonalEmail()?>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                                            <input type="text" placeholder="Work e-mail" class="form-control" name="email" value="<?=$viewModel->getEmployee()->getSocial()->getEmail()?>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-facebook-square"></i></span>
+                                            <input type="text" placeholder="facebook" class="form-control" name="facebook" value="<?=$viewModel->getEmployee()->getSocial()->getFacebook()?>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-vk"></i></span>
+                                            <input type="text" placeholder="vkontakte" class="form-control" name="vk" value="<?=$viewModel->getEmployee()->getSocial()->getVk()?>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-linkedin"></i></span>
+                                            <input type="text" placeholder="linkedin" class="form-control" name="linkedin" value="<?=$viewModel->getEmployee()->getSocial()->getLinkedin()?>">
+                                        </div>
+                                    </div>
+                                    <!-- End .form-group  -->
+                                </form>
+                            </div>
+                        </div>
+                        <!-- End .panel -->
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <!-- col-lg-4 start here -->
+                        <div class="panel panel-default plain">
+                            <!-- Start .panel -->
+                            <div class="panel-heading">
+                                <h4 class="panel-title">Contacts</h4>
+                            </div>
+                            <div class="panel-body">
+                                <form role="form" class="form-vertical">
+                                    <div class="form-group">
+                                        <label class="control-label">Контактные лица</label>
+                                        <textarea rows="3" class="form-control" name="contacts"><?=$viewModel->getEmployee()->getPersonalInfo()->getContacts()?></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- End .panel -->
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="panel-footer">
+                <button class="btn btn-primary" id="update-employee-btn">Update</button>
+                <a href="<?= $this->url('employees-list'); ?>" class="btn btn-default" >Cancel and return to list</a>
+            </div>
+        </div>
+    </div>
+</div>
