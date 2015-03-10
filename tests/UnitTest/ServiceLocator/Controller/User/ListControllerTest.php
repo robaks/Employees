@@ -16,6 +16,24 @@ class ListControllerTest extends \PHPUnit_Framework_TestCase
 
         $this->serviceManager->setService('Employees\Employee\Service\Finder', $finderMock);
 
+        $personalInfoPopulatorMock = $this->getMockBuilder('Employees\Employee\Service\PersonalInfoPopulate')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->serviceManager->setService('Employees\Employee\Service\PersonalInfoPopulate', $personalInfoPopulatorMock);
+
+        $workInfoPopulatorMock = $this->getMockBuilder('Employees\Employee\Service\WorkInfoPopulate')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->serviceManager->setService('Employees\Employee\Service\WorkInfoPopulate', $workInfoPopulatorMock);
+
+        $socialPopulatorMock = $this->getMockBuilder('Employees\Employee\Service\SocialPopulate')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->serviceManager->setService('Employees\Employee\Service\SocialPopulate', $socialPopulatorMock);
+
         $viewMock = $this->getMockBuilder('Employees\Controller\User\ListViewModel')
             ->disableOriginalConstructor()
             ->getMock();
@@ -28,6 +46,9 @@ class ListControllerTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('Employees\Controller\User\ListController', $controller);
         $this->assertAttributeSame($finderMock, 'finder', $controller);
+        $this->assertAttributeSame($personalInfoPopulatorMock, 'personalPopulator', $controller);
+        $this->assertAttributeSame($workInfoPopulatorMock, 'workInfoPopulator', $controller);
+        $this->assertAttributeSame($socialPopulatorMock, 'socialPopulator', $controller);
         $this->assertAttributeSame($viewMock, 'view', $controller);
     }
 
