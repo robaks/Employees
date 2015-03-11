@@ -65,10 +65,14 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
         return array(
             'factories' => array(
                 'Employees\Employee\Service\Create' => function (ServiceManager $sm) {
+                    $eventManager = $sm->get('EventManager');
+                    $eventManager->addIdentifiers('Employees\Employee\Service\Create');
+
                     return new ServiceCreate(
                         $sm->get('Employees\Employee\InputFilter\Create'),
                         $sm->get('Employees\Employee\Repository\DbRepository'),
-                        $sm->get('Employees\Employee\Factory\EntityFactory')
+                        $sm->get('Employees\Employee\Factory\EntityFactory'),
+                        $eventManager
                     );
                 },
 
