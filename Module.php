@@ -6,7 +6,6 @@ use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ModuleManager\Feature\ControllerProviderInterface;
 use Zend\ModuleManager\Feature\ConsoleUsageProviderInterface;
 use Zend\ModuleManager\Feature\ServiceProviderInterface;
-use Zend\ModuleManager\Feature\BootstrapListenerInterface;
 use Zend\Mvc\Controller\ControllerManager;
 use Zend\EventManager\EventInterface;
 use Zend\Console\Adapter\AdapterInterface as ConsoleAdapterInterface;
@@ -29,14 +28,8 @@ use T4webEmployees\Employee\Service\SocialPopulate;
 
 class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                         ControllerProviderInterface, ConsoleUsageProviderInterface,
-                        ServiceProviderInterface, BootstrapListenerInterface
+                        ServiceProviderInterface
 {
-    public function onBootstrap(EventInterface $e)
-    {
-        $navigator = $e->getApplication()->getServiceManager()->get('Navigation\Menu\Navigator');
-        $navigator->addEntry('Employees', 'employees-list', 'menu-icon fa fa-users');
-    }
-
     public function getConfig($env = null)
     {
         return include __DIR__ . '/config/module.config.php';
