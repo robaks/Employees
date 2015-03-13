@@ -103,7 +103,7 @@ return array(
 
     'db' => array(
         'tables' => array(
-            'employees-employee' => array(
+            't4webemployees-employee' => array(
                 'name' => 'employees',
                 'columnsAsAttributesMap' => array(
                     'id' => 'id',
@@ -113,7 +113,7 @@ return array(
                     'avatar' => 'avatar',
                 ),
             ),
-            'employees-personalinfo' => array(
+            't4webemployees-personalinfo' => array(
                 'name' => 'employees_personal_info',
                 'columnsAsAttributesMap' => array(
                     'employee_id' => 'employeeId',
@@ -126,7 +126,7 @@ return array(
                     'contacts' => 'contacts',
                 ),
             ),
-            'employees-workinfo' => array(
+            't4webemployees-workinfo' => array(
                 'name' => 'employees_work_info',
                 'columnsAsAttributesMap' => array(
                     'employee_id' => 'employeeId',
@@ -136,7 +136,7 @@ return array(
                     'end_work_date' => 'endWorkDate',
                 ),
             ),
-            'employees-social' => array(
+            't4webemployees-social' => array(
                 'name' => 'employees_social',
                 'columnsAsAttributesMap' => array(
                     'employee_id' => 'employeeId',
