@@ -1,5 +1,5 @@
 {
-    "name": "t4web/t4web-employees",
+    "name": "t4web/employees",
     "description": "ZF2 Module for managing employees",
     "type": "library",
     "license": "BSD-3-Clause",
@@ -7,7 +7,7 @@
         "zf2",
         "employees"
     ],
-    "homepage": "https://github.com/t4web/T4webEmployees",
+    "homepage": "https://github.com/t4web/Employees",
     "authors": [
         {
             "name": "Max Gulturyan",
