@@ -2,7 +2,7 @@
 
 namespace T4webEmployees\Employee;
 
-use Base\Domain\Status;
+use T4webBase\Domain\Status;
 
 class JobTitle extends Status {
     

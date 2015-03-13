@@ -2,7 +2,7 @@
 
 namespace T4webEmployees\Social;
 
-use Base\Domain\Entity;
+use T4webBase\Domain\Entity;
 
 class Social extends Entity {
 

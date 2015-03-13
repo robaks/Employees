@@ -3,7 +3,7 @@
 namespace T4webEmployees\Controller\User;
 
 use Zend\Mvc\Controller\AbstractActionController;
-use Base\Domain\Service\BaseFinder;
+use T4webBase\Domain\Service\BaseFinder;
 use T4webEmployees\Employee\Service\PersonalInfoPopulate;
 use T4webEmployees\Employee\Service\WorkInfoPopulate;
 use T4webEmployees\Employee\Service\SocialPopulate;

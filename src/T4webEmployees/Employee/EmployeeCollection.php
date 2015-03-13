@@ -2,7 +2,7 @@
 
 namespace T4webEmployees\Employee;
 
-use Base\Domain\Collection;
+use T4webBase\Domain\Collection;
 
 class EmployeeCollection extends Collection {
 

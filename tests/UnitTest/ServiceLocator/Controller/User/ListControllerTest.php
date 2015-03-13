@@ -10,7 +10,7 @@ class ListControllerTest extends \PHPUnit_Framework_TestCase
 
     public function testCreation()
     {
-        $finderMock = $this->getMockBuilder('Base\Domain\Service\BaseFinder')
+        $finderMock = $this->getMockBuilder('T4webBase\Domain\Service\BaseFinder')
             ->disableOriginalConstructor()
             ->getMock();
 

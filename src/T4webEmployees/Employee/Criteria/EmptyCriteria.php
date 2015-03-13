@@ -2,7 +2,7 @@
 
 namespace T4webEmployees\Employee\Criteria;
 
-use Base\Domain\Criteria\AbstractEmptyCriteria;
+use T4webBase\Domain\Criteria\AbstractEmptyCriteria;
 
 class EmptyCriteria extends AbstractEmptyCriteria {
     

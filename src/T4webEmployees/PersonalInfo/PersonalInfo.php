@@ -3,7 +3,7 @@
 namespace T4webEmployees\PersonalInfo;
 
 use DateTime;
-use Base\Domain\Entity;
+use T4webBase\Domain\Entity;
 
 class PersonalInfo extends Entity {
 

@@ -2,7 +2,7 @@
 
 namespace T4webEmployees\WorkInfo;
 
-use Base\Domain\Entity;
+use T4webBase\Domain\Entity;
 use T4webEmployees\Employee\JobTitle;
 
 class WorkInfo extends Entity {

@@ -2,7 +2,7 @@
 
 namespace T4webEmployees\PersonalInfo\Criteria;
 
-use Base\Domain\Criteria\AbstractCriteria;
+use T4webBase\Domain\Criteria\AbstractCriteria;
 
 class EmployeeIds extends AbstractCriteria {
     

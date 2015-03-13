@@ -16,7 +16,7 @@ class SaveAjaxControllerTest extends \PHPUnit_Framework_TestCase
 
         $this->serviceManager->setService('T4webEmployees\ViewModel\SaveAjaxViewModel', $viewMock);
 
-        $serviceMock = $this->getMockBuilder('Base\Domain\Service\Create')
+        $serviceMock = $this->getMockBuilder('T4webBase\Domain\Service\Create')
             ->disableOriginalConstructor()
             ->getMock();
 

@@ -1,8 +1,8 @@
 <?php
 namespace T4webEmployees\Employee\Service;
 
-use Base\Domain\Service\BaseFinder as SocialFinder;
-use Base\Domain\Collection;
+use T4webBase\Domain\Service\BaseFinder as SocialFinder;
+use T4webBase\Domain\Collection;
 use T4webEmployees\Employee\Employee;
 
 class SocialPopulate {

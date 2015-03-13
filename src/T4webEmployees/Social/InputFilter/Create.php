@@ -2,10 +2,10 @@
 
 namespace T4webEmployees\Social\InputFilter;
 
-use Base\InputFilter\InputFilter;
-use Base\InputFilter\Element\Id;
-use Base\InputFilter\Element\Text;
-use Base\InputFilter\Element\Email;
+use T4webBase\InputFilter\InputFilter;
+use T4webBase\InputFilter\Element\Id;
+use T4webBase\InputFilter\Element\Text;
+use T4webBase\InputFilter\Element\Email;
 
 class Create extends InputFilter {
     

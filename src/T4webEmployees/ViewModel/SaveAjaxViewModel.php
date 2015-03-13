@@ -3,7 +3,7 @@
 namespace T4webEmployees\ViewModel;
 
 use Zend\View\Model\JsonModel;
-use Base\InputFilter\InvalidInputError;
+use T4webBase\InputFilter\InvalidInputError;
 
 class SaveAjaxViewModel extends JsonModel {
 

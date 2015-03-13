@@ -2,7 +2,7 @@
 
 namespace T4webEmployees\Employee;
 
-use Base\Domain\Entity;
+use T4webBase\Domain\Entity;
 use T4webEmployees\WorkInfo\WorkInfo;
 use T4webEmployees\PersonalInfo\PersonalInfo;
 use T4webEmployees\Social\Social;

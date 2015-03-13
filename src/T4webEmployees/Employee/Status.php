@@ -2,7 +2,7 @@
 
 namespace T4webEmployees\Employee;
 
-use Base\Domain\Status as DomainStatus;
+use T4webBase\Domain\Status as DomainStatus;
 
 class Status extends DomainStatus {
     

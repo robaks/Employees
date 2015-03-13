@@ -2,10 +2,10 @@
 
 namespace T4webEmployees\WorkInfo\InputFilter;
 
-use Base\InputFilter\InputFilter;
-use Base\InputFilter\Element\Id;
-use Base\InputFilter\Element\Date;
-use Base\InputFilter\Element\InArray;
+use T4webBase\InputFilter\InputFilter;
+use T4webBase\InputFilter\Element\Id;
+use T4webBase\InputFilter\Element\Date;
+use T4webBase\InputFilter\Element\InArray;
 use T4webEmployees\Employee\JobTitle;
 use T4webEmployees\Employee\Status;
 
