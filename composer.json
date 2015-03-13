@@ -18,10 +18,6 @@
     "repositories": [
         {
             "type": "git",
-            "url": "https://github.com/t4web/Base.git"
-        },
-        {
-            "type": "git",
             "url": "https://github.com/t4web/navigation.git"
         }
     ],
@@ -31,7 +27,6 @@
         "league/flysystem": "0.5.*",
         "falc/flysystem-local-symlink-plugin": "1.0.*",
 
-        "t4web/base": "dev-master",
         "t4web/navigation": "dev-master"
     },
     "require-dev" : {
