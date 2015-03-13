@@ -1,6 +1,6 @@
 <?php
 
-namespace Employees\ViewModel;
+namespace T4webEmployees\ViewModel;
 
 use Zend\View\Model\JsonModel;
 use Base\InputFilter\InvalidInputError;

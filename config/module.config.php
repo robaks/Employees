@@ -20,7 +20,7 @@ return array(
                 'options' => array(
                     'route'    => '/employees',
                     'defaults' => array(
-                        '__NAMESPACE__' => 'Employees\Controller\User',
+                        '__NAMESPACE__' => 'T4webEmployees\Controller\User',
                         'controller'    => 'List',
                         'action'        => 'default',
                     ),
@@ -31,7 +31,7 @@ return array(
                 'options' => array(
                     'route'    => '/employee[/:id]',
                     'defaults' => array(
-                        '__NAMESPACE__' => 'Employees\Controller\User',
+                        '__NAMESPACE__' => 'T4webEmployees\Controller\User',
                         'controller'    => 'Show',
                         'action'        => 'default',
                     ),
@@ -42,7 +42,7 @@ return array(
                 'options' => array(
                     'route'    => '/employee/add',
                     'defaults' => array(
-                        '__NAMESPACE__' => 'Employees\Controller\User',
+                        '__NAMESPACE__' => 'T4webEmployees\Controller\User',
                         'controller'    => 'Add',
                         'action'        => 'default',
                     ),
@@ -53,7 +53,7 @@ return array(
                 'options' => array(
                     'route'    => '/employee/edit[/:id]',
                     'defaults' => array(
-                        '__NAMESPACE__' => 'Employees\Controller\User',
+                        '__NAMESPACE__' => 'T4webEmployees\Controller\User',
                         'controller'    => 'Edit',
                         'action'        => 'default',
                     ),
@@ -64,7 +64,7 @@ return array(
                 'options' => array(
                     'route'    => '/employee/create',
                     'defaults' => array(
-                        '__NAMESPACE__' => 'Employees\Controller\User',
+                        '__NAMESPACE__' => 'T4webEmployees\Controller\User',
                         'controller'    => 'CreateAjax',
                         'action'        => 'default',
                     ),
@@ -75,7 +75,7 @@ return array(
                 'options' => array(
                     'route'    => '/employee/save',
                     'defaults' => array(
-                        '__NAMESPACE__' => 'Employees\Controller\User',
+                        '__NAMESPACE__' => 'T4webEmployees\Controller\User',
                         'controller'    => 'SaveAjax',
                         'action'        => 'default',
                     ),
@@ -91,7 +91,7 @@ return array(
                     'options' => array(
                         'route'    => 'employees init',
                         'defaults' => array(
-                            '__NAMESPACE__' => 'Employees\Controller\Console',
+                            '__NAMESPACE__' => 'T4webEmployees\Controller\Console',
                             'controller' => 'Init',
                             'action'     => 'run'
                         )

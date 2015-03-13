@@ -1,10 +1,10 @@
 <?php
 
-namespace Employees\Controller\User;
+namespace T4webEmployees\Controller\User;
 
 use Zend\View\Model\ViewModel;
-use Employees\Employee\Employee;
-use Employees\Employee\JobTitle;
+use T4webEmployees\Employee\Employee;
+use T4webEmployees\Employee\JobTitle;
 
 class ShowViewModel extends ViewModel {
 

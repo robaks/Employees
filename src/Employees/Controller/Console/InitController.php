@@ -1,6 +1,6 @@
 <?php
 
-namespace Employees\Controller\Console;
+namespace T4webEmployees\Controller\Console;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Db\Adapter\Adapter;

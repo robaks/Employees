@@ -1,11 +1,11 @@
 <?php
 
-namespace Employees\Employee;
+namespace T4webEmployees\Employee;
 
 use Base\Domain\Entity;
-use Employees\WorkInfo\WorkInfo;
-use Employees\PersonalInfo\PersonalInfo;
-use Employees\Social\Social;
+use T4webEmployees\WorkInfo\WorkInfo;
+use T4webEmployees\PersonalInfo\PersonalInfo;
+use T4webEmployees\Social\Social;
 
 class Employee extends Entity {
     

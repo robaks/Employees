@@ -1,6 +1,6 @@
 <?php
 
-namespace Employees\Social\Criteria;
+namespace T4webEmployees\Social\Criteria;
 
 use Base\Domain\Criteria\AbstractCriteria;
 

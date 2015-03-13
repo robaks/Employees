@@ -1,9 +1,9 @@
 <?php
-namespace Employees\Employee\Service;
+namespace T4webEmployees\Employee\Service;
 
 use Base\Domain\Service\BaseFinder as WorkInfoFinder;
 use Base\Domain\Collection;
-use Employees\Employee\Employee;
+use T4webEmployees\Employee\Employee;
 
 class WorkInfoPopulate {
 

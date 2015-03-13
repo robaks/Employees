@@ -1,8 +1,8 @@
 <?php
-namespace EmployeesTest\UnitTest\ServiceLocator\Controller\User;
+namespace T4webEmployeesTest\UnitTest\ServiceLocator\Controller\User;
 
 require_once TESTS_FOLDER_PATH . "/UnitTest/ServiceLocator/Controller/ControllerManagerAwareTrait.php";
-use EmployeesTest\UnitTest\ServiceLocator\Controller\ControllerManagerAwareTrait;
+use T4webEmployeesTest\UnitTest\ServiceLocator\Controller\ControllerManagerAwareTrait;
 
 class AddControllerTest extends \PHPUnit_Framework_TestCase
 {
@@ -10,17 +10,17 @@ class AddControllerTest extends \PHPUnit_Framework_TestCase
 
     public function testCreation()
     {
-        $viewMock = $this->getMockBuilder('Employees\Controller\User\AddViewModel')
+        $viewMock = $this->getMockBuilder('T4webEmployees\Controller\User\AddViewModel')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->serviceManager->setService('Employees\Controller\User\AddViewModel', $viewMock);
+        $this->serviceManager->setService('T4webEmployees\Controller\User\AddViewModel', $viewMock);
 
-        $this->assertTrue($this->controllerManager->has('Employees\Controller\User\Add'));
+        $this->assertTrue($this->controllerManager->has('T4webEmployees\Controller\User\Add'));
 
-        $controller = $this->controllerManager->get('Employees\Controller\User\Add');
+        $controller = $this->controllerManager->get('T4webEmployees\Controller\User\Add');
 
-        $this->assertInstanceOf('Employees\Controller\User\AddController', $controller);
+        $this->assertInstanceOf('T4webEmployees\Controller\User\AddController', $controller);
         $this->assertAttributeSame($viewMock, 'view', $controller);
     }
 

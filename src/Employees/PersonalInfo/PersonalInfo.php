@@ -1,6 +1,6 @@
 <?php
 
-namespace Employees\PersonalInfo;
+namespace T4webEmployees\PersonalInfo;
 
 use DateTime;
 use Base\Domain\Entity;

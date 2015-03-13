@@ -1,6 +1,6 @@
 <?php
 
-namespace Employees\Controller\User;
+namespace T4webEmployees\Controller\User;
 
 use Zend\Mvc\Controller\AbstractActionController;
 

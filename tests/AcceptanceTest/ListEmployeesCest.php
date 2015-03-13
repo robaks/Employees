@@ -1,5 +1,5 @@
 <?php
-namespace EmployeesTest;
+namespace T4webEmployeesTest;
 
 class ListEmployeesCest
 {

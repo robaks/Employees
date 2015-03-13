@@ -1,6 +1,6 @@
 <?php
 
-namespace Employees\PersonalInfo\InputFilter;
+namespace T4webEmployees\PersonalInfo\InputFilter;
 
 use Base\InputFilter\InputFilter;
 use Base\InputFilter\Element\Id;

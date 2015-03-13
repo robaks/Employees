@@ -1,7 +1,7 @@
 <?php
-namespace EmployeesTest\UnitTest\ServiceLocator\Controller;
+namespace T4webEmployeesTest\UnitTest\ServiceLocator\Controller;
 
-use Employees\Module;
+use T4webEmployees\Module;
 use Zend\ServiceManager\ServiceManager;
 use Zend\Mvc\Controller\ControllerManager;
 use Zend\ServiceManager\Config;

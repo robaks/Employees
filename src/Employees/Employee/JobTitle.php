@@ -1,6 +1,6 @@
 <?php
 
-namespace Employees\Employee;
+namespace T4webEmployees\Employee;
 
 use Base\Domain\Status;
 

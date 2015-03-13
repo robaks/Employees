@@ -1,5 +1,5 @@
 {
-    "name": "t4web/employees",
+    "name": "t4web/t4web-employees",
     "description": "ZF2 Module for managing employees",
     "type": "library",
     "license": "BSD-3-Clause",
@@ -7,7 +7,7 @@
         "zf2",
         "employees"
     ],
-    "homepage": "https://github.com/t4web/Employees",
+    "homepage": "https://github.com/t4web/T4webEmployees",
     "authors": [
         {
             "name": "Max Gulturyan",
@@ -35,10 +35,10 @@
 
     "autoload": {
         "psr-0": {
-            "Employees": "src/",
-            "EmployeesTest\\UnitTest": "tests/UnitTest/",
-            "EmployeesTest\\FunctionalTest": "tests/FunctionalTest/",
-            "EmployeesTest\\AcceptanceTest": "tests/AcceptanceTest/"
+            "T4webEmployees": "src/",
+            "T4webEmployeesTest\\UnitTest": "tests/UnitTest/",
+            "T4webEmployeesTest\\FunctionalTest": "tests/FunctionalTest/",
+            "T4webEmployeesTest\\AcceptanceTest": "tests/AcceptanceTest/"
         },
         "classmap": [
             "./Module.php"

@@ -1,6 +1,6 @@
 <?php
 
-namespace Employees\Social;
+namespace T4webEmployees\Social;
 
 use Base\Domain\Entity;
 

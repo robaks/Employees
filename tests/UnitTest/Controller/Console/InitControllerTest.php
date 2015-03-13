@@ -1,7 +1,7 @@
 <?php
-namespace EmployeesTest\UnitTest\Controller\Console;
+namespace T4webEmployeesTest\UnitTest\Controller\Console;
 
-use Employees\Controller\Console\InitController;
+use T4webEmployees\Controller\Console\InitController;
 
 class InitControllerTest extends \PHPUnit_Framework_TestCase
 {

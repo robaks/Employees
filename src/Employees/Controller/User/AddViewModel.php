@@ -1,10 +1,10 @@
 <?php
 
-namespace Employees\Controller\User;
+namespace T4webEmployees\Controller\User;
 
 use Zend\View\Model\ViewModel;
-use Employees\Employee\JobTitle;
-use Employees\Employee\Status;
+use T4webEmployees\Employee\JobTitle;
+use T4webEmployees\Employee\Status;
 
 class AddViewModel extends ViewModel {
 

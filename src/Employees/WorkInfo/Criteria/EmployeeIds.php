@@ -1,6 +1,6 @@
 <?php
 
-namespace Employees\WorkInfo\Criteria;
+namespace T4webEmployees\WorkInfo\Criteria;
 
 use Base\Domain\Criteria\AbstractCriteria;
 

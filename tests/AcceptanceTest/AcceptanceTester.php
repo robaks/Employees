@@ -4,7 +4,7 @@
 // You should not change it manually as it will be overwritten on next build
 // @codingStandardsIgnoreFile
 
-namespace EmployeesTest;
+namespace T4webEmployeesTest;
 use Codeception\Module\PhpBrowser;
 use Codeception\Module\AcceptanceHelper;
 

@@ -1,8 +1,8 @@
 <?php
-namespace EmployeesTest\UnitTest\ServiceLocator\Controller\User;
+namespace T4webEmployeesTest\UnitTest\ServiceLocator\Controller\User;
 
 require_once TESTS_FOLDER_PATH . "/UnitTest/ServiceLocator/ServiceLocatorAwareTrait.php";
-use EmployeesTest\UnitTest\ServiceLocator\ServiceLocatorAwareTrait;
+use T4webEmployeesTest\UnitTest\ServiceLocator\ServiceLocatorAwareTrait;
 
 class AddViewModelTest extends \PHPUnit_Framework_TestCase
 {
@@ -10,11 +10,11 @@ class AddViewModelTest extends \PHPUnit_Framework_TestCase
 
     public function testCreation()
     {
-        $this->assertTrue($this->serviceLocator->has('Employees\Controller\User\AddViewModel'));
+        $this->assertTrue($this->serviceLocator->has('T4webEmployees\Controller\User\AddViewModel'));
 
-        $controller = $this->serviceLocator->get('Employees\Controller\User\AddViewModel');
+        $controller = $this->serviceLocator->get('T4webEmployees\Controller\User\AddViewModel');
 
-        $this->assertInstanceOf('Employees\Controller\User\AddViewModel', $controller);
+        $this->assertInstanceOf('T4webEmployees\Controller\User\AddViewModel', $controller);
     }
 
 }

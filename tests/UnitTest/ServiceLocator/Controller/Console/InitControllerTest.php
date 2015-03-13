@@ -1,8 +1,8 @@
 <?php
-namespace EmployeesTest\UnitTest\ServiceLocator\Controller\Console;
+namespace T4webEmployeesTest\UnitTest\ServiceLocator\Controller\Console;
 
 require_once TESTS_FOLDER_PATH . "/UnitTest/ServiceLocator/Controller/ControllerManagerAwareTrait.php";
-use EmployeesTest\UnitTest\ServiceLocator\Controller\ControllerManagerAwareTrait;
+use T4webEmployeesTest\UnitTest\ServiceLocator\Controller\ControllerManagerAwareTrait;
 
 class InitControllerTest extends \PHPUnit_Framework_TestCase
 {
@@ -16,11 +16,11 @@ class InitControllerTest extends \PHPUnit_Framework_TestCase
 
         $this->serviceManager->setService('Zend\Db\Adapter\Adapter', $dbAdapterMock);
 
-        $this->assertTrue($this->controllerManager->has('Employees\Controller\Console\Init'));
+        $this->assertTrue($this->controllerManager->has('T4webEmployees\Controller\Console\Init'));
 
-        $controller = $this->controllerManager->get('Employees\Controller\Console\Init');
+        $controller = $this->controllerManager->get('T4webEmployees\Controller\Console\Init');
 
-        $this->assertInstanceOf('Employees\Controller\Console\InitController', $controller);
+        $this->assertInstanceOf('T4webEmployees\Controller\Console\InitController', $controller);
 
         $this->assertAttributeEquals($dbAdapterMock, 'dbAdapter', $controller);
         $this->assertAttributeInstanceOf('League\Flysystem\Filesystem', 'fileSystem', $controller);

@@ -1,6 +1,6 @@
 <?php
 
-namespace Employees\Social\InputFilter;
+namespace T4webEmployees\Social\InputFilter;
 
 use Base\InputFilter\InputFilter;
 use Base\InputFilter\Element\Id;

@@ -1,13 +1,13 @@
 <?php
 
-namespace Employees\WorkInfo\InputFilter;
+namespace T4webEmployees\WorkInfo\InputFilter;
 
 use Base\InputFilter\InputFilter;
 use Base\InputFilter\Element\Id;
 use Base\InputFilter\Element\Date;
 use Base\InputFilter\Element\InArray;
-use Employees\Employee\JobTitle;
-use Employees\Employee\Status;
+use T4webEmployees\Employee\JobTitle;
+use T4webEmployees\Employee\Status;
 
 class Create extends InputFilter {
     

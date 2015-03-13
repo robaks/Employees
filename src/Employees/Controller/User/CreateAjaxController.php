@@ -1,10 +1,10 @@
 <?php
 
-namespace Employees\Controller\User;
+namespace T4webEmployees\Controller\User;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Base\Domain\Service\Create as CreateService;
-use Employees\ViewModel\SaveAjaxViewModel;
+use T4webEmployees\ViewModel\SaveAjaxViewModel;
 
 class CreateAjaxController extends AbstractActionController {
 

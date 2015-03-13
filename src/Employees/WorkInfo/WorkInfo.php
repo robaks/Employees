@@ -1,9 +1,9 @@
 <?php
 
-namespace Employees\WorkInfo;
+namespace T4webEmployees\WorkInfo;
 
 use Base\Domain\Entity;
-use Employees\Employee\JobTitle;
+use T4webEmployees\Employee\JobTitle;
 
 class WorkInfo extends Entity {
 

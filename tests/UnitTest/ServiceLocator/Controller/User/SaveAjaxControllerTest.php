@@ -1,8 +1,8 @@
 <?php
-namespace EmployeesTest\UnitTest\ServiceLocator\Controller\User;
+namespace T4webEmployeesTest\UnitTest\ServiceLocator\Controller\User;
 
 require_once TESTS_FOLDER_PATH . "/UnitTest/ServiceLocator/Controller/ControllerManagerAwareTrait.php";
-use EmployeesTest\UnitTest\ServiceLocator\Controller\ControllerManagerAwareTrait;
+use T4webEmployeesTest\UnitTest\ServiceLocator\Controller\ControllerManagerAwareTrait;
 
 class SaveAjaxControllerTest extends \PHPUnit_Framework_TestCase
 {
@@ -10,25 +10,25 @@ class SaveAjaxControllerTest extends \PHPUnit_Framework_TestCase
 
     public function testCreation()
     {
-        $viewMock = $this->getMockBuilder('Employees\ViewModel\SaveAjaxViewModel')
+        $viewMock = $this->getMockBuilder('T4webEmployees\ViewModel\SaveAjaxViewModel')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->serviceManager->setService('Employees\ViewModel\SaveAjaxViewModel', $viewMock);
+        $this->serviceManager->setService('T4webEmployees\ViewModel\SaveAjaxViewModel', $viewMock);
 
         $serviceMock = $this->getMockBuilder('Base\Domain\Service\Create')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->serviceManager->setService('Employees\Employee\Service\Create', $serviceMock);
-        $this->serviceManager->setService('Employees\PersonalInfo\Service\Create', $serviceMock);
-        $this->serviceManager->setService('Employees\WorkInfo\Service\Create', $serviceMock);
+        $this->serviceManager->setService('T4webEmployees\Employee\Service\Create', $serviceMock);
+        $this->serviceManager->setService('T4webEmployees\PersonalInfo\Service\Create', $serviceMock);
+        $this->serviceManager->setService('T4webEmployees\WorkInfo\Service\Create', $serviceMock);
 
-        $this->assertTrue($this->controllerManager->has('Employees\Controller\User\SaveAjax'));
+        $this->assertTrue($this->controllerManager->has('T4webEmployees\Controller\User\SaveAjax'));
 
-        $controller = $this->controllerManager->get('Employees\Controller\User\SaveAjax');
+        $controller = $this->controllerManager->get('T4webEmployees\Controller\User\SaveAjax');
 
-        $this->assertInstanceOf('Employees\Controller\User\SaveAjaxController', $controller);
+        $this->assertInstanceOf('T4webEmployees\Controller\User\SaveAjaxController', $controller);
         $this->assertAttributeSame($viewMock, 'view', $controller);
         $this->assertAttributeSame($serviceMock, 'createService', $controller);
         $this->assertAttributeSame($serviceMock, 'personalInfoCreateService', $controller);

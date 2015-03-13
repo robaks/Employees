@@ -1,4 +1,4 @@
-namespace: EmployeesTest
+namespace: T4webEmployeesTest
 actor: Tester
 paths:
     tests: tests

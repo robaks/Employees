@@ -1,13 +1,13 @@
 <?php
 
-namespace Employees\Controller\User;
+namespace T4webEmployees\Controller\User;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Base\Domain\Service\BaseFinder;
-use Employees\Employee\Service\PersonalInfoPopulate;
-use Employees\Employee\Service\WorkInfoPopulate;
-use Employees\Employee\Service\SocialPopulate;
-use Employees\Employee\EmployeeCollection;
+use T4webEmployees\Employee\Service\PersonalInfoPopulate;
+use T4webEmployees\Employee\Service\WorkInfoPopulate;
+use T4webEmployees\Employee\Service\SocialPopulate;
+use T4webEmployees\Employee\EmployeeCollection;
 
 class ListController extends AbstractActionController {
 

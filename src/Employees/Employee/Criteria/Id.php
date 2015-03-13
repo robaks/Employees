@@ -1,6 +1,6 @@
 <?php
 
-namespace Employees\Employee\Criteria;
+namespace T4webEmployees\Employee\Criteria;
 
 use Base\Domain\Criteria\Id as BaseIdCriteria;
 
