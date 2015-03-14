@@ -58,7 +58,7 @@ class ShowController extends AbstractActionController {
         $id = $this->params('id', null);
 
         /** @var $employees Employee */
-        $employee = $this->employeeFinder->find(['Employees' => ['Employee' => ['id' => $id]]]);
+        $employee = $this->employeeFinder->find(['T4webEmployees' => ['Employee' => ['id' => $id]]]);
 
         $this->personalPopulator->populate($employee);
         $this->workInfoPopulator->populate($employee);

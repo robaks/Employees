@@ -23,7 +23,7 @@ class WorkInfoPopulate {
         // TODO: не грузить повторно, запоминать по ID что уже загружали ранее
 
         $this->infos = $this->workInfoFinder->findMany(
-            array('Employees' =>
+            array('T4webEmployees' =>
                 array('WorkInfo' => array('employeeIds' => array($employee->getId())))
             )
         );
@@ -39,7 +39,7 @@ class WorkInfoPopulate {
         }
         
         $this->infos = $this->workInfoFinder->findMany(
-            array('Employees' =>
+            array('T4webEmployees' =>
                   array('WorkInfo' => array('employeeIds' => $employees->getIds()))
             )
         );

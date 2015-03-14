@@ -23,7 +23,7 @@ class SocialPopulate {
         // TODO: не грузить повторно, запоминать по ID что уже загружали ранее
 
         $this->infos = $this->socialFinder->findMany(
-            array('Employees' =>
+            array('T4webEmployees' =>
                 array('Social' => array('employeeIds' => array($employee->getId())))
             )
         );
@@ -39,7 +39,7 @@ class SocialPopulate {
         }
         
         $this->infos = $this->socialFinder->findMany(
-            array('Employees' =>
+            array('T4webEmployees' =>
                   array('Social' => array('employeeIds' => $employees->getIds()))
             )
         );
