@@ -69,18 +69,27 @@ class CreateAjaxController extends AbstractActionController {
         $personalInfo = $this->personalInfoCreateService->create($params);
 
         if (!$personalInfo) {
+            $this->personalInfoCreateService->create(['employeeId' => $params['employeeId']]);
             $this->view->setErrors($this->personalInfoCreateService->getErrors());
         }
 
         $workInfo = $this->workInfoCreateService->create($params);
 
         if (!$workInfo) {
+            // TODO: why magic numbers here?
+            $this->workInfoCreateService->create([
+                'employeeId' => $params['employeeId'],
+                'jobTitleId' => 1,
+                'statusId' => 2,
+                'startWorkDate' => date('Y-m-d'),
+            ]);
             $this->view->setErrors($this->workInfoCreateService->getErrors());
         }
 
         $socialCreateService = $this->socialCreateService->create($params);
 
         if (!$socialCreateService) {
+            $this->socialCreateService->create(['employeeId' => $params['employeeId']]);
             $this->view->setErrors($this->socialCreateService->getErrors());
         }
 

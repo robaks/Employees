@@ -51,8 +51,8 @@ $(function() {
 
                 if (response.formData['employeeId'] && ($('#add-employee .form-control[name=id]').length == 0)) {
                     $('#create-employee-btn').text('Update');
-                    $('#create-employee-btn').click(updateEmployee);
-                    $('#add-employee').prepend('<input type="hidden" name="id" value="'+response.formData['employee_id']+'" class="form-control">');
+                    $('#create-employee-btn').unbind( "click").click(updateEmployee);
+                    $('#add-employee .form-control[name=surname]').before('<input type="hidden" name="id" value="'+response.formData['employeeId']+'" class="form-control">');
                 }
             },
             error: function(response) {

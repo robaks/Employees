@@ -69,6 +69,18 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                     );
                 },
 
+                'T4webEmployees\Employee\Service\Update' => function (ServiceManager $sm) {
+                    $eventManager = $sm->get('EventManager');
+                    $eventManager->addIdentifiers('T4webEmployees\Employee\Service\Update');
+
+                    return new Employee\Service\Update(
+                        $sm->get('T4webEmployees\Employee\InputFilter\Update'),
+                        $sm->get('T4webEmployees\Employee\Repository\DbRepository'),
+                        $sm->get('T4webEmployees\Employee\Criteria\CriteriaFactory'),
+                        $eventManager
+                    );
+                },
+
                 'T4webEmployees\Employee\Service\Finder' => function (ServiceManager $sm) {
                     return new ServiceFinder(
                         $sm->get('T4webEmployees\Employee\Repository\DbRepository'),
@@ -147,6 +159,7 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                 'T4webEmployees\Controller\User\EditViewModel' => 'T4webEmployees\Controller\User\EditViewModel',
 
                 'T4webEmployees\Employee\InputFilter\Create' => 'T4webEmployees\Employee\InputFilter\Create',
+                'T4webEmployees\Employee\InputFilter\Update' => 'T4webEmployees\Employee\InputFilter\Update',
                 'T4webEmployees\PersonalInfo\InputFilter\Create' => 'T4webEmployees\PersonalInfo\InputFilter\Create',
                 'T4webEmployees\WorkInfo\InputFilter\Create' => 'T4webEmployees\WorkInfo\InputFilter\Create',
                 'T4webEmployees\Social\InputFilter\Create' => 'T4webEmployees\Social\InputFilter\Create',
@@ -219,7 +232,7 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                     $sl = $cm->getServiceLocator();
                     return new SaveAjaxController(
                         $sl->get('T4webEmployees\ViewModel\SaveAjaxViewModel'),
-                        $sl->get('T4webEmployees\Employee\Service\Create'),
+                        $sl->get('T4webEmployees\Employee\Service\Update'),
                         $sl->get('T4webEmployees\PersonalInfo\Service\Create'),
                         $sl->get('T4webEmployees\WorkInfo\Service\Create')
                     );

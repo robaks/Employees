@@ -3,6 +3,7 @@
 namespace T4webEmployees\Controller\User;
 
 use Zend\Mvc\Controller\AbstractActionController;
+use T4webEmployees\Employee\Service\Update as UpdateService;
 use T4webBase\Domain\Service\Create as CreateService;
 use T4webEmployees\ViewModel\SaveAjaxViewModel;
 
@@ -14,9 +15,9 @@ class SaveAjaxController extends AbstractActionController {
     private $view;
 
     /**
-     * @var CreateService
+     * @var UpdateService
      */
-    private $createService;
+    private $updateService;
 
     /**
      * @var CreateService
@@ -30,12 +31,12 @@ class SaveAjaxController extends AbstractActionController {
 
     public function __construct(
         SaveAjaxViewModel $view,
-        CreateService $createService,
+        UpdateService $updateService,
         CreateService $personalInfoCreateService,
         CreateService $workInfoCreateService) {
 
         $this->view = $view;
-        $this->createService = $createService;
+        $this->updateService = $updateService;
         $this->personalInfoCreateService = $personalInfoCreateService;
         $this->workInfoCreateService = $workInfoCreateService;
     }
@@ -48,17 +49,17 @@ class SaveAjaxController extends AbstractActionController {
 
         $params = $this->getRequest()->getPost()->toArray();
 
-        $employee = $this->createService->create($params);
-
-        $params['employeeId'] = $employee->getId();
-
-        $this->view->setFormData($params);
+        $employee = $this->updateService->update($params['id'], $params);
 
         if (!$employee) {
-            $this->view->setErrors($this->createService->getErrors());
+            $this->view->setFormData($params);
+            $this->view->setErrors($this->updateService->getErrors());
             return $this->view;
         }
 
+        $params['employeeId'] = $employee->getId();
+        $this->view->setFormData($params);
+/*
         $personalInfo = $this->personalInfoCreateService->create($params);
 
         if (!$personalInfo) {
@@ -70,7 +71,7 @@ class SaveAjaxController extends AbstractActionController {
         if (!$workInfo) {
             $this->view->setErrors($this->workInfoCreateService->getErrors());
         }
-
+*/
         return $this->view;
     }
 
