@@ -178,5 +178,8 @@ return array(
         'Social' => array(
             'empty' => array('table' => 'employees_social'),
         ),
+        'WorkInfo' => array(
+            'empty' => array('table' => 'employees_work_info'),
+        ),
     ),
 );
