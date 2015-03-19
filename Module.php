@@ -61,9 +61,10 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                     $eventManager = $sm->get('EventManager');
                     $eventManager->addIdentifiers('T4webEmployees\Employee\Service\Create');
 
-                    return new ServiceCreate(
+                    return new Employee\Service\Create(
                         $sm->get('T4webEmployees\Employee\InputFilter\Create'),
                         $sm->get('T4webEmployees\Employee\Repository\DbRepository'),
+                        $sm->get('T4webEmployees\PersonalInfo\Repository\DbRepository'),
                         $sm->get('T4webEmployees\Employee\Factory\EntityFactory'),
                         $eventManager
                     );

@@ -62,7 +62,7 @@ class CreateAjaxController extends AbstractActionController {
             $this->view->setErrors($this->createService->getErrors());
             return $this->view;
         }
-
+/*
         $params['employeeId'] = $employee->getId();
         $this->view->setFormData($params);
 
@@ -92,7 +92,7 @@ class CreateAjaxController extends AbstractActionController {
             $this->socialCreateService->create(['employeeId' => $params['employeeId']]);
             $this->view->setErrors($this->socialCreateService->getErrors());
         }
-
+*/
         return $this->view;
     }
 
