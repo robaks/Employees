@@ -15,6 +15,7 @@ use Falc\Flysystem\Plugin\Symlink\Local as LocalSymlinkPlugin;
 use T4webBase\Domain\Service\Create as ServiceCreate;
 use T4webBase\Domain\Service\Update as ServiceUpdate;
 use T4webBase\Domain\Service\BaseFinder as ServiceFinder;
+use T4webBase\InputFilter\InputFilter as BaseInputFilter;
 use T4webEmployees\Controller\User\ListController;
 use T4webEmployees\Controller\User\ShowController;
 use T4webEmployees\Controller\User\EditController;
@@ -112,6 +113,14 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                     );
                 },
 
+                'T4webEmployees\PersonalInfo\Service\Create' => function (ServiceManager $sm) {
+                    return new ServiceCreate(
+                        new BaseInputFilter(),
+                        $sm->get('T4webEmployees\PersonalInfo\Repository\DbRepository'),
+                        $sm->get('T4webEmployees\PersonalInfo\Factory\EntityFactory')
+                    );
+                },
+
                 'T4webEmployees\PersonalInfo\Service\Finder' => function (ServiceManager $sm) {
                     return new ServiceFinder(
                         $sm->get('T4webEmployees\PersonalInfo\Repository\DbRepository'),
@@ -119,10 +128,26 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                     );
                 },
 
+                'T4webEmployees\WorkInfo\Service\Create' => function (ServiceManager $sm) {
+                    return new ServiceCreate(
+                        new BaseInputFilter(),
+                        $sm->get('T4webEmployees\WorkInfo\Repository\DbRepository'),
+                        $sm->get('T4webEmployees\WorkInfo\Factory\EntityFactory')
+                    );
+                },
+
                 'T4webEmployees\WorkInfo\Service\Finder' => function (ServiceManager $sm) {
                     return new ServiceFinder(
                         $sm->get('T4webEmployees\WorkInfo\Repository\DbRepository'),
                         $sm->get('T4webEmployees\WorkInfo\Criteria\CriteriaFactory')
+                    );
+                },
+
+                'T4webEmployees\Social\Service\Create' => function (ServiceManager $sm) {
+                    return new ServiceCreate(
+                        new BaseInputFilter(),
+                        $sm->get('T4webEmployees\Social\Repository\DbRepository'),
+                        $sm->get('T4webEmployees\Social\Factory\EntityFactory')
                     );
                 },
 

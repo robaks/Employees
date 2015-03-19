@@ -3,7 +3,7 @@
 namespace T4webEmployees\Controller\User;
 
 use Zend\Mvc\Controller\AbstractActionController;
-use T4webBase\Domain\Service\Create as CreateService;
+use T4webEmployees\Employee\Service\Create as CreateService;
 use T4webEmployees\ViewModel\SaveAjaxViewModel;
 
 class CreateAjaxController extends AbstractActionController {
@@ -18,33 +18,12 @@ class CreateAjaxController extends AbstractActionController {
      */
     private $createService;
 
-    /**
-     * @var CreateService
-     */
-    private $personalInfoCreateService;
-
-    /**
-     * @var CreateService
-     */
-    private $workInfoCreateService;
-
-    /**
-     * @var CreateService
-     */
-    private $socialCreateService;
-
     public function __construct(
         SaveAjaxViewModel $view,
-        CreateService $createService,
-        CreateService $personalInfoCreateService,
-        CreateService $workInfoCreateService,
-        CreateService $socialCreateService) {
+        CreateService $createService) {
 
         $this->view = $view;
         $this->createService = $createService;
-        $this->personalInfoCreateService = $personalInfoCreateService;
-        $this->workInfoCreateService = $workInfoCreateService;
-        $this->socialCreateService = $socialCreateService;
     }
 
     public function defaultAction()
