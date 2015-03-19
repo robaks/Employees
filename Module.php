@@ -65,7 +65,12 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                         $sm->get('T4webEmployees\Employee\InputFilter\Create'),
                         $sm->get('T4webEmployees\Employee\Repository\DbRepository'),
                         $sm->get('T4webEmployees\PersonalInfo\Repository\DbRepository'),
+                        $sm->get('T4webEmployees\WorkInfo\Repository\DbRepository'),
+                        $sm->get('T4webEmployees\Social\Repository\DbRepository'),
                         $sm->get('T4webEmployees\Employee\Factory\EntityFactory'),
+                        $sm->get('T4webEmployees\PersonalInfo\Factory\EntityFactory'),
+                        $sm->get('T4webEmployees\WorkInfo\Factory\EntityFactory'),
+                        $sm->get('T4webEmployees\Social\Factory\EntityFactory'),
                         $eventManager
                     );
                 },

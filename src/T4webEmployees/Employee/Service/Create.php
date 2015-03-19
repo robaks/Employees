@@ -15,23 +15,51 @@ class Create extends BaseCreate {
     private $personalInfoRepository;
 
     /**
+     * @var DbRepository
+     */
+    private $workRepository;
+
+    /**
+     * @var DbRepository
+     */
+    private $socialRepository;
+
+    /**
      * @var EntityFactoryInterface
      */
     private $personalInfoEntityFactory;
+
+    /**
+     * @var EntityFactoryInterface
+     */
+    private $workEntityFactory;
+
+    /**
+     * @var EntityFactoryInterface
+     */
+    private $socialEntityFactory;
 
     public function __construct(
         InputFilterInterface $inputFilter,
         DbRepository $repository,
         DbRepository $personalInfoRepository,
+        DbRepository $workRepository,
+        DbRepository $socialRepository,
         EntityFactoryInterface $entityFactory,
         EntityFactoryInterface $personalInfoEntityFactory,
+        EntityFactoryInterface $workEntityFactory,
+        EntityFactoryInterface $socialEntityFactory,
         EventManager $eventManager = null) {
 
         $this->inputFilter = $inputFilter;
         $this->repository = $repository;
         $this->personalInfoRepository = $personalInfoRepository;
+        $this->workRepository = $workRepository;
+        $this->socialRepository = $socialRepository;
         $this->entityFactory = $entityFactory;
         $this->personalInfoEntityFactory = $personalInfoEntityFactory;
+        $this->workEntityFactory = $workEntityFactory;
+        $this->socialEntityFactory = $socialEntityFactory;
         $this->eventManager = $eventManager;
     }
 
@@ -56,10 +84,22 @@ class Create extends BaseCreate {
 
         $this->trigger($employee);
 
+        $data['employeeId'] = $employee->getId();
+
         $personalInfo = $this->personalInfoEntityFactory->create($data);
         $this->personalInfoRepository->add($personalInfo);
 
         $this->trigger($personalInfo);
+
+        $work = $this->workEntityFactory->create($data);
+        $this->workRepository->add($work);
+
+        $this->trigger($work);
+
+        $social = $this->socialEntityFactory->create($data);
+        $this->socialRepository->add($social);
+
+        $this->trigger($social);
 
         return $employee;
     }

@@ -7,6 +7,9 @@ use T4webBase\InputFilter\Element\Id;
 use T4webBase\InputFilter\Element\Name;
 use T4webBase\InputFilter\Element\InArray;
 use T4webBase\InputFilter\Element\Date;
+use T4webBase\InputFilter\Element\Phone;
+use T4webBase\InputFilter\Element\Text;
+use T4webBase\InputFilter\Element\Email;
 use T4webEmployees\Employee\JobTitle;
 use T4webEmployees\Employee\Status;
 
