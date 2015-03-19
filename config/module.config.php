@@ -170,14 +170,13 @@ return array(
     ),
     'criteries' => array(
         'Employee' => array(
-            'empty' => array(
-                'table' => 'employees'
-            ),
+            'empty' => array('table' => 'employees'),
         ),
         'PersonalInfo' => array(
-            'empty' => array(
-                'table' => 'employees_personal_info'
-            ),
+            'empty' => array('table' => 'employees_personal_info'),
+        ),
+        'Social' => array(
+            'empty' => array('table' => 'employees_social'),
         ),
     ),
 );
