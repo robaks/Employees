@@ -168,4 +168,11 @@ return array(
             ),
         ),
     ),
+    'criteries' => array(
+        'Employee' => array(
+            'empty' => array(
+                'table' => 'employees'
+            ),
+        )
+    ),
 );
