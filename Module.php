@@ -112,14 +112,6 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                     );
                 },
 
-                'T4webEmployees\PersonalInfo\Service\Create' => function (ServiceManager $sm) {
-                    return new ServiceCreate(
-                        $sm->get('T4webEmployees\PersonalInfo\InputFilter\Create'),
-                        $sm->get('T4webEmployees\PersonalInfo\Repository\DbRepository'),
-                        $sm->get('T4webEmployees\PersonalInfo\Factory\EntityFactory')
-                    );
-                },
-
                 'T4webEmployees\PersonalInfo\Service\Finder' => function (ServiceManager $sm) {
                     return new ServiceFinder(
                         $sm->get('T4webEmployees\PersonalInfo\Repository\DbRepository'),
@@ -127,26 +119,10 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                     );
                 },
 
-                'T4webEmployees\WorkInfo\Service\Create' => function (ServiceManager $sm) {
-                    return new ServiceCreate(
-                        $sm->get('T4webEmployees\WorkInfo\InputFilter\Create'),
-                        $sm->get('T4webEmployees\WorkInfo\Repository\DbRepository'),
-                        $sm->get('T4webEmployees\WorkInfo\Factory\EntityFactory')
-                    );
-                },
-
                 'T4webEmployees\WorkInfo\Service\Finder' => function (ServiceManager $sm) {
                     return new ServiceFinder(
                         $sm->get('T4webEmployees\WorkInfo\Repository\DbRepository'),
                         $sm->get('T4webEmployees\WorkInfo\Criteria\CriteriaFactory')
-                    );
-                },
-
-                'T4webEmployees\Social\Service\Create' => function (ServiceManager $sm) {
-                    return new ServiceCreate(
-                        $sm->get('T4webEmployees\Social\InputFilter\Create'),
-                        $sm->get('T4webEmployees\Social\Repository\DbRepository'),
-                        $sm->get('T4webEmployees\Social\Factory\EntityFactory')
                     );
                 },
 

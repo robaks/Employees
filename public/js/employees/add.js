@@ -2,6 +2,7 @@ $(function() {
     $('#bs-datepicker-component3').datepicker({ format: "yyyy-mm-dd", startView: "decade" });
     $('#bs-datepicker-component').datepicker({ format: "yyyy-mm-dd" });
     $('#bs-datepicker-component2').datepicker({ format: "yyyy-mm-dd" });
+    $("#add-employee .form-control[name=phone]").mask("(999)999-99-99");
 
 
     // не работает это

@@ -87,7 +87,7 @@ class InitController extends AbstractActionController {
         $birthday->setNullable(true);
         $table->addColumn($birthday);
 
-        $phone = new Column\Varchar('phone', 10);
+        $phone = new Column\Varchar('phone', 14);
         $phone->setNullable(true);
         $table->addColumn($phone);
 
