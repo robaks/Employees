@@ -173,6 +173,11 @@ return array(
             'empty' => array(
                 'table' => 'employees'
             ),
-        )
+        ),
+        'PersonalInfo' => array(
+            'empty' => array(
+                'table' => 'employees_personal_info'
+            ),
+        ),
     ),
 );
