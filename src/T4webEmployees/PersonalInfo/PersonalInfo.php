@@ -56,7 +56,7 @@ class PersonalInfo extends Entity {
      */
     public function getBirthday()
     {
-        return $this->birthday;
+        return ($this->birthday == '0000-00-00') ? '' : $this->birthday;
     }
 
     /**

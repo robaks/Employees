@@ -115,6 +115,7 @@ return array(
             ),
             't4webemployees-personalinfo' => array(
                 'name' => 'employees_personal_info',
+                'pk' => 'employee_id',
                 'columnsAsAttributesMap' => array(
                     'employee_id' => 'employeeId',
                     'birthday' => 'birthday',
@@ -128,6 +129,7 @@ return array(
             ),
             't4webemployees-workinfo' => array(
                 'name' => 'employees_work_info',
+                'pk' => 'employee_id',
                 'columnsAsAttributesMap' => array(
                     'employee_id' => 'employeeId',
                     'job_title' => 'jobTitleId',
@@ -138,6 +140,7 @@ return array(
             ),
             't4webemployees-social' => array(
                 'name' => 'employees_social',
+                'pk' => 'employee_id',
                 'columnsAsAttributesMap' => array(
                     'employee_id' => 'employeeId',
                     'skype' => 'skype',

@@ -3,8 +3,7 @@
 namespace T4webEmployees\Controller\User;
 
 use Zend\Mvc\Controller\AbstractActionController;
-use T4webBase\Domain\Service\Update as UpdateService;
-use T4webBase\Domain\Service\Create as CreateService;
+use T4webEmployees\Employee\Service\Update as UpdateService;
 use T4webEmployees\ViewModel\SaveAjaxViewModel;
 
 class SaveAjaxController extends AbstractActionController {
@@ -19,26 +18,12 @@ class SaveAjaxController extends AbstractActionController {
      */
     private $updateService;
 
-    /**
-     * @var CreateService
-     */
-    private $personalInfoCreateService;
-
-    /**
-     * @var CreateService
-     */
-    private $workInfoCreateService;
-
     public function __construct(
         SaveAjaxViewModel $view,
-        UpdateService $updateService,
-        CreateService $personalInfoCreateService,
-        CreateService $workInfoCreateService) {
+        UpdateService $updateService) {
 
         $this->view = $view;
         $this->updateService = $updateService;
-        $this->personalInfoCreateService = $personalInfoCreateService;
-        $this->workInfoCreateService = $workInfoCreateService;
     }
 
     public function defaultAction()
@@ -59,19 +44,7 @@ class SaveAjaxController extends AbstractActionController {
 
         $params['employeeId'] = $employee->getId();
         $this->view->setFormData($params);
-/*
-        $personalInfo = $this->personalInfoCreateService->create($params);
 
-        if (!$personalInfo) {
-            $this->view->setErrors($this->personalInfoCreateService->getErrors());
-        }
-
-        $workInfo = $this->workInfoCreateService->create($params);
-
-        if (!$workInfo) {
-            $this->view->setErrors($this->workInfoCreateService->getErrors());
-        }
-*/
         return $this->view;
     }
 

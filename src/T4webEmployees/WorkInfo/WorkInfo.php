@@ -78,7 +78,7 @@ class WorkInfo extends Entity {
      */
     public function getEndWorkDate()
     {
-        return $this->endWorkDate;
+        return ($this->endWorkDate == '0000-00-00') ? '' : $this->endWorkDate;
     }
 
     /**

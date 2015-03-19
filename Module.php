@@ -80,10 +80,16 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                     $eventManager = $sm->get('EventManager');
                     $eventManager->addIdentifiers('T4webEmployees\Employee\Service\Update');
 
-                    return new ServiceUpdate(
+                    return new Employee\Service\Update(
                         $sm->get('T4webEmployees\Employee\InputFilter\Update'),
                         $sm->get('T4webEmployees\Employee\Repository\DbRepository'),
+                        $sm->get('T4webEmployees\PersonalInfo\Repository\DbRepository'),
+                        $sm->get('T4webEmployees\WorkInfo\Repository\DbRepository'),
+                        $sm->get('T4webEmployees\Social\Repository\DbRepository'),
                         $sm->get('T4webEmployees\Employee\Criteria\CriteriaFactory'),
+                        $sm->get('T4webEmployees\PersonalInfo\Criteria\CriteriaFactory'),
+                        $sm->get('T4webEmployees\WorkInfo\Criteria\CriteriaFactory'),
+                        $sm->get('T4webEmployees\Social\Criteria\CriteriaFactory'),
                         $eventManager
                     );
                 },

@@ -15,7 +15,7 @@ $(function() {
     });
 
     if ($('#add-employee .form-control[name=id]').length > 0) {
-        $('#create-employee-btn').click(updateEmployee);
+        $('#update-employee-btn').click(updateEmployee);
     } else {
         $('#create-employee-btn').one('click', addEmployee);
     }
