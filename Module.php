@@ -7,13 +7,13 @@ use Zend\ModuleManager\Feature\ControllerProviderInterface;
 use Zend\ModuleManager\Feature\ConsoleUsageProviderInterface;
 use Zend\ModuleManager\Feature\ServiceProviderInterface;
 use Zend\Mvc\Controller\ControllerManager;
-use Zend\EventManager\EventInterface;
 use Zend\Console\Adapter\AdapterInterface as ConsoleAdapterInterface;
 use Zend\ServiceManager\ServiceManager;
 use League\Flysystem\Filesystem;
 use League\Flysystem\Adapter\Local as LocalAdapter;
 use Falc\Flysystem\Plugin\Symlink\Local as LocalSymlinkPlugin;
 use T4webBase\Domain\Service\Create as ServiceCreate;
+use T4webBase\Domain\Service\Update as ServiceUpdate;
 use T4webBase\Domain\Service\BaseFinder as ServiceFinder;
 use T4webEmployees\Controller\User\ListController;
 use T4webEmployees\Controller\User\ShowController;
@@ -73,7 +73,7 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                     $eventManager = $sm->get('EventManager');
                     $eventManager->addIdentifiers('T4webEmployees\Employee\Service\Update');
 
-                    return new Employee\Service\Update(
+                    return new ServiceUpdate(
                         $sm->get('T4webEmployees\Employee\InputFilter\Update'),
                         $sm->get('T4webEmployees\Employee\Repository\DbRepository'),
                         $sm->get('T4webEmployees\Employee\Criteria\CriteriaFactory'),

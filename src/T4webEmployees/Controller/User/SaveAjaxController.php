@@ -3,7 +3,7 @@
 namespace T4webEmployees\Controller\User;
 
 use Zend\Mvc\Controller\AbstractActionController;
-use T4webEmployees\Employee\Service\Update as UpdateService;
+use T4webBase\Domain\Service\Update as UpdateService;
 use T4webBase\Domain\Service\Create as CreateService;
 use T4webEmployees\ViewModel\SaveAjaxViewModel;
 
