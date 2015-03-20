@@ -79,10 +79,9 @@ class Create extends BaseCreate {
             throw new \RuntimeException("Cannot create entity form empty data");
         }
 
+        /** @var T4webEmployees\Employee\Employee $employee */
         $employee = $this->entityFactory->create($data);
         $this->repository->add($employee);
-
-        $this->trigger($employee);
 
         $data['employeeId'] = $employee->getId();
 
@@ -90,16 +89,22 @@ class Create extends BaseCreate {
         $this->personalInfoRepository->add($personalInfo);
 
         $this->trigger($personalInfo);
+        $employee->setPersonalInfo($personalInfo);
 
         $work = $this->workEntityFactory->create($data);
         $this->workRepository->add($work);
 
         $this->trigger($work);
+        $employee->setWorkInfo($work);
 
         $social = $this->socialEntityFactory->create($data);
         $this->socialRepository->add($social);
 
         $this->trigger($social);
+        $employee->setSocial($social);
+
+
+        $this->trigger($employee);
 
         return $employee;
     }
