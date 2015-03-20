@@ -13,12 +13,12 @@
             <div class="col-md-5">
                 <span><i class="fa fa-puzzle-piece fa-fw"></i> <?=$manager->getWorkInfo()->getJobTitle()->getName();?></span><br>
                 <span><i class="fa fa-phone fa-fw"></i> <?=$manager->getPersonalInfo()->getPhone();?></span><br>
-                <a href="https://www.facebook.com/fedot" target="_blank"><i class="fa fa-facebook-square fa-fw"></i> <?=$manager->getSocial()->getFacebook();?></a>
+                <a href="http://<?=$manager->getSocial()->getFacebook();?>" target="_blank"><i class="fa fa-facebook-square fa-fw"></i> <?=$manager->getSocial()->getFacebook();?></a>
             </div>
             <div class="col-md-5">
                 <span><i class="fa fa-skype fa-fw"></i> <?=$manager->getSocial()->getSkype();?></span><br>
                 <span><i class="fa fa-envelope-o fa-fw"></i> <?=$manager->getSocial()->getEmail();?></span><br>
-                <a href="https://www.linkedin.com/profile/view?id=104644941" target="_blank" ><i class="fa fa-linkedin fa-fw"></i> <?=$manager->getSocial()->getLinkedin();?></a>
+                <a href="http://<?=$manager->getSocial()->getLinkedin();?>" target="_blank" ><i class="fa fa-linkedin fa-fw"></i> <?=$manager->getSocial()->getLinkedin();?></a>
             </div>
         </div>
     </div>
