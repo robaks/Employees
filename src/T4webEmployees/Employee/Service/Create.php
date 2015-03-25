@@ -12,32 +12,32 @@ class Create extends BaseCreate {
     /**
      * @var DbRepository
      */
-    private $personalInfoRepository;
+    protected $personalInfoRepository;
 
     /**
      * @var DbRepository
      */
-    private $workRepository;
+    protected $workRepository;
 
     /**
      * @var DbRepository
      */
-    private $socialRepository;
+    protected $socialRepository;
 
     /**
      * @var EntityFactoryInterface
      */
-    private $personalInfoEntityFactory;
+    protected $personalInfoEntityFactory;
 
     /**
      * @var EntityFactoryInterface
      */
-    private $workEntityFactory;
+    protected $workEntityFactory;
 
     /**
      * @var EntityFactoryInterface
      */
-    private $socialEntityFactory;
+    protected $socialEntityFactory;
 
     public function __construct(
         InputFilterInterface $inputFilter,

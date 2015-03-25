@@ -13,32 +13,32 @@ class Update extends BaseUpdate {
     /**
      * @var DbRepository
      */
-    private $personalInfoRepository;
+    protected $personalInfoRepository;
 
     /**
      * @var DbRepository
      */
-    private $workRepository;
+    protected $workRepository;
 
     /**
      * @var DbRepository
      */
-    private $socialRepository;
+    protected $socialRepository;
 
     /**
      * @var CriteriaFactory
      */
-    private $personalInfoCriteriaFactory;
+    protected $personalInfoCriteriaFactory;
 
     /**
      * @var CriteriaFactory
      */
-    private $workCriteriaFactory;
+    protected $workCriteriaFactory;
 
     /**
      * @var CriteriaFactory
      */
-    private $socialCriteriaFactory;
+    protected $socialCriteriaFactory;
 
     public function __construct(
         InputFilterInterface $inputFilter,
