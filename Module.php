@@ -235,19 +235,14 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                     $sl = $cm->getServiceLocator();
                     return new CreateAjaxController(
                         $sl->get('T4webEmployees\ViewModel\SaveAjaxViewModel'),
-                        $sl->get('T4webEmployees\Employee\Service\Create'),
-                        $sl->get('T4webEmployees\PersonalInfo\Service\Create'),
-                        $sl->get('T4webEmployees\WorkInfo\Service\Create'),
-                        $sl->get('T4webEmployees\Social\Service\Create')
+                        $sl->get('T4webEmployees\Employee\Service\Create')
                     );
                 },
                 'T4webEmployees\Controller\User\SaveAjax' => function (ControllerManager $cm) {
                     $sl = $cm->getServiceLocator();
                     return new SaveAjaxController(
                         $sl->get('T4webEmployees\ViewModel\SaveAjaxViewModel'),
-                        $sl->get('T4webEmployees\Employee\Service\Update'),
-                        $sl->get('T4webEmployees\PersonalInfo\Service\Create'),
-                        $sl->get('T4webEmployees\WorkInfo\Service\Create')
+                        $sl->get('T4webEmployees\Employee\Service\Update')
                     );
                 },
             ),

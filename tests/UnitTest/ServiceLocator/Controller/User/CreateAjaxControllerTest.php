@@ -16,14 +16,11 @@ class CreateAjaxControllerTest extends \PHPUnit_Framework_TestCase
 
         $this->serviceManager->setService('T4webEmployees\ViewModel\SaveAjaxViewModel', $viewMock);
 
-        $serviceMock = $this->getMockBuilder('T4webBase\Domain\Service\Create')
+        $serviceMock = $this->getMockBuilder('T4webEmployees\Employee\Service\Create')
             ->disableOriginalConstructor()
             ->getMock();
 
         $this->serviceManager->setService('T4webEmployees\Employee\Service\Create', $serviceMock);
-        $this->serviceManager->setService('T4webEmployees\PersonalInfo\Service\Create', $serviceMock);
-        $this->serviceManager->setService('T4webEmployees\WorkInfo\Service\Create', $serviceMock);
-        $this->serviceManager->setService('T4webEmployees\Social\Service\Create', $serviceMock);
 
         $this->assertTrue($this->controllerManager->has('T4webEmployees\Controller\User\CreateAjax'));
 
@@ -32,9 +29,6 @@ class CreateAjaxControllerTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('T4webEmployees\Controller\User\CreateAjaxController', $controller);
         $this->assertAttributeSame($viewMock, 'view', $controller);
         $this->assertAttributeSame($serviceMock, 'createService', $controller);
-        $this->assertAttributeSame($serviceMock, 'personalInfoCreateService', $controller);
-        $this->assertAttributeSame($serviceMock, 'workInfoCreateService', $controller);
-        $this->assertAttributeSame($serviceMock, 'socialCreateService', $controller);
     }
 
 }
