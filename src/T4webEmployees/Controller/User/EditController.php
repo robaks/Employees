@@ -14,27 +14,27 @@ class EditController extends AbstractActionController {
     /**
      * @var BaseFinder
      */
-    private $employeeFinder;
+    protected $employeeFinder;
 
     /**
      * @var EditViewModel
      */
-    private $view;
+    protected $view;
 
     /**
      * @var WorkInfoPopulate
      */
-    private $workInfoPopulator;
+    protected $workInfoPopulator;
 
     /**
      * @var PersonalInfoPopulate
      */
-    private $personalPopulator;
+    protected $personalPopulator;
 
     /**
      * @var SocialPopulate
      */
-    private $socialPopulator;
+    protected $socialPopulator;
 
     public function __construct(
         BaseFinder $employeeFinder,
