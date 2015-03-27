@@ -57,7 +57,7 @@ class EditController extends AbstractActionController {
     {
         $id = $this->params('id', null);
 
-        /** @var $employees Employee */
+        /** @var Employee $employee */
         $employee = $this->employeeFinder->find(['T4webEmployees' => ['Employee' => ['id' => $id]]]);
 
         $this->personalPopulator->populate($employee);
