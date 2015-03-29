@@ -17,17 +17,17 @@ class Employee extends Entity {
     /**
      * @var WorkInfo
      */
-    protected $workInfo;
+    private $workInfo;
 
     /**
      * @var PersonalInfo
      */
-    protected $personalInfo;
+    private $personalInfo;
 
     /**
      * @var Social
      */
-    protected $social;
+    private $social;
 
     /**
      * @return WorkInfo
