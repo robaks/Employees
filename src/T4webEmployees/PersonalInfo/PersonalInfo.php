@@ -47,6 +47,11 @@ class PersonalInfo extends Entity {
      */
     protected $contacts;
 
+    public function __construct(array $data = array()) {
+        parent::__construct($data);
+        $this->id = (int)$data['employeeId'];
+    }
+
     public function getId() {
         return $this->employeeId;
     }

@@ -41,6 +41,11 @@ class Social extends Entity {
      */
     protected $linkedin;
 
+    public function __construct(array $data = array()) {
+        parent::__construct($data);
+        $this->id = (int)$data['employeeId'];
+    }
+
     public function getId() {
         return $this->employeeId;
     }
