@@ -216,6 +216,7 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                     );
                 },
                 'T4webEmployees\Controller\User\Edit' => function (ControllerManager $cm) {
+                    die(var_dump(111));
                     $sl = $cm->getServiceLocator();
                     return new EditController(
                         $sl->get('T4webEmployees\Employee\Service\Finder'),

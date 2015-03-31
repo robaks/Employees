@@ -133,4 +133,9 @@ class Employee extends Entity {
         return $this->patronymic;
     }
 
+    public function getShortName()
+    {
+        return $this->getSurname() . ' ' . $this->getName();
+    }
+
 }
