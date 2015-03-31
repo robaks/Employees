@@ -35,6 +35,10 @@ class WorkInfo extends Entity {
         $this->populate($data);
         $this->id = (int)$data['employeeId'];
         $this->jobTitle = JobTitle::create($data['jobTitleId']);
+
+        if ($this->endWorkDate == '0000-00-00') {
+            $this->endWorkDate = '';
+        }
     }
 
     public function getId() {
