@@ -50,6 +50,10 @@ class PersonalInfo extends Entity {
     public function __construct(array $data = array()) {
         parent::__construct($data);
         $this->id = (int)$data['employeeId'];
+
+        if (in_array($data['birthday'], ['0000-00-00', ''])) {
+            $this->birthday = null;
+        };
     }
 
     public function getId() {
