@@ -8,7 +8,7 @@
         <div class="widget-profile-bg-icon"><i class="fa <?=$viewModel->getEmployeeIconClass($employee);?>"></i></div>
         <img class="widget-profile-avatar" alt="" src="/assets/demo/avatars/2.jpg">
         <div class="widget-profile-header">
-            <span class="text-bold"><a href="<?=$this->url('employee-show', ['id' => $employee->getId()]);?>"><?=$employee->getSurname()?> <?=$employee->getName()?></a></span>
+            <span class="text-bold"><a href="<?=$this->url('employee-show', ['id' => $employee->getId()]);?>"><?=$employee->getShortName()?></a></span>
         </div>
     </div> <!-- / .panel-heading -->
     <div class="list-group">
@@ -16,6 +16,6 @@
         <span class="list-group-item"><i class="fa fa-phone list-group-icon"></i><?=$employee->getPersonalInfo()->getPhone();?></span>
         <span class="list-group-item"><i class="fa fa-skype list-group-icon"></i><?=$employee->getSocial()->getSkype();?></span>
         <span class="list-group-item"><i class="fa fa-envelope-o list-group-icon"></i><?=$employee->getSocial()->getEmail();?></span>
-        <a class="list-group-item" href="https://<?= $employee->getSocial()->getFacebook();?>" target="_blank"><i class="fa fa-facebook-square list-group-icon"></i><?= $employee->getSocial()->getFacebook();?></a>
+        <a class="list-group-item" href="https://<?= $employee->getSocial()->getFacebook();?>" target="_blank"><i class="fa fa-facebook-square list-group-icon"></i><?=$employee->getShortName()?></a>
     </div>
 </div> <!-- / .panel -->
