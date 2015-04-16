@@ -7,7 +7,7 @@
             <i class="fa fa-users page-header-icon"></i>&nbsp;&nbsp;
             <a href="/employees">Emploees</a>&nbsp;&nbsp;
             <i class="fa fa-angle-right page-header-icon"></i>&nbsp;&nbsp;
-            <?=$viewModel->getEmployee()->getSurname();?> <?=$viewModel->getEmployee()->getName();?>
+            <?=$viewModel->getEmployee()->getShortName();?>
         </h1>
 
         <div class="col-xs-12 col-sm-8">
@@ -41,7 +41,7 @@
                 <span class="list-group-item"><i class="fa fa-phone list-group-icon"></i><?=$viewModel->getEmployee()->getPersonalInfo()->getPhone();?></span>
                 <span class="list-group-item"><i class="fa fa-skype list-group-icon"></i><?=$viewModel->getEmployee()->getSocial()->getSkype();?></span>
                 <span class="list-group-item"><i class="fa fa-envelope-o list-group-icon"></i><?=$viewModel->getEmployee()->getSocial()->getEmail();?></span>
-                <a class="list-group-item" href="https://www.facebook.com/fedot" target="_blank"><i class="fa fa-facebook-square list-group-icon"></i><?=$viewModel->getEmployee()->getSocial()->getFacebook();?></a>
+                <a class="list-group-item" href="https://www.facebook.com/fedot" target="_blank"><i class="fa fa-facebook-square list-group-icon"></i><?=$viewModel->getEmployee()->getShortName();?></a>
             </div>
         </div>
         <!-- End .panel -->
