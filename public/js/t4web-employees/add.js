@@ -38,6 +38,7 @@ $(function() {
                 });
 
                 if (response.errors) {
+                    $.growl.error({ title: "Error", message: "Some fields fill in incorrect" });
                     $.each(response.errors, function (field, errors) {
                         var $parent = $('.form-control[name=' + field + ']').closest('.form-group');
 
@@ -51,6 +52,7 @@ $(function() {
                 }
 
                 if (response.formData['employeeId'] && ($('#add-employee .form-control[name=id]').length == 0)) {
+                    $.growl.notice({ title: "Done", message: "Employee success created" });
                     $('#create-employee-btn').text('Update');
                     $('#create-employee-btn').unbind( "click").click(updateEmployee);
                     $('#add-employee .form-control[name=surname]').before('<input type="hidden" name="id" value="'+response.formData['employeeId']+'" class="form-control">');
@@ -83,6 +85,7 @@ $(function() {
                 });
 
                 if (response.errors) {
+                    $.growl.error({ title: "Error", message: "Some fields fill in incorrect" });
                     $.each(response.errors, function (field, errors) {
                         var $parent = $('.form-control[name=' + field + ']').closest('.form-group');
 
@@ -92,7 +95,10 @@ $(function() {
                             $parent.append('<p class="help-block">' + error + '</p>');
                         });
                     });
+                    return;
                 }
+
+                $.growl.notice({ title: "Done", message: "Employee success updated" });
             },
             error: function(response) {
                 console.log(response);
