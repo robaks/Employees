@@ -136,6 +136,7 @@ return array(
                     'status' => 'statusId',
                     'start_work_date' => 'startWorkDate',
                     'end_work_date' => 'endWorkDate',
+                    'comment' => 'comment',
                 ),
             ),
             't4webemployees-social' => array(

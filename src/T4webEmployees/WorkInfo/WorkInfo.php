@@ -24,6 +24,7 @@ class WorkInfo extends Entity {
 
     protected $startWorkDate;
     protected $endWorkDate;
+    protected $comment;
 
     /**
      * @var JobTitle
@@ -91,6 +92,22 @@ class WorkInfo extends Entity {
     public function getJobTitle()
     {
         return $this->jobTitle;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * @param mixed $comment
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
     }
 
 }

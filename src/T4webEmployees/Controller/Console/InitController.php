@@ -133,6 +133,7 @@ class InitController extends AbstractActionController {
         $table->addColumn(new Column\Integer('status'));
         $table->addColumn(new Column\Date('start_work_date'));
         $table->addColumn(new Column\Date('end_work_date'));
+        $table->addColumn(new Column\Text('comment'));
         $table->addConstraint(new Constraint\PrimaryKey('employee_id'));
 
         $sql = new Sql($this->dbAdapter);
