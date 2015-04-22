@@ -226,7 +226,7 @@
                                 <form role="form" class="form-vertical">
                                     <div class="form-group">
                                         <label class="control-label">Комментарий админа</label>
-                                        <textarea rows="3" class="form-control" name="comment"></textarea>
+                                        <textarea rows="3" class="form-control" name="comment"><?= $viewModel->getEmployee()->getWorkInfo()->getComment(); ?></textarea>
                                     </div>
                                 </form>
                             </div>
