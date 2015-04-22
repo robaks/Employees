@@ -99,6 +99,11 @@ class Create extends InputFilter {
         $endWorkDate->setRequired(false);
         $this->add($endWorkDate);
 
+        // comment
+        $comment = new Text('comment');
+        $comment->setRequired(false);
+        $this->add($comment);
+
 
         // skype
         $skype = new Text('skype', 0, 50);
