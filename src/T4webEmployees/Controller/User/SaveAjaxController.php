@@ -42,6 +42,11 @@ class SaveAjaxController extends AbstractActionController {
             return $this->view;
         }
 
+        if(isset($params['removeAvatar']) && !empty($params['removeAvatar']) && file_exists(getcwd() . '/public' . $params['removeAvatar'])) {
+            $folder = new \T4webBase\Folder();
+            $folder->remove('/public' . $params['removeAvatar']);
+        }
+
         $params['employeeId'] = $employee->getId();
         $this->view->setFormData($params);
 

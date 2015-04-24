@@ -37,6 +37,11 @@ class Update extends InputFilter {
         $patronymic->setRequired(true);
         $this->add($patronymic);
 
+        // avatar
+        $avatar = new Text('avatar');
+        $avatar->setRequired(false);
+        $this->add($avatar);
+
         // job_title
         $jobTitle = new InArray('jobTitleId', array_keys(JobTitle::getAll()));
         $jobTitle->setRequired(true);
