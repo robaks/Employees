@@ -28,7 +28,7 @@
         <div class="panel <?=$viewModel->getEmployeeColorClass();?> panel-dark widget-profile">
             <div class="panel-heading">
                 <div class="widget-profile-bg-icon"><i class="fa <?=$viewModel->getEmployeeIconClass();?>"></i></div>
-                <img class="widget-profile-avatar" alt="" src="/assets/demo/avatars/1.jpg">
+                <img class="widget-profile-avatar" alt="" src="<?= $viewModel->getEmployee()->getAvatarDefault(); ?>">
                 <div class="widget-profile-header">
                     <span class="text-bold"><?=$viewModel->getEmployee()->getSurname();?> <?=$viewModel->getEmployee()->getName();?></span>
                 </div>
