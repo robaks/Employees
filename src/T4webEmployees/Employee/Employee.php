@@ -94,6 +94,26 @@ class Employee extends Entity {
     }
 
     /**
+     * @return mixed
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAvatarDefault()
+    {
+        if(empty($this->avatar )|| !file_exists(getcwd() . '/public' . $this->avatar)) {
+            return '/var/avatar/default.jpg';
+        }
+
+        return $this->avatar;
+    }
+
+    /**
      * @param mixed $patronymic
      */
     public function setPatronymic($patronymic)

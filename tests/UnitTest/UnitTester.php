@@ -61,6 +61,38 @@ class UnitTester extends \Codeception\Actor
     /**
      * [!] Method is generated. Documentation taken from corresponding module.
      *
+     * Checks that two variables are same
+     *
+     * @param        $expected
+     * @param        $actual
+     * @param string $message
+     *
+     * @return mixed
+     * @see \Codeception\Module\Asserts::assertSame()
+     */
+    public function assertSame($expected, $actual, $message = null) {
+        return $this->scenario->runStep(new \Codeception\Step\Action('assertSame', func_get_args()));
+    }
+
+ 
+    /**
+     * [!] Method is generated. Documentation taken from corresponding module.
+     *
+     * Checks that two variables are not same
+     *
+     * @param        $expected
+     * @param        $actual
+     * @param string $message
+     * @see \Codeception\Module\Asserts::assertNotSame()
+     */
+    public function assertNotSame($expected, $actual, $message = null) {
+        return $this->scenario->runStep(new \Codeception\Step\Action('assertNotSame', func_get_args()));
+    }
+
+ 
+    /**
+     * [!] Method is generated. Documentation taken from corresponding module.
+     *
      * Checks that expected is greater than actual
      *
      * @param        $expected
