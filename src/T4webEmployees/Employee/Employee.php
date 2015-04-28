@@ -107,7 +107,7 @@ class Employee extends Entity {
     public function getAvatarDefault()
     {
         if(empty($this->avatar )|| !file_exists(getcwd() . '/public' . $this->avatar)) {
-            return '/var/avatar/default.jpg';
+            return '/public/img/default.jpg';
         }
 
         return $this->avatar;
