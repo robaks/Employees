@@ -64,7 +64,7 @@ class Update extends InputFilter {
         $this->add($birthday);
 
         // phone
-        $phone = new Phone('phone', '/^\(\d{3}\)\d{3}-\d{2}-\d{2}$/');
+        $phone = new Phone('phone', '/^\(\d{3}\)\d{3}-\d{2}-\d{2}$/', '(###) ###-##-##');
         $phone->setRequired(false);
         $this->add($phone);
 
