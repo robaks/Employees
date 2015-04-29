@@ -14,6 +14,7 @@ use League\Flysystem\Adapter\Local as LocalAdapter;
 use Falc\Flysystem\Plugin\Symlink\Local as LocalSymlinkPlugin;
 use T4webBase\Domain\Service\Create as ServiceCreate;
 use T4webBase\Domain\Service\Update as ServiceUpdate;
+use T4webBase\Domain\Service\Delete as ServiceDelete;
 use T4webBase\Domain\Service\BaseFinder as ServiceFinder;
 use T4webBase\InputFilter\InputFilter as BaseInputFilter;
 use T4webEmployees\Controller\User\ListController;
@@ -22,14 +23,15 @@ use T4webEmployees\Controller\User\EditController;
 use T4webEmployees\Controller\User\AddController;
 use T4webEmployees\Controller\User\CreateAjaxController;
 use T4webEmployees\Controller\User\SaveAjaxController;
+use T4webEmployees\Controller\User\SalaryAjaxController;
 use T4webEmployees\Controller\Console\InitController;
 use T4webEmployees\Employee\Service\WorkInfoPopulate;
 use T4webEmployees\Employee\Service\PersonalInfoPopulate;
 use T4webEmployees\Employee\Service\SocialPopulate;
 
 class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
-                        ControllerProviderInterface, ConsoleUsageProviderInterface,
-                        ServiceProviderInterface
+    ControllerProviderInterface, ConsoleUsageProviderInterface,
+    ServiceProviderInterface
 {
     public function getConfig($env = null)
     {
@@ -163,6 +165,44 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                         $sm->get('T4webEmployees\Social\Criteria\CriteriaFactory')
                     );
                 },
+
+                'T4webEmployees\Salary\Service\Finder' => function (ServiceManager $sm) {
+                    return new ServiceFinder(
+                        $sm->get('T4webEmployees\Salary\Repository\DbRepository'),
+                        $sm->get('T4webEmployees\Salary\Criteria\CriteriaFactory')
+                    );
+                },
+
+                'T4webEmployees\Salary\Service\Create' => function (ServiceManager $sm) {
+                    return new ServiceCreate(
+                        $sm->get('T4webEmployees\Salary\InputFilter\Create'),
+                        $sm->get('T4webEmployees\Salary\Repository\DbRepository'),
+                        $sm->get('T4webEmployees\Salary\Factory\EntityFactory')
+                    );
+                },
+
+                'T4webEmployees\Salary\Service\Update' => function (ServiceManager $sm) {
+                    $eventManager = $sm->get('EventManager');
+                    $eventManager->addIdentifiers('T4webEmployees\Salary\Service\Update');
+
+                    return new ServiceUpdate(
+                        $sm->get('T4webEmployees\Salary\InputFilter\Update'),
+                        $sm->get('T4webEmployees\Salary\Repository\DbRepository'),
+                        $sm->get('T4webEmployees\Salary\Criteria\CriteriaFactory'),
+                        $eventManager
+                    );
+                },
+
+                'T4webEmployees\Salary\Service\Delete' => function (ServiceManager $sm) {
+                    $eventManager = $sm->get('EventManager');
+                    $eventManager->addIdentifiers('T4webEmployees\Salary\Service\Delete');
+
+                    return new ServiceDelete(
+                        $sm->get('T4webEmployees\Salary\Repository\DbRepository'),
+                        $sm->get('T4webEmployees\Salary\Criteria\CriteriaFactory'),
+                        $eventManager
+                    );
+                },
             ),
             'invokables' => array(
                 'T4webEmployees\ViewModel\SaveAjaxViewModel' => 'T4webEmployees\ViewModel\SaveAjaxViewModel',
@@ -176,6 +216,8 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                 'T4webEmployees\PersonalInfo\InputFilter\Create' => 'T4webEmployees\PersonalInfo\InputFilter\Create',
                 'T4webEmployees\WorkInfo\InputFilter\Create' => 'T4webEmployees\WorkInfo\InputFilter\Create',
                 'T4webEmployees\Social\InputFilter\Create' => 'T4webEmployees\Social\InputFilter\Create',
+                'T4webEmployees\Salary\InputFilter\Create' => 'T4webEmployees\Salary\InputFilter\Create',
+                'T4webEmployees\Salary\InputFilter\Update' => 'T4webEmployees\Salary\InputFilter\Update',
             ),
         );
     }
@@ -212,6 +254,7 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                         $sl->get('T4webEmployees\Employee\Service\PersonalInfoPopulate'),
                         $sl->get('T4webEmployees\Employee\Service\WorkInfoPopulate'),
                         $sl->get('T4webEmployees\Employee\Service\SocialPopulate'),
+                        $sl->get('T4webEmployees\Salary\Service\Finder'),
                         $sl->get('T4webEmployees\Controller\User\ShowViewModel')
                     );
                 },
@@ -244,6 +287,16 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                     return new SaveAjaxController(
                         $sl->get('T4webEmployees\ViewModel\SaveAjaxViewModel'),
                         $sl->get('T4webEmployees\Employee\Service\Update')
+                    );
+                },
+                'T4webEmployees\Controller\User\SalaryAjax' => function (ControllerManager $cm) {
+                    $sl = $cm->getServiceLocator();
+                    return new SalaryAjaxController(
+                        $sl->get('T4webEmployees\Salary\Service\Finder'),
+                        $sl->get('T4webEmployees\Salary\Service\Create'),
+                        $sl->get('T4webEmployees\Salary\Service\Update'),
+                        $sl->get('T4webEmployees\Salary\Service\Delete'),
+                        $sl->get('T4webEmployees\ViewModel\SaveAjaxViewModel')
                     );
                 },
             ),

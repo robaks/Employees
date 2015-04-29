@@ -5,6 +5,8 @@ namespace T4webEmployees\Controller\User;
 use Zend\View\Model\ViewModel;
 use T4webEmployees\Employee\Employee;
 use T4webEmployees\Employee\JobTitle;
+use T4webEmployees\Salary\Currency;
+use T4webBase\Domain\Collection;
 
 class ShowViewModel extends ViewModel {
 
@@ -12,6 +14,16 @@ class ShowViewModel extends ViewModel {
      * @var Employee
      */
     private $employee;
+
+    /**
+     * @var Currency
+     */
+    private $currencies;
+
+    /**
+     * @var Collection
+     */
+    private $salaries;
 
     /**
      * @return Employee
@@ -27,6 +39,36 @@ class ShowViewModel extends ViewModel {
     public function setEmployee(Employee $employee)
     {
         $this->employee = $employee;
+    }
+
+    /**
+     * @return Currency
+     */
+    public function getCurrencies()
+    {
+        return $this->currencies;
+    }/**
+ * @param Currency $currencies
+ */
+    public function setCurrencies($currencies)
+    {
+        $this->currencies = $currencies;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getSalaries()
+    {
+        return $this->salaries;
+    }
+
+    /**
+     * @param Collection $salaries
+     */
+    public function setSalaries($salaries)
+    {
+        $this->salaries = $salaries;
     }
 
     public function getEmployeeColorClass()

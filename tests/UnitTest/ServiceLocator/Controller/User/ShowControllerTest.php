@@ -15,6 +15,7 @@ class ShowControllerTest extends \PHPUnit_Framework_TestCase
             ->getMock();
 
         $this->serviceManager->setService('T4webEmployees\Employee\Service\Finder', $finderMock);
+        $this->serviceManager->setService('T4webEmployees\Salary\Service\Finder', $finderMock);
 
 
         $personalInfoPopulatorMock = $this->getMockBuilder('T4webEmployees\Employee\Service\PersonalInfoPopulate')
@@ -48,6 +49,7 @@ class ShowControllerTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('T4webEmployees\Controller\User\ShowController', $controller);
         $this->assertAttributeSame($finderMock, 'employeeFinder', $controller);
+        $this->assertAttributeSame($finderMock, 'salaryFinder', $controller);
         $this->assertAttributeSame($personalInfoPopulatorMock, 'personalPopulator', $controller);
         $this->assertAttributeSame($workInfoPopulatorMock, 'workInfoPopulator', $controller);
         $this->assertAttributeSame($socialPopulatorMock, 'socialPopulator', $controller);

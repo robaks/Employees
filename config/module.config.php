@@ -81,6 +81,28 @@ return array(
                     ),
                 ),
             ),
+            'employee-salary-currencies' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route'    => '/employee/salary-ajax/currencies',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'T4webEmployees\Controller\User',
+                        'controller'    => 'SalaryAjax',
+                        'action'        => 'get-currencies',
+                    ),
+                ),
+            ),
+            'employee-salary-save' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route'    => '/employee[/:employeeId]/salary-ajax/save',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'T4webEmployees\Controller\User',
+                        'controller'    => 'SalaryAjax',
+                        'action'        => 'save',
+                    ),
+                ),
+            ),
         ),
     ),
 
@@ -152,6 +174,16 @@ return array(
                     'linkedin' => 'linkedin',
                 ),
             ),
+            't4webemployees-salary' => array(
+                'name' => 'salary',
+                'pk' => 'employee_id',
+                'columnsAsAttributesMap' => array(
+                    'employee_id' => 'employeeId',
+                    'amount' => 'amount',
+                    'currency' => 'currency',
+                    'date' => 'date',
+                ),
+            ),
         ),
         'dependencies' => array(
             'WorkInfo' => array(
@@ -184,6 +216,14 @@ return array(
         ),
         'WorkInfo' => array(
             'empty' => array('table' => 'employees_work_info'),
+        ),
+        'Salary' => array(
+            'empty' => array('table' => 'salary'),
+            'employeeId' => array(
+                'table' => 'salary',
+                'field' => 'employee_id',
+                'buildMethod' => 'addFilterEqual',
+            ),
         ),
     ),
 );
