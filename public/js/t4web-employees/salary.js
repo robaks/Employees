@@ -3,9 +3,29 @@ $(function() {
     initDatapicker();
 
     /**
+     * Edit
+     */
+    $('body').on('click', '.btn-warning', function(){
+        $('#holidays').find('.editable-open').editable('hide');
+        $('#holidays').find('.btn-save').hide();
+        $('#holidays').find('.btn-warning').show();
+
+        $(this).parent().find('.btn-danger').hide();
+        $(this).hide().siblings('.btn-save').show();
+        $(this).closest('tr').find('.editable').editable('show');
+
+        var spanDate = $(this).closest('tr').find('span[data-name="date"]');
+        spanDate.hide();
+
+        spanDate.after('<input type="text" placeholder="Date" name="date" class="form-control bs-datepicker" value="'+spanDate.data('value')+'">');
+
+        initDatapicker();
+    });
+
+    /**
      * Save salary
      */
-    $('body').on('click', '.btn-success', function() {
+    $('body').on('click', '.btn-success, .btn-save', function() {
         var btn = $(this);
         var parentTr = $(this).parents('tr');
         var table = $(this).closest('table');
@@ -20,12 +40,21 @@ $(function() {
         /* get form data */
         var formData = [];
         parentTr.find('td').each(function(k, el) {
+            if($(el).find('.editable-open')) {
+                $(el).find('.editable-open').each(function(d, editable) {
+                    var name = $(editable).data('name');
+
+                    var value = $(editable).next().find('.form-control').val();
+
+                    if(name !== undefined) {
+                        formData[name] = value;
+                    }
+                });
+            }
 
             $(el).find('.form-control').each(function(d, control) {
-                var name = $(control).data('name');
                 var value = $(control).val();
-
-                name = name || $(control).attr('name');
+                var name = $(control).attr('name');
 
                 if(name !== undefined) {
                     formData[name] = value;
@@ -84,12 +113,15 @@ $(function() {
                     });
 
                     var buttons = '<td>' +
-                        '<button id="btn-calendar-edit" class="btn btn-xs btn-labeled btn-warning">' +
+                        '<button class="btn btn-xs btn-labeled btn-warning">' +
                         '<span class="btn-label icon fa fa-pencil"></span>Edit' +
-                        '</button> ' +
-                        '<button data-id="'+response.formData.id+'" style="display: none;" class="btn btn-primary">save</button> ' +
-                        '<button id="btn-calendar-delete" data-id="'+response.formData.id+'" class="btn btn-xs btn-labeled btn-danger">' +
-                        '<span class="btn-label icon fa fa-times"></span>Delete</button>' +
+                        '</button>' +
+                        '<button class="btn btn-xs btn-labeled btn-danger" data-id="'+response.formData.id+'">' +
+                        '<span class="btn-label icon fa fa-times"></span>Delete' +
+                        '</button>' +
+                        '<button class="btn btn-xs btn-labeled btn-save" data-id="'+response.formData.id+'" data-employee_id="'+response.formData.employeeId+'" style="display: none">' +
+                        '<span class="btn-label icon fa fa-save"></span>Save' +
+                        '</button>' +
                         '</td>';
 
                     parentTr.before('<tr>'+elements+buttons+'</tr>');
@@ -102,8 +134,8 @@ $(function() {
 
                 } else {
                     btn.closest('tr').find('.editable').editable('hide');
-                    btn.hide().siblings('#btn-calendar-edit').show();
-                    btn.hide().siblings('#btn-calendar-delete').show();
+                    btn.hide().siblings('.btn-warning').show();
+                    btn.hide().siblings('.btn-danger').show();
 
                     /* currencies */
                     var currencies = getCurrencies();
@@ -114,18 +146,42 @@ $(function() {
                     /* date */
                     var spanDate = btn.closest('tr').find('span[data-name="date"]');
                     spanDate.data('value', data.date);
-                    spanDate.text(data.date);
+                    spanDate.text(data.formatDate);
                     spanDate.show();
 
                     /* amount */
                     var spanAmount = btn.closest('tr').find('span[data-name="amount"]');
-                    spanAmount.data('value', data.name);
-                    spanAmount.text(data.name);
+                    spanAmount.data('value', data.amount);
+                    spanAmount.text(data.amount);
 
                     btn.closest('tr').find('input[name="date"]').remove();
-
                 }
+            }
+        });
+    });
 
+    /**
+     * Delete
+     */
+    $('body').on('click', '.btn-danger', function() {
+        var parent = $(this).closest('tr');
+        var data = {id: $(this).data('id')};
+        var date = $(this).data('date');
+
+        $.ajax({
+            url: '/employee/salary-ajax/delete',
+            type: 'POST',
+            data: data,
+            success: function(response) {
+
+                if (response.errors) {
+                    bootbox.alert({
+                        message: "Произошла ошибка",
+                        className: "bootbox-sm"
+                    });
+                } else {
+                    parent.remove();
+                }
             }
         });
     });

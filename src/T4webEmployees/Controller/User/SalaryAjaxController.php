@@ -73,13 +73,25 @@ class SalaryAjaxController extends AbstractActionController
         $params = $this->getRequest()->getPost()->toArray();
         $params['employeeId'] = $employeeId;
 
-        $salary = $this->createService->create($params);
+        if(isset($params['id']) && !empty($params['id'])) {
+            $params['employee_id'] = $employeeId;
+            $salary = $this->updateService->update($params['id'], $params);
 
-        if (!$salary) {
-            $this->view->setFormData($params);
-            $this->view->setErrors($this->createService->getErrors());
+            if (!$salary) {
+                $this->view->setFormData($params);
+                $this->view->setErrors($this->updateService->getErrors());
 
-            return $this->view;
+                return $this->view;
+            }
+        } else {
+            $salary = $this->createService->create($params);
+
+            if (!$salary) {
+                $this->view->setFormData($params);
+                $this->view->setErrors($this->createService->getErrors());
+
+                return $this->view;
+            }
         }
 
         $params['id'] = $salary->getId();
@@ -92,12 +104,16 @@ class SalaryAjaxController extends AbstractActionController
     }
 
     public function deleteAction() {
-        $id = $this->params('id', null);
+        if (!$this->getRequest()->isPost()) {
+            return $this->view;
+        }
+
+        $id = $this->getRequest()->getPost('id');
 
         $salary = $this->deleteService->delete($id);
 
         if (!$salary) {
-            $this->view->setErrors($this->createService->getErrors());
+            $this->view->setErrors($this->deleteService->getErrors());
         }
 
         return $this->view;

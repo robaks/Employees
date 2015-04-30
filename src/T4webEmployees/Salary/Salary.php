@@ -48,7 +48,7 @@ class Salary extends Entity
      */
     public function getCurrency()
     {
-        return $this->currency;
+        return Currency::create($this->currency);
     }
 
     /**

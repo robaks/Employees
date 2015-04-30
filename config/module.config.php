@@ -103,6 +103,17 @@ return array(
                     ),
                 ),
             ),
+            'employee-salary-delete' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route'    => '/employee/salary-ajax/delete',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'T4webEmployees\Controller\User',
+                        'controller'    => 'SalaryAjax',
+                        'action'        => 'delete',
+                    ),
+                ),
+            ),
         ),
     ),
 
@@ -176,8 +187,9 @@ return array(
             ),
             't4webemployees-salary' => array(
                 'name' => 'salary',
-                'pk' => 'employee_id',
+                'pk' => 'id',
                 'columnsAsAttributesMap' => array(
+                    'id' => 'id',
                     'employee_id' => 'employeeId',
                     'amount' => 'amount',
                     'currency' => 'currency',
@@ -219,6 +231,11 @@ return array(
         ),
         'Salary' => array(
             'empty' => array('table' => 'salary'),
+            'Id' => array(
+                'table' => 'salary',
+                'field' => 'id',
+                'buildMethod' => 'addFilterEqual',
+            ),
             'employeeId' => array(
                 'table' => 'salary',
                 'field' => 'employee_id',
