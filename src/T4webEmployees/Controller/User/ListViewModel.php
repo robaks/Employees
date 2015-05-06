@@ -96,14 +96,15 @@ class ListViewModel extends ViewModel
     public function getMonthAmount($employeeId, $month)
     {
 
-        $result = 0;
         foreach ($this->getSalaries() as $salary) {
-            if ($employeeId == $salary->getEmployeeId() && $salary->getDateTime()->format('m') == $month) {
-                $result = $salary->getAmount() . ' ' . $salary->getCurrency()->getName();
+
+            if ($employeeId == $salary->getEmployeeId() && $salary->getDateTime()->format('Y-m') == $this->getCurrent()->format('Y') . '-' . sprintf("%'.02d", $month)) {
+                return $salary;
+                break;
             }
         }
 
-        return $result;
+        return false;
     }
 
     public function getEmployeeColorClass(Employee $employee)
