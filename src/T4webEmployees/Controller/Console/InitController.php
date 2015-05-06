@@ -34,6 +34,7 @@ class InitController extends AbstractActionController {
         $this->createTableEmployeesPersonalInfo();
         $this->createTableEmployeesWorkInfo();
         $this->createTableEmployeesSocial();
+        $this->createTableSalary();
 
         $vendorSiteConfigRootPath = dirname(dirname(dirname(dirname(__DIR__))));
 
@@ -178,6 +179,31 @@ class InitController extends AbstractActionController {
         $table->addColumn($linkedin);
 
         $table->addConstraint(new Constraint\PrimaryKey('employee_id'));
+
+        $sql = new Sql($this->dbAdapter);
+
+        try {
+            $this->dbAdapter->query(
+                $sql->getSqlStringForSqlObject($table),
+                Adapter::QUERY_MODE_EXECUTE
+            );
+        } catch (PDOException $e) {
+            return $e->getMessage() . PHP_EOL;
+        }
+    }
+
+    private function createTableSalary() {
+        $table = new Ddl\CreateTable('salary');
+
+        $table->addColumn(new Column\Integer('id'));
+        $table->addColumn(new Column\Integer('employee_id'));
+        $table->addColumn(new Column\Integer('amount'));
+        $table->addColumn(new Column\Integer('currency'));
+
+        $date = new Column\Date('date');
+        $table->addColumn($date);
+
+        $table->addConstraint(new Constraint\PrimaryKey('id'));
 
         $sql = new Sql($this->dbAdapter);
 

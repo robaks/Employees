@@ -43,5 +43,12 @@
         "classmap": [
             "./Module.php"
         ]
+    },
+
+    "scripts": {
+      "post-update-cmd": [
+        "php public/index.php employees init"
+      ]
     }
+
 }
