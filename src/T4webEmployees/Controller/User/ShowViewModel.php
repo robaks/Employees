@@ -47,9 +47,11 @@ class ShowViewModel extends ViewModel {
     public function getCurrencies()
     {
         return $this->currencies;
-    }/**
- * @param Currency $currencies
- */
+    }
+
+    /**
+     * @param Currency $currencies
+     */
     public function setCurrencies($currencies)
     {
         $this->currencies = $currencies;

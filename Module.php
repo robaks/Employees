@@ -21,6 +21,7 @@ use T4webEmployees\Controller\User\ListController;
 use T4webEmployees\Controller\User\ShowController;
 use T4webEmployees\Controller\User\EditController;
 use T4webEmployees\Controller\User\AddController;
+use T4webEmployees\Controller\User\SalaryListController;
 use T4webEmployees\Controller\User\CreateAjaxController;
 use T4webEmployees\Controller\User\SaveAjaxController;
 use T4webEmployees\Controller\User\SalaryAjaxController;
@@ -297,6 +298,14 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                         $sl->get('T4webEmployees\Salary\Service\Update'),
                         $sl->get('T4webEmployees\Salary\Service\Delete'),
                         $sl->get('T4webEmployees\ViewModel\SaveAjaxViewModel')
+                    );
+                },
+                'T4webEmployees\Controller\User\SalaryList' => function (ControllerManager $cm) {
+                    $sl = $cm->getServiceLocator();
+                    return new SalaryListController(
+                        $sl->get('T4webEmployees\Employee\Service\Finder'),
+                        $sl->get('T4webEmployees\Salary\Service\Finder'),
+                        $sl->get('T4webEmployees\Controller\User\ListViewModel')
                     );
                 },
             ),

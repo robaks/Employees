@@ -1,0 +1,61 @@
+<?php /** @var T4webEmployees\Controller\User\ListViewModel $viewModel */ ?>
+<?php $viewModel = $this->viewModel()->getCurrent(); ?>
+
+<div class="page-header">
+    <div class="row">
+        <h1 class="col-xs-12 col-sm-4 text-center text-left-sm"><i class="fa fa-usd page-header-icon"></i>&nbsp;&nbsp;List of salaries</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="panel panel-default plain">
+            <div class="panel-heading">
+                <h4 class="panel-title"><?= $viewModel->getCurrent()->format('Y'); ?> year</h4>
+            </div>
+
+            <div class="panel-body">
+                <table class="table table-hover table-bordered">
+                    <thead>
+                    <tr>
+                        <th>&nbsp;</th>
+
+                        <?php foreach($viewModel->getMonthsList() as $month): ?>
+                            <th class="text-center">
+                                <div class="vertical-text">
+                                    <div class="vertical-text__inner">
+                                        <?= $month; ?>
+                                    </div>
+                                </div>
+                            </th>
+                        <?php endforeach; ?>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <?php foreach($viewModel->getEmployees() as $employee): ?>
+                        <tr>
+                            <td><?= $employee->getShortName(); ?></td>
+
+                            <?php foreach($viewModel->getMonthsList() as $key => $month): ?>
+                                <td>
+                                    <?php if($salary = $viewModel->getMonthAmount($employee->getId(), $key)): ?>
+                                        <?= $salary->getAmount(); ?>
+                                        <?= $salary->getCurrency()->getName(); ?>
+                                    <?php else: ?>
+                                        0
+                                    <?php endif; ?>
+                                </td>
+                            <?php endforeach; ?>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+
+                <?= $this->employeesYearPaginator($viewModel->getCurrent()); ?>
+
+            </div>
+        </div>
+    </div>
+
+</div>

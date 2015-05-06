@@ -114,6 +114,17 @@ return array(
                     ),
                 ),
             ),
+            'employees-salary-list' => array(
+                'type' => 'Segment',
+                'options' => array(
+                    'route'    => '/employees/salary-list[/:year]',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'T4webEmployees\Controller\User',
+                        'controller'    => 'SalaryList',
+                        'action'        => 'sheet',
+                    ),
+                ),
+            ),
         ),
     ),
 
@@ -132,6 +143,12 @@ return array(
                 ),
             )
         )
+    ),
+
+    'view_helpers' => array(
+        'invokables' => array(
+            'employeesYearPaginator' => 'T4webEmployees\View\Helper\EmployeesYearPaginator',
+        ),
     ),
 
     'db' => array(

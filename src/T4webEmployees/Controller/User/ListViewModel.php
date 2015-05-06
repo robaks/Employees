@@ -6,13 +6,25 @@ use Zend\View\Model\ViewModel;
 use T4webEmployees\Employee\Employee;
 use T4webEmployees\Employee\EmployeeCollection;
 use T4webEmployees\Employee\JobTitle;
+use T4webBase\Domain\Collection;
 
-class ListViewModel extends ViewModel {
+class ListViewModel extends ViewModel
+{
 
     /**
      * @var Collection
      */
     private $employees;
+
+    /**
+     * @var Collection
+     */
+    private $salaries;
+
+    /**
+     * @var /DateTime
+     */
+    private $current;
 
     /**
      * @return EmployeeCollection
@@ -28,6 +40,70 @@ class ListViewModel extends ViewModel {
     public function setEmployees(EmployeeCollection $employees)
     {
         $this->employees = $employees;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getSalaries($employeeId = 0)
+    {
+        if (!empty($employeeId) && isset($this->salaries[$employeeId])) {
+            return $this->salaries[$employeeId];
+        }
+
+        if (empty($employeeId)) {
+            return $this->salaries;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param Collection $salaries
+     */
+    public function setSalaries($salaries)
+    {
+        $this->salaries = $salaries;
+    }
+
+    /**
+     * @return /DateTime
+     */
+    public function getCurrent()
+    {
+        return $this->current;
+    }
+
+    /**
+     * @param mixed $current
+     */
+    public function setCurrent($current)
+    {
+        $this->current = \DateTime::createFromFormat('Y-m-d', $current . '-01-01');
+    }
+
+    public function getMonthsList()
+    {
+
+        $months = array();
+        for ($i = 1; $i <= 12; $i++) {
+            $months[$i] = date('F', mktime(0, 0, 0, $i, 1));
+        }
+
+        return $months;
+    }
+
+    public function getMonthAmount($employeeId, $month)
+    {
+
+        $result = 0;
+        foreach ($this->getSalaries() as $salary) {
+            if ($employeeId == $salary->getEmployeeId() && $salary->getDateTime()->format('m') == $month) {
+                $result = $salary->getAmount() . ' ' . $salary->getCurrency()->getName();
+            }
+        }
+
+        return $result;
     }
 
     public function getEmployeeColorClass(Employee $employee)
@@ -64,7 +140,7 @@ class ListViewModel extends ViewModel {
 
     public function getEmployeeIconClass(Employee $employee)
     {
-        $class= '';
+        $class = '';
 
         switch ($employee->getWorkInfo()->getJobTitleId()) {
             case JobTitle::JUNIOR_SOFTWARE_DEVELOPER:

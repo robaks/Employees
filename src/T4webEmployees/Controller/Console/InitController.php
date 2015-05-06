@@ -195,7 +195,10 @@ class InitController extends AbstractActionController {
     private function createTableSalary() {
         $table = new Ddl\CreateTable('salary');
 
-        $table->addColumn(new Column\Integer('id'));
+        $id = new Column\Integer('id');
+        $id->setOption('AUTO_INCREMENT', 1);
+        $table->addColumn($id);
+
         $table->addColumn(new Column\Integer('employee_id'));
         $table->addColumn(new Column\Integer('amount'));
         $table->addColumn(new Column\Integer('currency'));
