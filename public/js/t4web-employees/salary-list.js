@@ -14,7 +14,7 @@ $(function() {
         $(".modal-body").find('input[name="employeeId"]').val(employeeId);
         $(".modal-body").find('input[name="amount"]').val(amount);
         $(".modal-body").find('select[name="currency"]').val(currency);
-        $(".modal-body").find('select[name="comment"]').val(comment);
+        $(".modal-body").find('textarea[name="comment"]').val(comment);
         $(".modal-body").find('input[name="date"]').val(date);
 
         $('#salary-modal').modal('show');
@@ -76,7 +76,7 @@ $(function() {
                 el.data('currency', data.currency);
                 el.data('amount', data.amount);
 
-                el.data('original-title', data.comment);
+                el.attr('data-original-title', data.comment);
                 initTooltip();
 
                 el.text(data.amount + ' ' + currenies[data.currency]);

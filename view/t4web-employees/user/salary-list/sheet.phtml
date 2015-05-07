@@ -43,7 +43,7 @@
                             <?php foreach($viewModel->getMonthsList() as $key => $month): ?>
                                 <td id="<?= $employee->getId(); ?>-<?= $key; ?>">
                                     <?php if($salary = $viewModel->getMonthAmount($employee->getId(), $key)): ?>
-                                        <a href="#" data-toggle="tooltip" data-amount="<?= $salary->getAmount(); ?>" data-id="<?= $salary->getId(); ?>" data-currency="<?= $salary->getCurrency()->getCode(); ?>" data-comment="" data-employeeid="<?= $salary->getEmployeeId(); ?>" data-original-title="<?= $employee->getComment(); ?>" class="edit-salary">
+                                        <a href="#" data-toggle="tooltip" data-amount="<?= $salary->getAmount(); ?>" data-id="<?= $salary->getId(); ?>" data-currency="<?= $salary->getCurrency()->getCode(); ?>" data-comment="<?= $salary->getComment(); ?>" data-employeeid="<?= $salary->getEmployeeId(); ?>" data-original-title="<?= $salary->getComment(); ?>" class="edit-salary">
                                             <?= $salary->getAmount(); ?>
                                             <?= $salary->getCurrency()->getName(); ?>
                                         </a>

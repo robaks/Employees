@@ -5,6 +5,7 @@ namespace T4webEmployees\Salary\InputFilter;
 use T4webBase\InputFilter\InputFilter;
 use T4webBase\InputFilter\Element\InArray;
 use T4webBase\InputFilter\Element\Date;
+use T4webBase\InputFilter\Element\Text;
 use T4webBase\InputFilter\Element\Int;
 use T4webBase\InputFilter\Element\Id;
 use T4webEmployees\Salary\Currency;
@@ -19,7 +20,7 @@ class Update extends InputFilter {
         $this->add($id);
 
         // employee_id
-        $employeeId = new Int('employee_id');
+        $employeeId = new Int('employeeId');
         $employeeId->setRequired(true);
         $this->add($employeeId);
 
