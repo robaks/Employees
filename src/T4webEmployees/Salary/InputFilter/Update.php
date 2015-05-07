@@ -24,7 +24,7 @@ class Update extends InputFilter {
         $this->add($employeeId);
 
         // amount
-        $amount = new Int('amount');
+        $amount = new Id('amount');
         $amount->setRequired(true);
         $this->add($amount);
 
@@ -37,6 +37,11 @@ class Update extends InputFilter {
         $date = new Date('date', 'Y-m-d');
         $date->setRequired(true);
         $this->add($date);
+
+        // comment
+        $comment = new Text('comment');
+        $comment->setRequired(false);
+        $this->add($comment);
 
     }
 }

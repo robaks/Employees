@@ -10,6 +10,7 @@ class Salary extends Entity
     protected $amount;
     protected $currency;
     protected $date;
+    protected $comment;
 
     /**
      * @return mixed
@@ -83,5 +84,22 @@ class Salary extends Entity
         $date = new \DateTime($this->date);
         return $date;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * @param mixed $comment
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+    }
+
 
 }

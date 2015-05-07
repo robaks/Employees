@@ -195,8 +195,7 @@ class InitController extends AbstractActionController {
     private function createTableSalary() {
         $table = new Ddl\CreateTable('salary');
 
-        $id = new Column\Integer('id');
-        $id->setOption('AUTO_INCREMENT', 1);
+        $id = new Column\Integer('id', false, NULL, array('autoincrement' => true));
         $table->addColumn($id);
 
         $table->addColumn(new Column\Integer('employee_id'));
@@ -205,6 +204,8 @@ class InitController extends AbstractActionController {
 
         $date = new Column\Date('date');
         $table->addColumn($date);
+
+        $table->addColumn(new Column\Text('comment'), null, true);
 
         $table->addConstraint(new Constraint\PrimaryKey('id'));
 

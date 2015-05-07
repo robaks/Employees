@@ -2,6 +2,7 @@
 
 namespace T4webEmployees\Controller\User;
 
+use T4webEmployees\Salary\Currency;
 use Zend\View\Model\ViewModel;
 use T4webEmployees\Employee\Employee;
 use T4webEmployees\Employee\EmployeeCollection;
@@ -80,6 +81,14 @@ class ListViewModel extends ViewModel
     public function setCurrent($current)
     {
         $this->current = \DateTime::createFromFormat('Y-m-d', $current . '-01-01');
+    }
+
+    /**
+     * @return Currency
+     */
+    public function getCurrencies()
+    {
+        return Currency::getAll();
     }
 
     public function getMonthsList()

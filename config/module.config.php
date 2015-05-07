@@ -211,6 +211,7 @@ return array(
                     'amount' => 'amount',
                     'currency' => 'currency',
                     'date' => 'date',
+                    'comment' => 'comment',
                 ),
             ),
         ),

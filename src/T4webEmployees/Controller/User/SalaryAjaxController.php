@@ -73,9 +73,15 @@ class SalaryAjaxController extends AbstractActionController
         $params = $this->getRequest()->getPost()->toArray();
         $params['employeeId'] = $employeeId;
 
+        if(isset($params['date']) && empty($params['date'])) {
+            unset($params['date']);
+        }
+
         if(isset($params['id']) && !empty($params['id'])) {
-            $params['employee_id'] = $employeeId;
-            $salary = $this->updateService->update($params['id'], $params);
+            $salary = $this->finder->find(['T4webEmployees' => ['Salary' => ['Id' => $params['id']]]]);
+            $salary->populate($params);
+
+            $salary = $this->updateService->update($params['id'], $salary->extract());
 
             if (!$salary) {
                 $this->view->setFormData($params);

@@ -1,6 +1,8 @@
 <?php /** @var T4webEmployees\Controller\User\ListViewModel $viewModel */ ?>
 <?php $viewModel = $this->viewModel()->getCurrent(); ?>
 
+<?php $this->headScript()->appendFile($this->basePath() . '/js/t4web-employees/salary-list.js');?>
+
 <div class="page-header">
     <div class="row">
         <h1 class="col-xs-12 col-sm-4 text-center text-left-sm"><i class="fa fa-usd page-header-icon"></i>&nbsp;&nbsp;List of salaries</h1>
@@ -15,7 +17,8 @@
             </div>
 
             <div class="panel-body">
-                <table class="table table-hover table-bordered">
+
+                <table class="table table-hover table-bordered" id="salaries-list">
                     <thead>
                     <tr>
                         <th>&nbsp;</th>
@@ -38,12 +41,16 @@
                             <td><?= $employee->getShortName(); ?></td>
 
                             <?php foreach($viewModel->getMonthsList() as $key => $month): ?>
-                                <td>
+                                <td id="<?= $employee->getId(); ?>-<?= $key; ?>">
                                     <?php if($salary = $viewModel->getMonthAmount($employee->getId(), $key)): ?>
-                                        <?= $salary->getAmount(); ?>
-                                        <?= $salary->getCurrency()->getName(); ?>
+                                        <a href="#" data-toggle="tooltip" data-amount="<?= $salary->getAmount(); ?>" data-id="<?= $salary->getId(); ?>" data-currency="<?= $salary->getCurrency()->getCode(); ?>" data-comment="" data-employeeid="<?= $salary->getEmployeeId(); ?>" data-original-title="<?= $employee->getComment(); ?>" class="edit-salary">
+                                            <?= $salary->getAmount(); ?>
+                                            <?= $salary->getCurrency()->getName(); ?>
+                                        </a>
                                     <?php else: ?>
-                                        0
+                                        <a href="#" data-toggle="tooltip" data-target="#salary-modal" data-date="<?= $viewModel->getCurrent()->format('Y') . '-' . sprintf("%'.02d", $key) . '-01'; ?>" data-amount="" data-id="" data-currency="<?= \T4webEmployees\Salary\Currency::UAH; ?>" data-comment="" data-employeeid="<?= $employee->getId(); ?>" class="edit-salary">
+                                            0
+                                        </a>
                                     <?php endif; ?>
                                 </td>
                             <?php endforeach; ?>
@@ -52,10 +59,11 @@
                     </tbody>
                 </table>
 
-                <?= $this->employeesYearPaginator($viewModel->getCurrent()); ?>
+                <?= $this->partial('partials/edit-salary.phtml', $this); ?>
 
+                <?= $this->employeesYearPaginator($viewModel->getCurrent()); ?>
             </div>
         </div>
     </div>
-
 </div>
+
