@@ -290,16 +290,6 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                         $sl->get('T4webEmployees\Employee\Service\Update')
                     );
                 },
-                'T4webEmployees\Controller\User\SalaryAjax' => function (ControllerManager $cm) {
-                    $sl = $cm->getServiceLocator();
-                    return new SalaryAjaxController(
-                        $sl->get('T4webEmployees\Salary\Service\Finder'),
-                        $sl->get('T4webEmployees\Salary\Service\Create'),
-                        $sl->get('T4webEmployees\Salary\Service\Update'),
-                        $sl->get('T4webEmployees\Salary\Service\Delete'),
-                        $sl->get('T4webEmployees\ViewModel\SaveAjaxViewModel')
-                    );
-                },
                 'T4webEmployees\Controller\User\SalaryList' => function (ControllerManager $cm) {
                     $sl = $cm->getServiceLocator();
                     return new SalaryListController(
@@ -308,6 +298,7 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                         $sl->get('T4webEmployees\Controller\User\ListViewModel')
                     );
                 },
+                'T4webEmployees\Controller\User\SalaryAjax' => 'T4webEmployees\Factory\Controller\User\SalaryAjaxControllerFactory',
             ),
         );
     }
