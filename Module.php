@@ -24,11 +24,7 @@ use T4webEmployees\Controller\User\AddController;
 use T4webEmployees\Controller\User\SalaryListController;
 use T4webEmployees\Controller\User\CreateAjaxController;
 use T4webEmployees\Controller\User\SaveAjaxController;
-use T4webEmployees\Controller\User\SalaryAjaxController;
 use T4webEmployees\Controller\Console\InitController;
-use T4webEmployees\Employee\Service\WorkInfoPopulate;
-use T4webEmployees\Employee\Service\PersonalInfoPopulate;
-use T4webEmployees\Employee\Service\SocialPopulate;
 
 class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
     ControllerProviderInterface, ConsoleUsageProviderInterface,
@@ -61,66 +57,12 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
     {
         return array(
             'factories' => array(
-                'T4webEmployees\Employee\Service\Create' => function (ServiceManager $sm) {
-                    $eventManager = $sm->get('EventManager');
-                    $eventManager->addIdentifiers('T4webEmployees\Employee\Service\Create');
-
-                    return new Employee\Service\Create(
-                        $sm->get('T4webEmployees\Employee\InputFilter\Create'),
-                        $sm->get('T4webEmployees\Employee\Repository\DbRepository'),
-                        $sm->get('T4webEmployees\PersonalInfo\Repository\DbRepository'),
-                        $sm->get('T4webEmployees\WorkInfo\Repository\DbRepository'),
-                        $sm->get('T4webEmployees\Social\Repository\DbRepository'),
-                        $sm->get('T4webEmployees\Employee\Factory\EntityFactory'),
-                        $sm->get('T4webEmployees\PersonalInfo\Factory\EntityFactory'),
-                        $sm->get('T4webEmployees\WorkInfo\Factory\EntityFactory'),
-                        $sm->get('T4webEmployees\Social\Factory\EntityFactory'),
-                        $eventManager
-                    );
-                },
-
-                'T4webEmployees\Employee\Service\Update' => function (ServiceManager $sm) {
-                    $eventManager = $sm->get('EventManager');
-                    $eventManager->addIdentifiers('T4webEmployees\Employee\Service\Update');
-
-                    return new Employee\Service\Update(
-                        $sm->get('T4webEmployees\Employee\InputFilter\Update'),
-                        $sm->get('T4webEmployees\Employee\Repository\DbRepository'),
-                        $sm->get('T4webEmployees\PersonalInfo\Repository\DbRepository'),
-                        $sm->get('T4webEmployees\WorkInfo\Repository\DbRepository'),
-                        $sm->get('T4webEmployees\Social\Repository\DbRepository'),
-                        $sm->get('T4webEmployees\Employee\Criteria\CriteriaFactory'),
-                        $sm->get('T4webEmployees\PersonalInfo\Criteria\CriteriaFactory'),
-                        $sm->get('T4webEmployees\WorkInfo\Criteria\CriteriaFactory'),
-                        $sm->get('T4webEmployees\Social\Criteria\CriteriaFactory'),
-                        $eventManager
-                    );
-                },
-
-                'T4webEmployees\Employee\Service\Finder' => function (ServiceManager $sm) {
-                    return new ServiceFinder(
-                        $sm->get('T4webEmployees\Employee\Repository\DbRepository'),
-                        $sm->get('T4webEmployees\Employee\Criteria\CriteriaFactory')
-                    );
-                },
-
-                'T4webEmployees\Employee\Service\WorkInfoPopulate' =>  function (ServiceManager $sm) {
-                    return new WorkInfoPopulate(
-                        $sm->get('T4webEmployees\WorkInfo\Service\Finder')
-                    );
-                },
-
-                'T4webEmployees\Employee\Service\PersonalInfoPopulate' =>  function (ServiceManager $sm) {
-                    return new PersonalInfoPopulate(
-                        $sm->get('T4webEmployees\PersonalInfo\Service\Finder')
-                    );
-                },
-
-                'T4webEmployees\Employee\Service\SocialPopulate' =>  function (ServiceManager $sm) {
-                    return new SocialPopulate(
-                        $sm->get('T4webEmployees\Social\Service\Finder')
-                    );
-                },
+                'T4webEmployees\Employee\Service\Create' => 'T4webEmployees\Factory\Employee\Service\CreateServiceFactory',
+                'T4webEmployees\Employee\Service\Update' => 'T4webEmployees\Factory\Employee\Service\UpdateServiceFactory',
+                'T4webEmployees\Employee\Service\Finder' => 'T4webEmployees\Factory\Employee\Service\FinderServiceFactory',
+                'T4webEmployees\Employee\Service\WorkInfoPopulate' => 'T4webEmployees\Factory\Employee\Service\WorkInfoPopulateServiceFactory',
+                'T4webEmployees\Employee\Service\PersonalInfoPopulate' => 'T4webEmployees\Factory\Employee\Service\PersonalInfoPopulateServiceFactory',
+                'T4webEmployees\Employee\Service\SocialPopulate' => 'T4webEmployees\Factory\Employee\Service\SocialPopulateServiceFactory',
 
                 'T4webEmployees\PersonalInfo\Service\Create' => function (ServiceManager $sm) {
                     return new ServiceCreate(
