@@ -13,6 +13,23 @@ return array(
         ),
     ),
 
+    'controller_action_injections' => array(
+        'T4webEmployees\Controller\User\SaveAjaxController' => array(
+            'defaultAction' => array(
+                'request',
+                'T4webEmployees\ViewModel\SaveAjaxViewModel',
+                'T4webEmployees\Employee\Service\Update',
+                'fileSystem',
+            ),
+        ),
+    ),
+
+    'controllers' => array(
+        'invokables' => array(
+            'T4webEmployees\Controller\User\SaveAjax' => 'T4webEmployees\Controller\User\SaveAjaxController',
+        ),
+    ),
+
     'router' => array(
         'routes' => array(
             'employees-list' => array(

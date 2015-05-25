@@ -2,55 +2,38 @@
 
 namespace T4webEmployees\Controller\User;
 
-use Zend\Mvc\Controller\AbstractActionController;
-use T4webEmployees\Employee\Service\Update as UpdateService;
+use T4webActionInjections\Mvc\Controller\AbstractActionController;
+use Zend\Http\PhpEnvironment\Request as HttpRequest;
 use T4webEmployees\ViewModel\SaveAjaxViewModel;
+use T4webEmployees\Employee\Service\Update as UpdateService;
+use League\Flysystem\Filesystem;
 
 class SaveAjaxController extends AbstractActionController {
 
-    /**
-     * @var SaveAjaxViewModel
-     */
-    private $view;
-
-    /**
-     * @var UpdateService
-     */
-    private $updateService;
-
-    public function __construct(
-        SaveAjaxViewModel $view,
-        UpdateService $updateService) {
-
-        $this->view = $view;
-        $this->updateService = $updateService;
-    }
-
-    public function defaultAction()
+    public function defaultAction(HttpRequest $request, SaveAjaxViewModel $view, UpdateService $updateService, Filesystem $fileSystem)
     {
-        if (!$this->getRequest()->isPost()) {
-            return $this->view;
+        if (!$request->isPost()) {
+            return $view;
         }
 
-        $params = $this->getRequest()->getPost()->toArray();
+        $params = $request->getPost()->toArray();
 
-        $employee = $this->updateService->update($params['id'], $params);
+        $employee = $updateService->update($params['id'], $params);
 
         if (!$employee) {
-            $this->view->setFormData($params);
-            $this->view->setErrors($this->updateService->getErrors());
-            return $this->view;
+            $view->setFormData($params);
+            $view->setErrors($updateService->getErrors());
+            return $view;
         }
 
-        if(isset($params['removeAvatar']) && !empty($params['removeAvatar']) && file_exists(getcwd() . '/public' . $params['removeAvatar'])) {
-            $folder = new \T4webBase\Folder();
-            $folder->remove('/public' . $params['removeAvatar']);
+        if(isset($params['removeAvatar']) && $fileSystem->has($params['removeAvatar'])) {
+            $fileSystem->delete($params['removeAvatar']);
         }
 
         $params['employeeId'] = $employee->getId();
-        $this->view->setFormData($params);
+        $view->setFormData($params);
 
-        return $this->view;
+        return $view;
     }
 
 }

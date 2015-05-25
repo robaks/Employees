@@ -23,7 +23,6 @@ use T4webEmployees\Controller\User\EditController;
 use T4webEmployees\Controller\User\AddController;
 use T4webEmployees\Controller\User\SalaryListController;
 use T4webEmployees\Controller\User\CreateAjaxController;
-use T4webEmployees\Controller\User\SaveAjaxController;
 use T4webEmployees\Controller\Console\InitController;
 
 class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
@@ -146,6 +145,10 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                         $eventManager
                     );
                 },
+
+                'fileSystem' => function (ServiceManager $sm) {
+                    return new Filesystem(new LocalAdapter(getcwd() . '/public'));
+                },
             ),
             'invokables' => array(
                 'T4webEmployees\ViewModel\SaveAjaxViewModel' => 'T4webEmployees\ViewModel\SaveAjaxViewModel',
@@ -223,13 +226,6 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface,
                     return new CreateAjaxController(
                         $sl->get('T4webEmployees\ViewModel\SaveAjaxViewModel'),
                         $sl->get('T4webEmployees\Employee\Service\Create')
-                    );
-                },
-                'T4webEmployees\Controller\User\SaveAjax' => function (ControllerManager $cm) {
-                    $sl = $cm->getServiceLocator();
-                    return new SaveAjaxController(
-                        $sl->get('T4webEmployees\ViewModel\SaveAjaxViewModel'),
-                        $sl->get('T4webEmployees\Employee\Service\Update')
                     );
                 },
                 'T4webEmployees\Controller\User\SalaryList' => function (ControllerManager $cm) {
