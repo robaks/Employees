@@ -21,7 +21,9 @@ class AddViewModel extends ViewModel {
      */
     public function getStatuses()
     {
-        return Status::getAll();
+        $statuses = Status::getAll();
+        unset($statuses[Status::DISMISSED]);
+        return $statuses;
     }
 
 }
