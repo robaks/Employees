@@ -263,6 +263,26 @@ return array(
         ),
         'WorkInfo' => array(
             'empty' => array('table' => 'employees_work_info'),
+            'status' => array(
+                'table' => 'employees_work_info',
+                'field' => 'status',
+                'buildMethod' => 'addFilterEqual',
+            ),
+            'startWorkDateLess' => array(
+                'table' => 'employees_work_info',
+                'field' => 'start_work_date',
+                'buildMethod' => 'addFilterLess',
+            ),
+            'limit' => array(
+                'table' => 'employees_work_info',
+                'field' => '',
+                'buildMethod' => 'limit',
+            ),
+            'page' => array(
+                'table' => 'employees_work_info',
+                'field' => '',
+                'buildMethod' => 'page',
+            ),
         ),
         'Salary' => array(
             'empty' => array('table' => 'salary'),
