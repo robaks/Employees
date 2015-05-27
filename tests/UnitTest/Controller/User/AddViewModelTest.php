@@ -19,8 +19,11 @@ class AddViewModelTest extends \PHPUnit_Framework_TestCase
     }
 
     public function testGetStatuses_WithoutDismissed_ReturnStatuses() {
-        $statuses = Status::getAll();
-        unset($statuses[Status::DISMISSED]);
+        $statuses = [
+            1 => 'На испытательном',
+            2 => 'Работает',
+            4 => 'Удаленный сотрудник',
+        ];
 
         $this->assertEquals($statuses, $this->viewModel->getStatuses());
     }
