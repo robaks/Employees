@@ -8,6 +8,7 @@ use T4webEmployees\Employee\Employee;
 use T4webEmployees\Employee\EmployeeCollection;
 use T4webEmployees\Employee\JobTitle;
 use T4webBase\Domain\Collection;
+use T4webEmployees\Salary\Salary;
 
 class ListViewModel extends ViewModel
 {
@@ -62,7 +63,7 @@ class ListViewModel extends ViewModel
     /**
      * @param Collection $salaries
      */
-    public function setSalaries($salaries)
+    public function setSalaries(Collection $salaries)
     {
         $this->salaries = $salaries;
     }
@@ -102,18 +103,35 @@ class ListViewModel extends ViewModel
         return $months;
     }
 
+    /**
+     * @param $employeeId
+     * @param $month
+     * @return bool|Salary
+     */
     public function getMonthAmount($employeeId, $month)
     {
+        $salaries = $this->getSalaries();
+        $salariesByEmployeeId = $salaries->getAllByAttributeValue($employeeId, 'employeeId');
+        if (!$salariesByEmployeeId->count()) {
+            return false;
+        }
 
-        foreach ($this->getSalaries() as $salary) {
-
-            if ($employeeId == $salary->getEmployeeId() && $salary->getDateTime()->format('Y-m') == $this->getCurrent()->format('Y') . '-' . sprintf("%'.02d", $month)) {
-                return $salary;
-                break;
+        $salaryDateTimes = $salariesByEmployeeId->getValuesByAttribute('date', true);
+        $salaryIdByDate = [];
+        foreach ($salaryDateTimes as $salaryId => $salaryDateTime) {
+            if (date('Y-m', strtotime($salaryDateTime)) <= $this->getCurrent()->format('Y') . '-' . sprintf("%'.02d", $month)) {
+                $salaryIdByDate[$salaryDateTime] = $salaryId;
             }
         }
 
-        return false;
+        if (empty($salaryIdByDate)) {
+            return false;
+        }
+
+        // sort by date
+        ksort($salaryIdByDate);
+        // array_pop: get last salaryId by last date
+        return $salaries->offsetGet( array_pop($salaryIdByDate) );
     }
 
     public function getEmployeeColorClass(Employee $employee)
