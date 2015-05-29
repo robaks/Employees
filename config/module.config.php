@@ -22,11 +22,22 @@ return array(
                 'fileSystem',
             ),
         ),
+        'T4webEmployees\Controller\User\SalaryListController' => array(
+            'sheetAction' => array(
+                function($serviceLocator, $targetController) {
+                    return $serviceLocator->get('ControllerPluginManager')->get('params');
+                },
+                'T4webEmployees\Employee\Service\Finder',
+                'T4webEmployees\Salary\Service\Finder',
+                'T4webEmployees\Controller\User\ListViewModel',
+            ),
+        ),
     ),
 
     'controllers' => array(
         'invokables' => array(
             'T4webEmployees\Controller\User\SaveAjax' => 'T4webEmployees\Controller\User\SaveAjaxController',
+            'T4webEmployees\Controller\User\SalaryList' => 'T4webEmployees\Controller\User\SalaryListController',
         ),
     ),
 

@@ -40,16 +40,18 @@
                         <tr>
                             <td><?= $employee->getShortName(); ?></td>
 
+                            <?php $lastSalary = 0; ?>
                             <?php foreach($viewModel->getMonthsList() as $key => $month): ?>
                                 <td id="<?= $employee->getId(); ?>-<?= $key; ?>">
                                     <?php if($salary = $viewModel->getMonthAmount($employee->getId(), $key)): ?>
+                                        <?php $lastSalary = $salary->getAmount() .' '. $salary->getCurrency()->getName(); ?>
                                         <a href="#" data-toggle="tooltip" data-amount="<?= $salary->getAmount(); ?>" data-id="<?= $salary->getId(); ?>" data-currency="<?= $salary->getCurrency()->getCode(); ?>" data-comment="<?= $salary->getComment(); ?>" data-employeeid="<?= $salary->getEmployeeId(); ?>" data-original-title="<?= $salary->getComment(); ?>" class="edit-salary">
                                             <?= $salary->getAmount(); ?>
                                             <?= $salary->getCurrency()->getName(); ?>
                                         </a>
                                     <?php else: ?>
                                         <a href="#" data-toggle="tooltip" data-target="#salary-modal" data-date="<?= $viewModel->getCurrent()->format('Y') . '-' . sprintf("%'.02d", $key) . '-01'; ?>" data-amount="" data-id="" data-currency="<?= \T4webEmployees\Salary\Currency::UAH; ?>" data-comment="" data-employeeid="<?= $employee->getId(); ?>" class="edit-salary">
-                                            0
+                                            <?= $lastSalary; ?>
                                         </a>
                                     <?php endif; ?>
                                 </td>

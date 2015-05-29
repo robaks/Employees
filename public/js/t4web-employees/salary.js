@@ -67,6 +67,7 @@ $(function() {
         var data = $.extend({}, formData);
 
         data.id = $(this).data('id') || null;
+        data.comment = '';
 
         $.ajax({
             url: '/employee/'+employeeId+'/salary-ajax/save',

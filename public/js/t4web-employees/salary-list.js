@@ -66,7 +66,6 @@ $(function() {
                 var currenies = getCurrencies();
 
                 var date = new Date(data.date);
-
                 var tdId = data.employeeId + '-' + parseInt(date.getMonth() + 1);
                 var el = $('#salaries-list').find('td#' + tdId).find('a');
 
@@ -81,6 +80,8 @@ $(function() {
 
                 el.text(data.amount + ' ' + currenies[data.currency]);
                 $('#salary-modal').modal('hide');
+
+                setAmountNextMonthsWithoutSalary(data.employeeId, date.getMonth() + 1, data.amount + ' ' + currenies[data.currency]);
             }
         });
     });
@@ -109,6 +110,22 @@ $(function() {
         });
 
         return result;
+    }
+
+    function setAmountNextMonthsWithoutSalary(employeeId, currentMonth, text) {
+        if (currentMonth == 12) {
+            return;
+        }
+
+        for (var month = currentMonth + 1; month <= 12; month++) {
+            var tdId = employeeId + '-' + parseInt(month);
+            var el = $('#salaries-list').find('td#' + tdId).find('a');
+            if (el.data('id')) {
+                return;
+            }
+
+            el.text(text);
+        }
     }
 });
 
