@@ -244,9 +244,9 @@ return array(
             ),
         ),
         'dependencies' => array(
-            'WorkInfo' => array(
+            'Employee' => array(
                 'Employees' => array(
-                    array(
+                    'WorkInfo' => array(
                         'table' => 'employees_work_info',
                         'rule' => 'employees_work_info.employee_id = employees.id',
                     ),
