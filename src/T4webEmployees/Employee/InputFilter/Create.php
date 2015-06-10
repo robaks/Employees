@@ -39,7 +39,7 @@ class Create extends InputFilter {
 
         // avatar
         $avatar = new Text('avatar');
-        $avatar->setRequired(false);
+        $avatar->setRequired(true);
         $this->add($avatar);
 
         // job_title
