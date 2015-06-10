@@ -7,6 +7,7 @@ use Zend\View\Model\ViewModel;
 use T4webEmployees\Employee\Employee;
 use T4webEmployees\Employee\EmployeeCollection;
 use T4webEmployees\Employee\JobTitle;
+use T4webEmployees\Employee\Status;
 use T4webBase\Domain\Collection;
 use T4webEmployees\Salary\Salary;
 
@@ -108,10 +109,17 @@ class ListViewModel extends ViewModel
      * @param $month
      * @return bool|Salary
      */
-    public function getMonthAmount($employeeId, $month)
+    public function getMonthAmount(Employee $employee, $month)
     {
+        // if employee dismissed
+        if($employee->getWorkInfo()->getStatusId() == Status::DISMISSED) {
+            if(date('Y-m', strtotime($employee->getWorkInfo()->getEndWorkDate())) < $this->getCurrent()->format('Y') . '-' . sprintf("%'.02d", $month)) {
+                return false;
+            }
+        }
+
         $salaries = $this->getSalaries();
-        $salariesByEmployeeId = $salaries->getAllByAttributeValue($employeeId, 'employeeId');
+        $salariesByEmployeeId = $salaries->getAllByAttributeValue($employee->getId(), 'employeeId');
         if (!$salariesByEmployeeId->count()) {
             return false;
         }

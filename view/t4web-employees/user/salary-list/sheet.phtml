@@ -43,8 +43,11 @@
                             <?php $lastSalary = 0; ?>
                             <?php foreach($viewModel->getMonthsList() as $key => $month): ?>
                                 <td id="<?= $employee->getId(); ?>-<?= $key; ?>">
-                                    <?php if($salary = $viewModel->getMonthAmount($employee->getId(), $key)): ?>
+                                    <?php if($salary = $viewModel->getMonthAmount($employee, $key)): ?>
                                         <?php $lastSalary = $salary->getAmount() .' '. $salary->getCurrency()->getName(); ?>
+                                        <?php if($employee->getWorkInfo()->getStatusId() == \T4webEmployees\Employee\Status::DISMISSED): ?>
+                                            <?php $lastSalary = 0; ?>
+                                        <?php endif; ?>
                                         <a href="#" data-toggle="tooltip" data-amount="<?= $salary->getAmount(); ?>" data-id="<?= $salary->getId(); ?>" data-currency="<?= $salary->getCurrency()->getCode(); ?>" data-comment="<?= $salary->getComment(); ?>" data-employeeid="<?= $salary->getEmployeeId(); ?>" data-original-title="<?= $salary->getComment(); ?>" class="edit-salary">
                                             <?= $salary->getAmount(); ?>
                                             <?= $salary->getCurrency()->getName(); ?>
@@ -68,4 +71,3 @@
         </div>
     </div>
 </div>
-

@@ -5,6 +5,8 @@ namespace T4webEmployeesTest\UnitTest\Controller\User;
 use T4webEmployees\Controller\User\ListViewModel;
 use T4webBase\Domain\Collection;
 use T4webEmployees\Salary\Salary;
+use T4webEmployees\Employee\Employee;
+use T4webEmployees\WorkInfo\WorkInfo;
 
 class ListViewModelTest extends \PHPUnit_Framework_TestCase
 {
@@ -33,9 +35,9 @@ class ListViewModelTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider getMonthAmountProvider
      */
-    public function testGetMonthAmount_Provider_ReturnFalse($expected, $employeeId, $month)
+    public function testGetMonthAmount_Provider_ReturnFalse($expected, $employee, $month)
     {
-        $this->assertEquals($expected, $this->viewModel->getMonthAmount($employeeId, $month));
+        $this->assertEquals($expected, $this->viewModel->getMonthAmount($employee, $month));
     }
 
     public function getMonthAmountProvider() {
@@ -43,11 +45,21 @@ class ListViewModelTest extends \PHPUnit_Framework_TestCase
         $lastSalary = new Salary(['id' => 4, 'employeeId' => 1, 'amount' => 300, 'date' => '2015-02-02']);
         $salary = new Salary(['id' => 3, 'employeeId' => 1, 'amount' => 550, 'date' => '2015-04-20']);
 
+        $employee = new Employee(array('id' => 1));
+        $employee->setWorkInfo(new WorkInfo(array('employeeId' => 1, 'jobTitleId'=> 1, 'statusId' => 2)));
+
+        $employee2 = new Employee(array('id' => 2));
+        $employee2->setWorkInfo(new WorkInfo(array('employeeId' => 2, 'jobTitleId'=> 1, 'statusId' => 2)));
+
+        $employee3 = new Employee(array('id' => 3));
+        $employee3->setWorkInfo(new WorkInfo(array('employeeId' => 3, 'jobTitleId'=> 3, 'statusId' => 3, 'endWorkDate' => '2015-05-01')));
+
         return [
-            [false, 2, 1], // not found salary by employeeId
-            [false, 1, 1], // not found salaries by month
-            [$lastSalary, 1, 3], // last salary
-            [$salary, 1, 4], // normal
+            [false, $employee, 1], // not found salary by employeeId
+            [false, $employee2, 1], // not found salaries by month
+            [$lastSalary, $employee, 3], // last salary
+            [$salary, $employee, 4], // normal
+            [false, $employee3, 5], // normal
         ];
     }
 }
