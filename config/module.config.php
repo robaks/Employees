@@ -28,6 +28,7 @@ return array(
                     return $serviceLocator->get('ControllerPluginManager')->get('params');
                 },
                 'T4webEmployees\Employee\Service\Finder',
+                'T4webEmployees\Employee\Service\WorkInfoPopulate',
                 'T4webEmployees\Salary\Service\Finder',
                 'T4webEmployees\Controller\User\ListViewModel',
             ),
@@ -283,6 +284,16 @@ return array(
                 'table' => 'employees_work_info',
                 'field' => 'start_work_date',
                 'buildMethod' => 'addFilterLess',
+            ),
+            'startWorkDateFrom' => array(
+                'table' => 'employees_work_info',
+                'field' => 'start_work_date',
+                'buildMethod' => 'addFilterMoreOrEqual',
+            ),
+            'startWorkDateTo' => array(
+                'table' => 'employees_work_info',
+                'field' => 'start_work_date',
+                'buildMethod' => 'addFilterLessOrEqual',
             ),
             'limit' => array(
                 'table' => 'employees_work_info',
