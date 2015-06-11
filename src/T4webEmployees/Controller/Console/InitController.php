@@ -132,6 +132,7 @@ class InitController extends AbstractActionController {
         $table->addColumn(new Column\Integer('employee_id'));
         $table->addColumn(new Column\Integer('job_title'));
         $table->addColumn(new Column\Integer('status'));
+        $table->addColumn(new Column\Integer('probation_type', true, null));
         $table->addColumn(new Column\Date('start_work_date'));
         $table->addColumn(new Column\Date('end_work_date'));
         $table->addColumn(new Column\Text('comment'));
