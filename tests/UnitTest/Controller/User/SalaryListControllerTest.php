@@ -14,12 +14,14 @@ class SalaryListControllerTest extends \PHPUnit_Framework_TestCase
     private $controller;
     private $paramsPluginMock;
     private $employeeFinderServiceMock;
+    private $workInfoPopulateMock;
     private $salaryFinderServiceMock;
     private $listViewModel;
 
     public function setUp() {
         $this->paramsPluginMock = $this->getMock('Zend\Mvc\Controller\Plugin\Params');
         $this->employeeFinderServiceMock = $this->getMockBuilder('T4webBase\Domain\Service\BaseFinder')->disableOriginalConstructor()->getMock();
+        $this->workInfoPopulateMock = $this->getMockBuilder('T4webEmployees\Employee\Service\WorkInfoPopulate')->disableOriginalConstructor()->getMock();
         $this->salaryFinderServiceMock = $this->getMockBuilder('T4webBase\Domain\Service\BaseFinder')->disableOriginalConstructor()->getMock();
         $this->listViewModel = new ListViewModel();
 
@@ -40,12 +42,15 @@ class SalaryListControllerTest extends \PHPUnit_Framework_TestCase
             ->method('findMany')
             ->willReturn($employeeCollection);
 
+        $this->workInfoPopulateMock->expects($this->once())
+            ->method('populateCollection');
+
         $this->salaryFinderServiceMock->expects($this->once())
             ->method('findMany')
             ->willReturn($salaries);
 
         /** @var $result ListViewModel */
-        $result = $this->controller->sheetAction($this->paramsPluginMock, $this->employeeFinderServiceMock, $this->salaryFinderServiceMock, $this->listViewModel);
+        $result = $this->controller->sheetAction($this->paramsPluginMock, $this->employeeFinderServiceMock, $this->workInfoPopulateMock, $this->salaryFinderServiceMock, $this->listViewModel);
 
         $this->assertEquals($this->listViewModel, $result);
         $this->assertEquals($year, $result->getCurrent()->format('Y'));
