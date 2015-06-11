@@ -213,6 +213,7 @@ return array(
                     'employee_id' => 'employeeId',
                     'job_title' => 'jobTitleId',
                     'status' => 'statusId',
+                    'probation_type' => 'probationType',
                     'start_work_date' => 'startWorkDate',
                     'end_work_date' => 'endWorkDate',
                     'comment' => 'comment',
