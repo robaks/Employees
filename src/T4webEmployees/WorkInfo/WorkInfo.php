@@ -25,6 +25,7 @@ class WorkInfo extends Entity {
     protected $startWorkDate;
     protected $endWorkDate;
     protected $comment;
+    protected $probationType;
 
     /**
      * @var JobTitle
@@ -110,4 +111,11 @@ class WorkInfo extends Entity {
         $this->comment = $comment;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getProbationType()
+    {
+        return $this->probationType;
+    }
 }
