@@ -296,6 +296,21 @@ return array(
                 'field' => 'start_work_date',
                 'buildMethod' => 'addFilterLessOrEqual',
             ),
+            'endWorkDateFrom' => array(
+                'table' => 'employees_work_info',
+                'field' => 'end_work_date',
+                'buildMethod' => 'addFilterMoreOrEqual',
+            ),
+            'endWorkDateTo' => array(
+                'table' => 'employees_work_info',
+                'field' => 'end_work_date',
+                'buildMethod' => 'addFilterLessOrEqual',
+            ),
+            'orEndWorkDayEmpty' => array(
+                'table' => 'employees_work_info',
+                'field' => 'end_work_date',
+                'buildMethod' => 'orFilterEqual',
+            ),
             'limit' => array(
                 'table' => 'employees_work_info',
                 'field' => '',
